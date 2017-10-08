@@ -33,13 +33,20 @@ module.exports = function( env = {} ) {
     entry: './src/main.js',
 
     output: {
-      path: path.resolve( __dirname, '../../dist' ),
-      publicPath: env.production ? '/' : 'http://localhost:8080/',
-      filename: env.production ? 'dist/main.min.js' : 'dist/main.js'
+      path: path.resolve( __dirname, './dist' ),
+      filename: env.production ? 'js/main.min.js' : 'js/main.js',
+      publicPath: env.production ? '/dist/' : 'http://localhost:8080/'
     },
 
+    // About combining webpack-dev-server and (in this project) MAMP server: https://webpack.github.io/docs/webpack-dev-server.html#combining-with-an-existing-server
     devServer: {
-      contentBase: false, // Only serve files part of the bundle to run server alongside the apache server that serves WordPress
+      proxy: {
+        '/': {
+          target: 'http://localhost:3000',
+          secure: false
+        }
+      },
+      inline: true,
       hot: true,
       headers: {
         'Access-Control-Allow-Origin': '*'
@@ -71,7 +78,8 @@ module.exports = function( env = {} ) {
             loaders: {
               css: makeStyleLoader(),
               sass: makeStyleLoader( 'sass' )
-            }
+            },
+            postcss: [require('autoprefixer')()]
           }
         },
         {
@@ -84,11 +92,11 @@ module.exports = function( env = {} ) {
           use: makeStyleLoader()
         },
         {
-          test: /\.sass$/,
+          test: /\.s[a|c]ss$/,
           use: makeStyleLoader( 'sass' )
         },
         {
-          test: /\.(png|jpg)$/,
+          test: /\.(png|jpg|gif|svg)$/,
           loader: 'file-loader',
           options: {
             name: 'images/[name].[ext]'
@@ -98,9 +106,9 @@ module.exports = function( env = {} ) {
     },
 
     resolve: {
-      extensions: [ '.js', '.vue', '.json' ],
+      extensions: [ '.js', '.vue', '.json', '.scss' ],
       alias: {
-        '@': path.resolve( __dirname, '..' )
+        '@': path.resolve( __dirname, 'src/' )
       }
     }
 

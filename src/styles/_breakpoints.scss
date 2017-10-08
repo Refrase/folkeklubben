@@ -1,0 +1,15 @@
+@mixin breakpoint($class, $value: false, $min: false) {
+
+  @if $class == 'mobile' {
+    @media (max-width: 767px) { @content; }
+  } @else if $class == 'custom' {
+    @if $min == true {
+      @media (min-width: $value) { @content; }
+    } @else {
+      @media (max-width: $value) { @content; }
+    }
+  } @else {
+    @error 'That breakpoint isn\'t available...';
+  }
+
+}

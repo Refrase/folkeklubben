@@ -8,7 +8,7 @@
 
   // Scripts
   function folkeklubben_theme_js() {
-    wp_enqueue_script( 'main_js', get_template_directory_uri() . '/dist/js/main.min.js', array(), '', true );
+    // wp_enqueue_script( 'main_js', get_template_directory_uri() . '/dist/js/main.min.js', array(), '', true );
   } add_action( 'wp_enqueue_scripts', 'folkeklubben_theme_js' );
 
 ?>
