@@ -8,7 +8,8 @@
 <body>
 
   <div id="content">
-    <?php
+    <!-- Put PHP content here - eg. for better Google ranking purposes  -->
+    <!-- <?php
       if ( have_posts() ) :
 
         if ( is_home() && ! is_front_page() ) {
@@ -28,12 +29,10 @@
         endwhile;
 
       endif;
-    ?>
+    ?> -->
   </div>
 
   <div id="app"></div>
-
-  <script src="http://localhost:8080/js/main.js"></script>
 
   <?php wp_footer(); ?>
 </body>

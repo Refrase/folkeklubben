@@ -21,7 +21,8 @@
     methods: {
       getPost() {
         this.loading = true
-        this.$http.get('http://localhost:3000/wp-json/wp/v2/posts/1').then( (response) => {
+        // wp.rest_root is made available in functions.php
+        this.$http.get(wp.rest_root + '/wp/v2/posts/1').then( (response) => {
           this.loading = false
           this.post = response.data
         }, (error) => {

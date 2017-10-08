@@ -11,5 +11,4 @@ Running development environment:
 
 Preparing for production:
 - npm run build
-- remove '<script src="http://localhost:8080/js/main.js"></script>' from index.php
-- uncomment '// wp_enqueue_script( 'main_js', get_template_directory_uri() . '/dist/js/main.min.js', array(), '', true );' in functions.php
+- uncomment code under '// PROD' and comment out code under '// DEV' in functions.php
