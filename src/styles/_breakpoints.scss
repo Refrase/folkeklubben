@@ -2,6 +2,8 @@
 
   @if $class == 'mobile' {
     @media (max-width: 767px) { @content; }
+  } @else if $class == 'tablet' {
+    @media (max-width: 1023px) { @content; }
   } @else if $class == 'custom' {
     @if $min == true {
       @media (min-width: $value) { @content; }
