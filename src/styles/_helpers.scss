@@ -1,0 +1,210 @@
+$positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clean .padding/.margin (all sides) option
+
+@each $position in $positions {
+	.padding#{$position}-8-1 { padding#{$position}: $scale-8-1 !important; }
+	.padding#{$position}-7-1 { padding#{$position}: $scale-7-1 !important; }
+	.padding#{$position}-6-1 { padding#{$position}: $scale-6-1 !important; }
+	.padding#{$position}-5-1 { padding#{$position}: $scale-5-1 !important; }
+	.padding#{$position}-4-1 { padding#{$position}: $scale-4-1 !important; }
+	.padding#{$position}-3-1 { padding#{$position}: $scale-3-1 !important; }
+	.padding#{$position}-2-1 { padding#{$position}: $scale-2-1 !important; }
+	.padding#{$position} 	   { padding#{$position}: $scale !important; }
+	.padding#{$position}-1-2 { padding#{$position}: $scale-1-2 !important; }
+	.padding#{$position}-1-4 { padding#{$position}: $scale-1-4 !important; }}
+
+.padding-none { padding: 0 !important;
+	&-top 	    { padding-top: 0 !important; }
+	&-bottom    { padding-bottom: 0 !important; }}
+
+@each $position in $positions {
+	.margin#{$position}-12-1 { margin#{$position}: $scale-12-1 !important; }
+	.margin#{$position}-11-1 { margin#{$position}: $scale-11-1 !important; }
+	.margin#{$position}-10-1 { margin#{$position}: $scale-10-1 !important; }
+	.margin#{$position}-9-1  { margin#{$position}: $scale-9-1 !important; }
+	.margin#{$position}-8-1  { margin#{$position}: $scale-8-1 !important; }
+	.margin#{$position}-7-1  { margin#{$position}: $scale-7-1 !important; }
+	.margin#{$position}-6-1  { margin#{$position}: $scale-6-1 !important; }
+	.margin#{$position}-5-1  { margin#{$position}: $scale-5-1 !important; }
+	.margin#{$position}-4-1  { margin#{$position}: $scale-4-1 !important; }
+	.margin#{$position}-3-1  { margin#{$position}: $scale-3-1 !important; }
+	.margin#{$position}-2-1  { margin#{$position}: $scale-2-1 !important; }
+	.margin#{$position} 		 { margin#{$position}: $scale !important; }
+	.margin#{$position}-1-2  { margin#{$position}: $scale-1-2 !important; }
+	.margin#{$position}-1-4  { margin#{$position}: $scale-1-4 !important; }}
+
+.margin-none  { margin: 0 !important;
+	&-top 	    { margin-top: 0 !important; }
+	&-bottom    { margin-bottom: 0 !important; }
+	&-tablet    { @include breakpoint('tablet') { margin: 0 !important; }}}
+
+.center {
+	margin-left: auto !important;
+	margin-right: auto !important; }
+
+.font {
+	&Size {
+		&-display { font-size: $fontSize-display;
+			@include breakpoint( 'tablet' ) { font-size: $fontSize-title; }}
+		&-title 	{ font-size: $fontSize-title; }
+		&-xxlarge { font-size: $fontSize-xxlarge; }
+		&-xlarge 	{ font-size: $fontSize-xlarge; }
+		&-large 	{ font-size: $fontSize-large; }
+		&-base 		{ font-size: $fontSize-base; }
+		&-small 	{ font-size: $fontSize-small; }
+		&-xsmall 	{ font-size: $fontSize-xsmall; }
+		&-xxsmall { font-size: $fontSize-xxsmall; }}
+	&Weight {
+		&-thin 		{ font-weight: 100; }
+		&-normal 	{ font-weight: 400; }
+		&-medium 	{ font-weight: 500; }
+		&-semibold{ font-weight: 600; }
+		&-bold 		{ font-weight: 700; }}
+	&Family {
+		&-sans 		{ font-family: $fontFamily-sans !important; }
+		&-serif 	{ font-family: $fontFamily-serif !important; }
+		&-system 	{ font-family: $fontFamily-system !important; }}
+}
+
+.text {
+	&Transform {
+		&-uppercase { text-transform: uppercase; }
+		&-none 			{ text-transform: none; }}
+	&Align {
+		&-left   { text-align: left; }
+		&-center { text-align: center; }
+		&-right  { text-align: right; }}
+}
+
+.lineHeight {
+	&-1 { line-height: 1; }
+}
+
+.whiteSpace {
+	&-noWrap { white-space: nowrap; }}
+
+.color 					{
+	&-lightred 	{ color: $color-lightred;
+		&-darker {
+			&-1 { color: $color-lightred-darker-1; }
+			&-2 { color: $color-lightred-darker-2; }
+			&-3 { color: $color-lightred-darker-3; }
+		}
+	}
+	&-darkblue 	{ color: $color-darkblue;
+		&-lighter {
+			&-1 { color: $color-darkblue-lighter-1; }
+			&-2 { color: $color-darkblue-lighter-2; }
+			&-3 { color: $color-darkblue-lighter-3; }
+			&-4 { color: $color-darkblue-lighter-4; }
+			&-5 { color: $color-darkblue-lighter-5; }
+		}
+		&-darker {
+			&-1 { color: $color-darkblue-darker-1; }
+			&-2 { color: $color-darkblue-darker-2; }
+			&-3 { color: $color-darkblue-darker-3; }
+			&-4 { color: $color-darkblue-darker-4; }
+		}
+	}
+	&-dark 	{ color: $color-dark; }
+	&-light  { color: $color-light; }
+}
+
+.backgroundColor 	{
+	&-lightred{ background-color: $color-lightred; }
+	&-dark 		{	background-color: $color-dark; }
+	&-light   { background-color: $color-light; }
+	&-white   { background-color: #fff; }
+}
+
+.width		{
+	&-full  { width: 100% }}
+
+.height 	{
+	&-full 	{ height: 100%; }}
+
+.position 	 {
+	&-absolute { position: absolute; }
+	&-relative { position: relative; }}
+
+.hidden { opacity: 0 !important; }
+.shown { opacity: 1 !important; }
+.hide { display: none !important;
+	&-mobile { @include breakpoint( 'mobile' ) { display: none !important; }}
+	&-tablet { @include breakpoint( 'tablet' ) { display: none !important; }}}
+.show { display: block !important; }
+
+.float {
+	&-right { float: right; }
+	&-left { float: left; }}
+
+.clear {
+	&-both { clear: both; }}
+
+.display {
+	&-flex { display: flex; }
+	&-inlineBlock { display: inline-block; }}
+
+// Flex
+.flex {
+	&-1 { flex: 1; }
+	&-2 { flex: 2; }}
+
+.justifyContent {
+	&-center 	{ justify-content: center; }
+	&-flexStart { justify-content: flex-start; }
+	&-flexEnd { justify-content: flex-end; }
+	&-spaceBetween { justify-content: space-between;; }}
+
+.alignItems {
+	&-center 		{ align-items: center; }
+	&-flexStart { align-items: flex-start; }
+	&-flexEnd 	{ align-items: flex-end; }}
+
+.flexDirection {
+	&-row 		 { flex-direction: row; }
+	&-column 	 { flex-direction: column;
+		&-mobile { @include breakpoint( 'mobile' ) { flex-direction: column; }}
+		&-tablet { @include breakpoint( 'tablet' ) { flex-direction: column; }}
+		&Reverse { flex-direction: column-reverse;
+			&-tablet { @include breakpoint( 'tablet' ) { flex-direction: column-reverse; }}
+		}
+	}
+}
+
+.flipHorizontal { transform: scaleX(-1); }
+.flipVertical 	{ transform: scaleY(-1); }
+
+.overflow {
+	&-hidden { overflow: hidden; }}
+
+// Lists
+.list-unstyled { list-style-type: none; }
+
+// Border
+.border 			{ border-style: solid; border-width: 1px;
+	// Sides
+	&-top 			{ border-top-style: solid; border-top-width: 1px; }
+	&-right 		{ border-right-style: solid; border-right-width: 1px; }
+	&-bottom 		{ border-bottom-style: solid; border-bottom-width: 1px; }
+	&-left 			{ border-left-style: solid; border-left-width: 1px; }
+	&-none 			{ border-style: none; border-width: 0; }
+	// Colors
+	&-dark  	  { border-color: $color-dark; }
+	&-lightred  { border-color: $color-lightred; }
+	&-darkblue  { border-color: $color-darkblue; }
+	&-white 		{ border-color: #fff; }
+	// Widths
+	&-3 				{ border-width: 3px !important; }
+	// Radius
+	&Radius    	{ border-radius: $borderRadius;
+		&-1-2 		{ border-radius: $borderRadius / 2; }}
+}
+
+// Animation
+.fadeIn 					{ animation: fadeIn 600ms ease-out forwards; }
+.fadeInFast				{ animation: fadeIn 300ms ease-out forwards; }
+.fadeInWithDelay	{ animation: fadeIn 300ms 1000ms ease-out forwards; }
+.fadeOut 					{ animation: fadeOut 600ms $animationBezier forwards; }
+.slideIn 					{ animation: slideIn 600ms $animationBezier forwards; }
+.transition 			{	transition: all 600ms $animationBezier !important; }
+.rotateUpsideDown { transform: rotate( 360deg ) !important; }

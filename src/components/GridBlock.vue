@@ -16,7 +16,7 @@
     props: {
       columns: {
         type: String,
-        default: 12
+        default: '12'
       },
       noPadding: Boolean,
       noWrap: Boolean
