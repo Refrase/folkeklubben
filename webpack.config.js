@@ -1,6 +1,7 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const FileManagerPlugin = require( 'filemanager-webpack-plugin' );
 
 module.exports = function( env = {} ) {
 
@@ -62,6 +63,19 @@ module.exports = function( env = {} ) {
       }),
       new ExtractTextPlugin({
         filename: 'css/style.min.css'
+      }),
+      new FileManagerPlugin({
+        onStart: {
+          delete: [ path.resolve( __dirname, './dist/assets' ) ]
+        },
+        onEnd: {
+          copy: [
+            {
+              source: path.resolve( __dirname, './src/assets' ),
+              destination: path.resolve( __dirname, './dist/assets' )
+            }
+          ]
+        }
       })
     ] : [
       new webpack.HotModuleReplacementPlugin()
@@ -99,7 +113,14 @@ module.exports = function( env = {} ) {
           test: /\.(png|jpg|gif|svg)$/,
           loader: 'file-loader',
           options: {
-            name: 'images/[name].[ext]'
+            name: 'assets/images/[name].[ext]'
+          }
+        },
+        {
+          test: /\.(woff|woff2|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: 'url-loader',
+          options: {
+            name: 'assets/fonts/[name].[ext]'
           }
         }
       ]

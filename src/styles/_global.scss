@@ -1,6 +1,4 @@
-body {
-  color: $color-dark;
-}
+body { color: $color-dark; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
@@ -8,51 +6,24 @@ h1, h2, h3, h4, h5, h6 {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, .h1 {
-  font-family: $fontFamily-serif;
-  font-size: $fontSize-xxxlarge;
+h1, h2, h3, h4 { font-family: $fontFamily-sans; }
+h5, h6 { font-family: $fontFamily-sansCondensed; }
 
-  @include breakpoint( 'mobile' ) { font-size: $fontSize-xxlarge !important; }
-}
-
-h2, .h2 {
-  font-family: $fontFamily-serif;
-  font-size: $fontSize-xxlarge;
-
-  @include breakpoint( 'mobile' ) { font-size: $fontSize-xlarge; }
-}
-
-h3, .h3 {
-  font-family: $fontFamily-serif;
-  font-size: $fontSize-xlarge;
-}
-
-h4, .h4 {
-  font-family: $fontFamily-serif;
-  font-size: $fontSize-large;
-}
-
-h5, .h5 {
-  font-family: $fontFamily-sans;
-  font-size: $fontSize-base;
-  font-weight: 600;
-}
-
-h6, .h6 {
-  font-family: $fontFamily-sans;
-  font-size: $fontSize-small;
-  font-weight: 600;
-  text-transform: uppercase;
-}
+h1, .h1 { font-size: $fontSize-xxxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xxlarge !important; }}
+h2, .h2 { font-size: $fontSize-xxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xlarge; }}
+h3, .h3 { font-size: $fontSize-xlarge; }
+h4, .h4 { font-size: $fontSize-large; }
+h5, .h5 { font-size: $fontSize-base; }
+h6, .h6 { font-size: $fontSize-small; text-transform: uppercase; }
 
 p, li, a, label {
-  font-family: $fontFamily-sans;
+  font-family: $fontFamily-serif;
   font-size: $fontSize-base;
   line-height: 1.5;
 }
 
 a, .a {
-  color: $color-primary;
+  color: $color-darkblue;
   cursor: pointer;
   text-decoration: none;
   opacity: 1;
@@ -70,10 +41,10 @@ input, textarea, button {
   border-radius: $borderRadius / 2;
   line-height: 1.5;
 
-  &::-webkit-input-placeholder { color: $color-base-lighter-1; font-size: $fontSize-small; } /* Chrome/Opera/Safari */
-  &::-moz-placeholder { color: $color-base-lighter-1; font-size: $fontSize-small; } /* Firefox 19+ */
-  &:-ms-input-placeholder { color: $color-base-lighter-1; font-size: $fontSize-small; }  /* IE 10+ */
-  &:-moz-placeholder { color: $color-base-lighter-1; font-size: $fontSize-small; } /* Firefox 18- */
+  &::-webkit-input-placeholder { color: $color-darkblue-lighter-1; font-size: $fontSize-small; } /* Chrome/Opera/Safari */
+  &::-moz-placeholder { color: $color-darkblue-lighter-1; font-size: $fontSize-small; } /* Firefox 19+ */
+  &:-ms-input-placeholder { color: $color-darkblue-lighter-1; font-size: $fontSize-small; }  /* IE 10+ */
+  &:-moz-placeholder { color: $color-darkblue-lighter-1; font-size: $fontSize-small; } /* Firefox 18- */
 }
 
 textarea:focus,
@@ -99,14 +70,14 @@ button {
 
   &:hover { opacity: 0.9; }
 
-  &.withInput { border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid $color-primary; }
+  &.withInput { border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid $color-darkblue; }
   &.submit {
-    background-color: $color-primary;
+    background-color: $color-darkblue;
     color: white;
 
     &.disabled {
-      background-color: $color-base-lighter-5;
-      color: $color-base-lighter-3;
+      background-color: $color-darkblue-lighter-5;
+      color: $color-darkblue-lighter-3;
       pointer-events: none;
     }
   }
@@ -123,7 +94,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid $color-base-lighter-4;
+  border-top: 1px solid $color-darkblue-lighter-4;
   margin: 0;
   padding: 0;
 }

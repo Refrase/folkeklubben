@@ -19,48 +19,96 @@ $scale-1-4: $scale / 4;
 
 /* ----- Colors ----- */
 
-// ----- Primary
-$color-primary: #2962FF;
+$color-darkblue: #2B2847;
+$color-darkblue-lighter-6: mix(white, $color-darkblue, 98% );
+$color-darkblue-lighter-5: mix(white, $color-darkblue, 88% );
+$color-darkblue-lighter-4: mix(white, $color-darkblue, 70% );
+$color-darkblue-lighter-3: mix(white, $color-darkblue, 50% );
+$color-darkblue-lighter-2: mix(white, $color-darkblue, 30% );
+$color-darkblue-lighter-1: mix(white, $color-darkblue, 15% );
+$color-darkblue-darker-1: mix(black, $color-darkblue, 11% );
+$color-darkblue-darker-2: mix(black, $color-darkblue, 28% );
+$color-darkblue-darker-3: mix(black, $color-darkblue, 43% );
+$color-darkblue-darker-4: mix(black, $color-darkblue, 59% );
 
-$color-primary-lighter-6: mix(white, $color-primary, 98% );
-$color-primary-lighter-5: mix(white, $color-primary, 88% );
-$color-primary-lighter-4: mix(white, $color-primary, 70% );
-$color-primary-lighter-3: mix(white, $color-primary, 50% );
-$color-primary-lighter-2: mix(white, $color-primary, 30% );
-$color-primary-lighter-1: mix(white, $color-primary, 15% );
+$color-blue: #2C70B6;
+$color-blue-lighter-6: mix(white, $color-blue, 98% );
+$color-blue-lighter-5: mix(white, $color-blue, 88% );
+$color-blue-lighter-4: mix(white, $color-blue, 70% );
+$color-blue-lighter-3: mix(white, $color-blue, 50% );
+$color-blue-lighter-2: mix(white, $color-blue, 30% );
+$color-blue-lighter-1: mix(white, $color-blue, 15% );
+$color-blue-darker-1: mix(black, $color-blue, 11% );
+$color-blue-darker-2: mix(black, $color-blue, 28% );
+$color-blue-darker-3: mix(black, $color-blue, 43% );
+$color-blue-darker-4: mix(black, $color-blue, 59% );
 
-$color-primary-darker-1: mix(black, $color-primary, 11% );
-$color-primary-darker-2: mix(black, $color-primary, 28% );
-$color-primary-darker-3: mix(black, $color-primary, 43% );
-$color-primary-darker-4: mix(black, $color-primary, 59% );
+$color-red: #F72027;
+$color-red-lighter-8: mix(white, $color-red, 98% );
+$color-red-lighter-7: mix(white, $color-red, 94% );
+$color-red-lighter-6: mix(white, $color-red, 88% );
+$color-red-lighter-5: mix(white, $color-red, 80% );
+$color-red-lighter-4: mix(white, $color-red, 70% );
+$color-red-lighter-3: mix(white, $color-red, 50% );
+$color-red-lighter-2: mix(white, $color-red, 30% );
+$color-red-lighter-1: mix(white, $color-red, 15% );
+$color-red-darker-1: mix(black, $color-red, 11% );
+$color-red-darker-2: mix(black, $color-red, 28% );
+$color-red-darker-3: mix(black, $color-red, 43% );
+$color-red-darker-4: mix(black, $color-red, 59% );
 
-// ----- Base
-$color-base: #607d8b;
+$color-lightred: #FB5B64;
+$color-lightred-lighter-8: mix(white, $color-lightred, 98% );
+$color-lightred-lighter-7: mix(white, $color-lightred, 94% );
+$color-lightred-lighter-6: mix(white, $color-lightred, 88% );
+$color-lightred-lighter-5: mix(white, $color-lightred, 80% );
+$color-lightred-lighter-4: mix(white, $color-lightred, 70% );
+$color-lightred-lighter-3: mix(white, $color-lightred, 50% );
+$color-lightred-lighter-2: mix(white, $color-lightred, 30% );
+$color-lightred-lighter-1: mix(white, $color-lightred, 15% );
+$color-lightred-darker-1: mix(black, $color-lightred, 11% );
+$color-lightred-darker-2: mix(black, $color-lightred, 28% );
+$color-lightred-darker-3: mix(black, $color-lightred, 43% );
+$color-lightred-darker-4: mix(black, $color-lightred, 59% );
 
-$color-base-lighter-8: mix(white, $color-base, 98% );
-$color-base-lighter-7: mix(white, $color-base, 94% );
-$color-base-lighter-6: mix(white, $color-base, 88% );
-$color-base-lighter-5: mix(white, $color-base, 80% );
-$color-base-lighter-4: mix(white, $color-base, 70% );
-$color-base-lighter-3: mix(white, $color-base, 50% );
-$color-base-lighter-2: mix(white, $color-base, 30% );
-$color-base-lighter-1: mix(white, $color-base, 15% );
+$color-orange: #FF5837;
+$color-orange-lighter-8: mix(white, $color-orange, 98% );
+$color-orange-lighter-7: mix(white, $color-orange, 94% );
+$color-orange-lighter-6: mix(white, $color-orange, 88% );
+$color-orange-lighter-5: mix(white, $color-orange, 80% );
+$color-orange-lighter-4: mix(white, $color-orange, 70% );
+$color-orange-lighter-3: mix(white, $color-orange, 50% );
+$color-orange-lighter-2: mix(white, $color-orange, 30% );
+$color-orange-lighter-1: mix(white, $color-orange, 15% );
+$color-orange-darker-1: mix(black, $color-orange, 11% );
+$color-orange-darker-2: mix(black, $color-orange, 28% );
+$color-orange-darker-3: mix(black, $color-orange, 43% );
+$color-orange-darker-4: mix(black, $color-orange, 59% );
 
-$color-base-darker-1: mix(black, $color-base, 11% );
-$color-base-darker-2: mix(black, $color-base, 28% );
-$color-base-darker-3: mix(black, $color-base, 43% );
-$color-base-darker-4: mix(black, $color-base, 59% );
+$color-gold: #DEC7A2;
+$color-gold-lighter-8: mix(white, $color-gold, 98% );
+$color-gold-lighter-7: mix(white, $color-gold, 94% );
+$color-gold-lighter-6: mix(white, $color-gold, 88% );
+$color-gold-lighter-5: mix(white, $color-gold, 80% );
+$color-gold-lighter-4: mix(white, $color-gold, 70% );
+$color-gold-lighter-3: mix(white, $color-gold, 50% );
+$color-gold-lighter-2: mix(white, $color-gold, 30% );
+$color-gold-lighter-1: mix(white, $color-gold, 15% );
+$color-gold-darker-1: mix(black, $color-gold, 11% );
+$color-gold-darker-2: mix(black, $color-gold, 28% );
+$color-gold-darker-3: mix(black, $color-gold, 43% );
+$color-gold-darker-4: mix(black, $color-gold, 59% );
 
 // ----- Shortcuts
-$color-light: $color-base-lighter-6;
-$color-dark: $color-base-darker-4;
-
+$color-light: $color-darkblue-lighter-6;
+$color-dark: $color-darkblue-darker-4;
 
 /* ----- Font-family ----- */
 
-$fontFamily-sans: 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont;
-$fontFamily-serif: 'Copernicus', serif;
-$fontFamily-system: 'Roboto', Arial, sans-serif;
+$fontFamily-sans: 'DIN Pro', 'Arial', sans-serif, -apple-system, BlinkMacSystemFont;
+$fontFamily-sansCondensed: 'DIN Pro Condensed', 'Trebuchet MS', sans-serif, -apple-system, BlinkMacSystemFont;
+$fontFamily-serif: 'Minion Pro', serif;
+$fontFamily-system: 'Roboto', 'Arial', sans-serif;
 
 /* ----- Font-size ----- */
 

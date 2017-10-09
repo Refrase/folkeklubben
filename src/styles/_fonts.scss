@@ -1,6 +1,13 @@
-// @font-face {
-// 	font-family: 'Copernicus';
-// 	src: url('~@/assets/fonts/Copernicus-Bold.woff') format('woff');
-// 	font-weight: bold;
-// 	font-style: normal;
-// }
+@font-face {
+	font-family: 'DIN Pro';
+	src: url('~@/assets/fonts/DINPro-Black.woff') format('woff');
+	font-weight: black;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DIN Pro Condensed';
+	src: url('~@/assets/fonts/DINPro-CondBlack.woff') format('woff');
+	font-weight: black;
+	font-style: normal;
+}
