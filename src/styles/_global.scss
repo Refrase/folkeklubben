@@ -1,3 +1,9 @@
+html {
+  ::-webkit-scrollbar { width: 15px; }
+  ::-webkit-scrollbar-track { background-color: $color-gold; }
+  ::-webkit-scrollbar-thumb { background-color: $color-gold-darker-2; }
+}
+
 body {
   color: $color-darkblue;
   background-color: $color-gold-darker-2;
@@ -12,8 +18,8 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4 { font-family: $fontFamily-sans; }
 h5, h6 { font-family: $fontFamily-sansCondensed; }
 
-h1, .h1 { font-size: $fontSize-xxxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xxlarge !important; }}
-h2, .h2 { font-size: $fontSize-xxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xlarge; }}
+h1, .h1 { font-size: $fontSize-xxxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xxlarge; }}
+h2, .h2 { font-size: $fontSize-xxlarge; @include breakpoint( 'mobile' ) { font-size: $fontSize-xxlarge !important; }}
 h3, .h3 { font-size: $fontSize-xlarge; }
 h4, .h4 { font-size: $fontSize-large; }
 h5, .h5 { font-size: $fontSize-base; }
