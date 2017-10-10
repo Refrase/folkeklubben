@@ -29,9 +29,15 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
+  @import '~@/styles/animations';
 
   .post {
     width: 100%;
+
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    @for $i from 1 through 10 { &:nth-child(#{$i}) { animation-duration: #{$i / 2}s; } }
+
     img { display: block; }
   }
 
@@ -39,7 +45,7 @@
     background-color: white;
     border: 1px solid $color-gold;
     border-top: none;
-    padding: $scale-3-1 $scale-4-1 $scale-4-1;
+    padding: $scale-3-1 $scale-4-1;
 
     &.noImage { border-top: 1px solid $color-gold; }
   }

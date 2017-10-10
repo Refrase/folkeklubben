@@ -1,10 +1,10 @@
 <template>
-  <div class="news">
+  <div class="news" v-bind:style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
     <grid-block>
-      <div class="span-8" v-if="loading || error">
-        <h2>{{ loading ? 'Nyheder hentes...' : error }}</h2>
+      <div class="span-7" v-if="loadingPosts || error">
+        <h2>{{ loadingPosts ? 'Nyheder hentes...' : error }}</h2>
       </div>
-      <div class="span-8" v-else>
+      <div class="span-7" v-else>
         <post
           v-for="(post, index) in posts"
           :key="index"
@@ -26,39 +26,54 @@
     },
     data() {
       return {
-        loading: false,
         error: null,
-        posts: null
+        loadingPosts: false,
+        posts: null,
+        page: null,
+        backgroundImage: null
       }
     },
     created() {
-      this.getPost()
+      this.getPosts()
+      this.getPage()
     },
     methods: {
-      getPost() {
-        this.loading = true
+      getPosts() {
+        this.loadingPosts = true
         // wp.rest_root is made available in functions.php
         // the ?_embed expands the returned data with embedded stuff like featured image
         this.$http.get(wp.rest_root + '/wp/v2/posts?_embed').then( (response) => {
-          this.loading = false
+          this.loadingPosts = false
           this.posts = response.data
+          this.setBackgroundImage()
         }, (error) => {
-          this.loading = false
+          this.loadingPosts = false
           this.error = 'Der er desværre sket en fejl. Prøv igen senere.'
           console.log(error)
         });
+      },
+      getPage() {
+        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=nyheder').then( (response) => {
+          this.page = response.data
+          this.setBackgroundImage()
+        }, (error) => {
+          this.page = null
+          console.log('Could not load page');
+        });
+      },
+      setBackgroundImage() {
+        if (this.posts && this.page) this.backgroundImage = this.page[0].acf['background-image'] ? this.page[0].acf['background-image'] : null
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import '~@/styles/vars';
   .news {
-    width: 100%;
-    min-height: 100%;
-    background-image: url('~@/assets/images/pressefoto-fade.png');
+    background-color: white;
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: bottom right;
     background-size: cover;
   }
 </style>
