@@ -2,7 +2,7 @@
   <div class="appContainer">
     <div class="appBorders">
       <div class="top" />
-      <div class="right" v-if="!isWebkit" /> <!-- TODO: Also show if no scrollbars on page -->
+      <div class="right" />
       <div class="bottom" />
       <div class="left" />
     </div>
@@ -20,13 +20,6 @@
     components: {
       'app-header': Header,
       'app-footer': Footer
-    },
-    computed: {
-      isWebkit() {
-        const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-        const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-        if ( isChrome || isSafari ) return true
-      }
     }
   }
 </script>
@@ -53,12 +46,18 @@
     & .left { top: 0; left: 0; }
   }
 
+  $headerHeight: 240px;
+
   .route {
     width: 100%;
     min-height: 100vh;
-    margin-top: -180px;
-    padding-top: 180px + $scale-8-1;
-    padding-bottom: 180px;
+    margin-top: -$headerHeight;
+    padding-top: $headerHeight + $scale-4-1;
+    padding-bottom: $headerHeight;
+
+    @include breakpoint( 'tablet' ) {
+      padding-top: $headerHeight + $scale-2-1;
+    }
   }
 
 </style>

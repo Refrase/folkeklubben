@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <div id="content">
+  <div>
     <!-- Put PHP content here - eg. for better Google ranking purposes  -->
     <!-- <?php
       if ( have_posts() ) :

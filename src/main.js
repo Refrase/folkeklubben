@@ -9,6 +9,15 @@ Vue.use(VueResource);
 
 // Vue.config.debug = true
 
+// Creating eventBus to handle non-parent-child communication for now
+const EventBus = new Vue()
+// Attaching it as a global $bus variable
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get: () => { return EventBus }
+  }
+})
+
 const router = new VueRouter({
   routes,
   linkActiveClass: 'active',

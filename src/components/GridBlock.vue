@@ -32,11 +32,12 @@
     width: 1024px;
     display: flex;
     flex-wrap: wrap;
-    padding: $scale-6-1;
+    padding: $scale-2-1;
     margin: 0 auto;
 
     &-noPadding {
-      padding: 0;
+      padding-top: 0;
+      padding-bottom: 0;
       @include breakpoint( 'tablet' ) { padding: 0 $scale-2-1 !important; }
     }
 
@@ -45,8 +46,8 @@
     & > * { padding: 0 $scale-2-1; }
 
     // Content-widths
-    @include breakpoint( 'tablet' ) { width: 768px; padding: $scale-4-1; }
-    @include breakpoint( 'mobile' ) { width: 100%; padding: $scale-2-1; }
+    @include breakpoint( 'tablet' ) { width: 768px; }
+    @include breakpoint( 'mobile' ) { width: 100%; }
   }
 
   // Grid
@@ -55,7 +56,7 @@
   @each $col in $cols {
     .gridBlock-columns-#{$col} > * { // Set num. columns with columns="X"
       width: percentage(1/$col);
-      @include breakpoint( 'tablet' ) { width: 100% !important; }} // Default to 100% width on tablet and below
+      @include breakpoint( 'mobile' ) { width: 100% !important; }} // Default to 100% width on tablet and below
 
     @each $span in $spans {
       .gridBlock-columns-#{$col} > *.span-#{$span} { width: percentage(1/$col * $span); } // Set num. of columns to span for direct children
