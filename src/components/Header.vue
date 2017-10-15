@@ -56,13 +56,11 @@
   .header {
     position: relative;
     height: 240px;
-    z-index: 100;
+    z-index: 101;
 
     &-frontpage {
       transform: translate3d(0, -100vh, 0);
-      opacity: 0;
-
-      animation: slideDown 1.6s 0.6s cubic-bezier(0,.5,.0,1) forwards, fadeIn 1.2s 1s ease-out forwards;
+      animation: slideDown 1.6s 0.6s cubic-bezier(0,.5,.0,1) forwards;
     }
   }
 

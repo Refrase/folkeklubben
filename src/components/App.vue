@@ -37,7 +37,7 @@
 
   .appBorders { // Solution made to take into account that everything underneath should be clickable
     position: relative;
-    z-index: 101;
+    z-index: 100;
     & * { position: fixed; background-color: $color-gold; }
     & .top,
     & .bottom { height: 16px; width: 100%; }
