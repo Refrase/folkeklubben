@@ -1,5 +1,5 @@
 <template>
-  <div class="news" v-bind:style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
+  <div class="news routeWithHeader" v-bind:style="{ backgroundImage: backgroundImage ? 'url(' + backgroundImage + ')' : null }">
     <grid-block>
       <div class="span-7" v-if="loadingPosts || error">
         <h2>{{ loadingPosts ? 'Nyheder hentes...' : error }}</h2>

@@ -6,7 +6,7 @@
       <div class="bottom" />
       <div class="left" />
     </div>
-    <app-header />
+    <app-header :routeChange="routeChange" />
     <router-view class="route" />
     <app-footer />
   </div>
@@ -20,6 +20,9 @@
     components: {
       'app-header': Header,
       'app-footer': Footer
+    },
+    props: {
+      routeChange: Object
     }
   }
 </script>
@@ -34,7 +37,7 @@
 
   .appBorders { // Solution made to take into account that everything underneath should be clickable
     position: relative;
-    z-index: 1;
+    z-index: 101;
     & * { position: fixed; background-color: $color-gold; }
     & .top,
     & .bottom { height: 16px; width: 100%; }

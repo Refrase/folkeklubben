@@ -27,8 +27,30 @@ const router = new VueRouter({
   mode: 'history' // TODO: Remember to set up the server to ALWAYS serve the index.html file when this history-mode is on (to avoid hashes in the url)
 })
 
+router.beforeEach( (to, from, next) => {
+  const routeChange = {
+    from: from,
+    to: to
+  }
+  EventBus.$emit( 'routeChange', routeChange )
+  next()
+})
+
+const Folkeklubben = Vue.extend({
+  components: { 'app': App },
+  data() {
+    return {
+      routeChange: {}
+    }
+  },
+  created() {
+    EventBus.$on( 'routeChange', (routeChange) => { this.routeChange = routeChange })
+  },
+  template: '<app :routeChange="routeChange" />'
+})
+
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(Folkeklubben)
 })

@@ -1,10 +1,10 @@
 <template>
-  <grid-block noPadding class="header">
+  <grid-block noPadding class="header" :class="{ 'header-frontpage': routeName == 'Start' && firstVisit }">
     <div class="span-7" style="display: flex; align-items: flex-end;">
-      <h1 class="headline" v-bind:style="{ color: routeColors[routeName.toLowerCase()].text }">{{ routeName }}</h1>
+      <h1 class="headline" v-if="routeName != 'Start'" v-bind:style="{ color: routeColors[routeName.toLowerCase()].text }">{{ routeName }}</h1>
     </div>
     <div class="span-5">
-      <appMenu />
+      <appMenu :routeChange="routeChange" />
     </div>
   </grid-block>
 </template>
@@ -18,9 +18,14 @@
       'grid-block': GridBlock,
       'appMenu': Menu
     },
+    props: { routeChange: Object },
     data() {
       return {
         routeColors: {
+          start: {
+            bg: 'white',
+            text: '#2B2847'
+          },
           nyheder: {
             bg: 'transparent',
             text: '#2B2847'
@@ -37,7 +42,8 @@
       }
     },
     computed: {
-      routeName() { return this.$route.name }
+      routeName() { return this.$route.name.replace( this.$route.name.charAt(0), this.$route.name.charAt(0).toUpperCase() ) },
+      firstVisit() { return !this.routeChange.from && !this.routeChange.to }
     }
   }
 </script>
@@ -45,11 +51,19 @@
 <style lang="scss" scoped>
 
   @import '~@/styles/breakpoints';
+  @import '~@/styles/animations';
 
   .header {
     position: relative;
     height: 240px;
     z-index: 100;
+
+    &-frontpage {
+      transform: translate3d(0, -100vh, 0);
+      opacity: 0;
+
+      animation: slideDown 1.6s 0.6s cubic-bezier(0,.5,.0,1) forwards, fadeIn 1.2s 1s ease-out forwards;
+    }
   }
 
   .headline {
