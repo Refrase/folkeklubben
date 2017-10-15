@@ -54,7 +54,7 @@
 
     @include breakpoint( 'mobile' ) {
       left: 50%;
-      transform: translate3d(-50%, -200px, 0);
+      transform: translate3d(-50%, 0, 0);
     }
 
     &-frontpage {
@@ -65,9 +65,15 @@
 
   .slideToSide-enter { transform: translate3d(-50%, 0, 0); }
   .slideToSide-enter-active { transition: all .6s ease-out; }
-  .slideToSide-enter-to { transform: translate3d(0, 0, 0); }
+  .slideToSide-enter-to {
+    transform: translate3d(0, 0, 0);
+    @include breakpoint( 'mobile' ) { transform: translate3d(-50%, 0, 0); }
+  }
 
-  .slideToCenter-enter { transform: translate3d(0, 0, 0); }
+  .slideToCenter-enter {
+    transform: translate3d(0, 0, 0);
+    @include breakpoint( 'mobile' ) { transform: translate3d(-50%, 0, 0); }
+  }
   .slideToCenter-enter-active { transition: all .6s ease-out; }
   .slideToCenter-enter-to { transform: translate3d(-50%, 0, 0); }
 

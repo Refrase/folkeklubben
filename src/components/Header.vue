@@ -55,8 +55,10 @@
 
   .header {
     position: relative;
-    height: 240px;
+    height: 153px;
     z-index: 101;
+
+    @include breakpoint( 'mobile' ) { height: 240px; }
 
     &-frontpage {
       transform: translate3d(0, -100vh, 0);
