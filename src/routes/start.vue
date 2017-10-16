@@ -1,6 +1,7 @@
 <template>
   <div class="start">
     <background :page="page" :color="backgroundColor" />
+    <h1 class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <ul class="links">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
@@ -48,6 +49,28 @@
     }
   }
 
+  .welcome {
+    color: white;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0px 0px 100px rgba(0,0,0,0.5);
+    font-size: $fontSize-xxxlarge;
+    @include breakpoint( 'tablet' ) { font-size: $fontSize-base; }
+
+    opacity: 0;
+    animation: fadeIn .6s ease-out forwards, slideUp .6s 3s ease-in forwards, fadeOut .6s 3s ease-out forwards;
+
+    span {
+      display: block;
+      font-family: $fontFamily-sansCondensed;
+      font-size: $fontSize-display;
+      text-transform: uppercase;
+
+      @include breakpoint( 'tablet' ) { font-size: 100px; }
+      @include breakpoint( 'mobile' ) { font-size: 48px; }
+    }
+  }
+
   .links {
     display: flex;
     position: absolute;
@@ -63,20 +86,34 @@
     li {
       width: 25%;
       height: 100%;
+      opacity: 0;
+
+      $animationDelay: 4;
+      animation: fadeIn .6s #{$animationDelay}s ease-out forwards;
 
       @include breakpoint( 'tablet' ) { width: 50%; height: 50%; }
       @include breakpoint( 'custom', '480px' ) { width: 100%; height: 25%; }
 
       transition: background-color 0.15s ease-out;
 
-      &:nth-child(1) { background-color: rgba(white, 0.9);
+      &:nth-child(1) {
+        background-color: rgba(white, 0.9);
         a { color: $color-darkblue; }
         &:hover { background-color: white; }}
-      &:nth-child(2) { background-color: rgba($color-lightred, 0.9);
+
+      &:nth-child(2) {
+        background-color: rgba($color-lightred, 0.9);
+        animation-delay: #{$animationDelay + 0.1}s;
         &:hover { background-color: $color-lightred; }}
-      &:nth-child(3) { background-color: rgba($color-darkblue, 0.9);
+
+      &:nth-child(3) {
+        background-color: rgba($color-darkblue, 0.9);
+        animation-delay: #{$animationDelay + 0.2}s;
         &:hover { background-color: $color-darkblue; }}
-      &:nth-child(4) { background-color: rgba($color-gold, 0.9);
+
+      &:nth-child(4) {
+        background-color: rgba($color-gold, 0.9);
+        animation-delay: #{$animationDelay + 0.3}s;
         &:hover { background-color: $color-gold; }}
     }
 
