@@ -1,6 +1,6 @@
 <template>
-  <div class="news routeWithHeader">
-    <background :page="page" />
+  <div class="news">
+    <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-7" v-if="loadingPosts || error">
         <h2>{{ loadingPosts ? 'Nyheder hentes...' : error }}</h2>
@@ -20,6 +20,7 @@
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
   import Post from '@/components/Post'
+  import { routeColors } from '@/utils/colorVars'
   export default {
     name: 'NewsRoute',
     components: {
@@ -33,6 +34,7 @@
         loadingPosts: false,
         posts: null,
         page: null,
+        backgroundColor: routeColors.nyheder.bg
       }
     },
     created() {

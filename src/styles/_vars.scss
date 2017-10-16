@@ -99,6 +99,13 @@ $color-gold-darker-2: mix(black, $color-gold, 28% );
 $color-gold-darker-3: mix(black, $color-gold, 43% );
 $color-gold-darker-4: mix(black, $color-gold, 59% );
 
+// Pages
+
+$color-start: $color-gold-darker-2;
+$color-news: white;
+$color-concerts: $color-lightred;
+$color-music: $color-darkblue;
+
 // ----- Shortcuts
 $color-light: $color-darkblue-lighter-6;
 $color-dark: $color-darkblue-darker-4;

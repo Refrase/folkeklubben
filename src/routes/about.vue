@@ -1,9 +1,9 @@
 <template>
-  <div class="concerts">
-    <background video :page="page" :color="videoOverlayColor" />
+  <div class="about">
+    <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-12">
-        <h2 class="label">Vælg turné</h2>
+        <h2>Om</h2>
       </div>
     </grid-block>
   </div>
@@ -14,7 +14,7 @@
   import Background from '@/components/Background'
   import { routeColors } from '@/utils/colorVars'
   export default {
-    name: 'ConcertsRoute',
+    name: 'AboutRoute',
     components: {
       'grid-block': GridBlock,
       'background': Background
@@ -22,7 +22,7 @@
     data() {
       return {
         page: null,
-        videoOverlayColor: routeColors.koncerter.bg
+        backgroundColor: routeColors.om.bg
       }
     },
     created() {
@@ -30,7 +30,7 @@
     },
     methods: {
       getPage() {
-        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=koncerter').then( (response) => {
+        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=om').then( (response) => {
           this.page = response.data
         }, (error) => {
           this.page = null
@@ -43,11 +43,5 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-
-  .concerts * { color: white; }
-
-  .label {
-    color: $color-lightred-darker-2;
-    text-transform: uppercase;
-  }
+  .about * { color: white; }
 </style>

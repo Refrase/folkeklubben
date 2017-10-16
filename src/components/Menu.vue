@@ -94,8 +94,12 @@
     font-size: 61px;
     margin-bottom: $scale-1-2;
     margin-left: -2px;
-    color: $color-darkblue;
+    color: $color-start;
+    transition: color .2s ease-out;
+
     @include breakpoint( 'tablet' ) { font-size: 41.3px; }
+
+    &:hover { color: $color-darkblue; }
   }
 
   .newsletter {
@@ -113,6 +117,8 @@
       letter-spacing: 0.8px;
     }
 
+    input { border-radius: 0; }
+
     input[type="email"] {
       width: 68%;
       font-size: $fontSize-xsmall;
@@ -129,6 +135,8 @@
       float: left;
       display: inline-block;
       background-color: $color-gold;
+      color: $color-gold-darker-2;
+      &:hover { color: $color-darkblue; }
     }
   }
 </style>

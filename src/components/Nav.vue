@@ -1,11 +1,17 @@
 <template>
   <ul class="nav" v-if="routeName != 'start'">
-    <li><router-link :to="{ name: 'nyheder' }">Nyheder</router-link></li>
-    <li><router-link :to="{ name: 'koncerter' }">Koncerter</router-link></li>
-    <li><a>Musik</a></li>
-    <li><a>Merch</a></li>
-    <li><a>Om</a></li>
-    <li><a>Kontakt</a></li>
+    <li><router-link :to="{ name: 'nyheder' }" class="navItem navItem-nyheder"
+      :exact-active-class="routeName == 'nyheder' ? `active-${routeName}` : null">Nyheder</router-link></li>
+    <li><router-link :to="{ name: 'koncerter' }" class="navItem navItem-koncerter"
+      :exact-active-class="routeName == 'koncerter' ? `active-${routeName}` : null">Koncerter</router-link></li>
+    <li><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
+      :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
+    <li><router-link :to="{ name: 'merch' }" class="navItem navItem-merch"
+      :exact-active-class="routeName == 'merch' ? `active-${routeName}` : null">Merch</router-link></li>
+    <li><router-link :to="{ name: 'om' }" class="navItem navItem-om"
+      :exact-active-class="routeName == 'om' ? `active-${routeName}` : null">Om</router-link></li>
+    <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
+      :exact-active-class="routeName == 'kontakt' ? `active-${routeName}` : null">Kontakt</router-link></li>
   </ul>
 </template>
 
@@ -35,18 +41,27 @@
       margin-top: $scale + $scale-1-2;
     }
 
-    a {
+    .navItem {
       font-family: $fontFamily-sans;
       text-transform: uppercase;
       font-size: $fontSize-xsmall;
       opacity: 1;
-      transition: opacity 0.15s ease-out;
+      transition: color 0.25s ease-out;
+      color: $color-gold-darker-2;
 
-      &:hover { opacity: 0.7; }
+      &:hover { color: $color-gold-darker-4; }
+      &-nyheder:hover { color: $color-news; }
+      &-koncerter:hover { color: $color-concerts; }
+      &-musik:hover { color: $color-music; }
 
       @include breakpoint( 'tablet' ) { margin-right: $scale; }
     }
 
-    .active { color: white; }
+    .active {
+      // color: $color-start;
+      &-nyheder { color: $color-news; }
+      &-koncerter { color: $color-concerts; }
+      &-musik { color: $color-music; }
+    }
   }
 </style>

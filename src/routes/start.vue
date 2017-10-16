@@ -1,22 +1,26 @@
 <template>
   <div class="start">
-    <background :page="page" />
+    <background :page="page" :color="backgroundColor" />
     <ul class="links">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
-      <li><a><span>Musik</span></a></li>
-      <li><a><span>Merch</span></a></li>
+      <li><router-link :to="{ name: 'musik' }"><span>Musik</span></router-link></li>
+      <li><router-link :to="{ name: 'merch' }"><span>Merch</span></router-link></li>
     </ul>
   </div>
 </template>
 
 <script>
   import Background from '@/components/Background'
+  import { routeColors } from '@/utils/colorVars'
   export default {
     name: 'StartRoute',
     components: { 'background': Background },
     data() {
-      return { page: null }
+      return {
+        page: null,
+        backgroundColor: routeColors.start.bg
+      }
     },
     created() {
       this.getPage()
@@ -39,8 +43,6 @@
   @import '~@/styles/breakpoints';
 
   .start {
-    background-color: white;
-
     .backgroundImage {
       @include breakpoint( 'mobile' ) { background-position: -650px top; }
     }
@@ -52,10 +54,11 @@
     bottom: $scale-2-1;
     left: 15px;
     width: calc( 100% - 30px ); // Borders
-    height: 160px;
+    height: 100px;
     list-style: none;
 
-    @include breakpoint( 'tablet' ) { flex-wrap: wrap; height: 320px; }
+    @include breakpoint( 'tablet' ) { flex-wrap: wrap; height: 180px; }
+    @include breakpoint( 'custom', '480px' ) { height: 320px; }
 
     li {
       width: 25%;

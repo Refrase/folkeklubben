@@ -12,6 +12,7 @@
 <script>
   import GridBlock from '@/components/GridBlock'
   import Menu from '@/components/Menu'
+  import { routeColors } from '@/utils/colorVars'
   export default {
     name: 'Header',
     components: {
@@ -20,26 +21,7 @@
     },
     props: { routeChange: Object },
     data() {
-      return {
-        routeColors: {
-          start: {
-            bg: 'white',
-            text: '#2B2847'
-          },
-          nyheder: {
-            bg: 'transparent',
-            text: '#2B2847'
-          },
-          koncerter: {
-            bg: '#FB5B64',
-            text: '#fff'
-          },
-          musik: {
-            bg: '#2B2847',
-            text: '#fff'
-          }
-        }
-      }
+      return { routeColors: routeColors }
     },
     computed: {
       routeName() { return this.$route.name.replace( this.$route.name.charAt(0), this.$route.name.charAt(0).toUpperCase() ) },
