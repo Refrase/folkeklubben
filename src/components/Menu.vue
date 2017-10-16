@@ -6,14 +6,7 @@
       :key="routeName">
       <div class="top">
         <router-link :to="{ name: 'start' }" exact class="logo">Folkeklubben</router-link>
-        <ul class="nav" v-if="routeName != 'start'">
-          <li><router-link :to="{ name: 'nyheder' }">Nyheder</router-link></li>
-          <li><a>Koncerter</a></li>
-          <li><a>Musik</a></li>
-          <li><a>Merch</a></li>
-          <li><a>Om</a></li>
-          <li><a>Kontakt</a></li>
-        </ul>
+        <appNav />
       </div>
       <form class="newsletter" action="index.html" method="post">
         <input type="email" name="email" id="email" placeholder="Meld dig til nyhedsbrevet her..." />
@@ -24,8 +17,10 @@
 </template>
 
 <script>
+  import Nav from '@/components/Nav'
   export default {
     name: 'Menu',
+    components: { appNav: Nav },
     props: { routeChange: Object },
     computed: {
       routeName() { return this.$route.name },
@@ -41,6 +36,13 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 
   .menu {
     width: 381px;
@@ -94,37 +96,6 @@
     margin-left: -2px;
     color: $color-darkblue;
     @include breakpoint( 'tablet' ) { font-size: 41.3px; }
-  }
-
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    list-style: none;
-    white-space: nowrap;
-    margin-top: $scale-1-2;
-
-    opacity: 0;
-    animation: fadeIn .6s .2s ease-out forwards;
-
-    @include breakpoint( 'tablet' ) {
-      justify-content: center !important;
-      margin-top: $scale + $scale-1-2;
-    }
-
-    a {
-      font-family: $fontFamily-sans;
-      text-transform: uppercase;
-      font-size: $fontSize-xsmall;
-      opacity: 1;
-      transition: opacity 0.15s ease-out;
-
-      &:hover { opacity: 0.7; }
-
-      @include breakpoint( 'tablet' ) { margin-right: $scale; }
-    }
-
-    .active { color: white; }
   }
 
   .newsletter {

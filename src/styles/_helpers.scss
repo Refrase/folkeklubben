@@ -1,3 +1,6 @@
+@import '~@/styles/_vars';
+@import '~@/styles/_breakpoints';
+
 $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clean .padding/.margin (all sides) option
 
 @each $position in $positions {

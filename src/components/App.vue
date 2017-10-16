@@ -49,7 +49,8 @@
     & .left { top: 0; left: 0; }
   }
 
-  $headerHeight: 240px;
+  $headerHeight: 153px;
+  $headerHeightMobile: 240px;
 
   .route {
     width: 100%;
@@ -60,6 +61,12 @@
 
     @include breakpoint( 'tablet' ) {
       padding-top: $headerHeight + $scale-2-1;
+    }
+
+    @include breakpoint( 'mobile' ) {
+      margin-top: -$headerHeightMobile;
+      padding-top: $headerHeightMobile + $scale-4-1;
+      padding-bottom: $headerHeightMobile;
     }
   }
 

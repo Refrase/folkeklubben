@@ -1,5 +1,6 @@
 <template>
-  <div class="news routeWithHeader" v-bind:style="{ backgroundImage: backgroundImage ? 'url(' + backgroundImage + ')' : null }">
+  <div class="news routeWithHeader">
+    <background :page="page" />
     <grid-block>
       <div class="span-7" v-if="loadingPosts || error">
         <h2>{{ loadingPosts ? 'Nyheder hentes...' : error }}</h2>
@@ -17,11 +18,13 @@
 
 <script>
   import GridBlock from '@/components/GridBlock'
+  import Background from '@/components/Background'
   import Post from '@/components/Post'
   export default {
     name: 'NewsRoute',
     components: {
       'grid-block': GridBlock,
+      'background': Background,
       'post': Post
     },
     data() {
@@ -30,7 +33,6 @@
         loadingPosts: false,
         posts: null,
         page: null,
-        backgroundImage: null
       }
     },
     created() {
@@ -45,7 +47,6 @@
         this.$http.get(wp.rest_root + '/wp/v2/posts?_embed').then( (response) => {
           this.loadingPosts = false
           this.posts = response.data
-          this.setBackgroundImage()
         }, (error) => {
           this.loadingPosts = false
           this.error = 'Der er desværre sket en fejl. Prøv igen senere.'
@@ -55,25 +56,13 @@
       getPage() {
         this.$http.get(wp.rest_root + '/wp/v2/pages?slug=nyheder').then( (response) => {
           this.page = response.data
-          this.setBackgroundImage()
         }, (error) => {
           this.page = null
           console.log('Could not load page');
         });
-      },
-      setBackgroundImage() {
-        if (this.posts && this.page) this.backgroundImage = this.page[0].acf['background-image'] ? this.page[0].acf['background-image'] : null
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
-  @import '~@/styles/vars';
-  .news {
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: cover;
-  }
-</style>
+<style lang="scss" scoped></style>

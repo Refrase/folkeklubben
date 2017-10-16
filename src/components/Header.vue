@@ -1,5 +1,5 @@
 <template>
-  <grid-block noPadding class="header" :class="{ 'header-frontpage': routeName == 'Start' && firstVisit }">
+  <grid-block noPadding class="header" :class="{ 'header-frontpageFirstVisit': routeName == 'Start' && firstVisit }">
     <div class="span-7" style="display: flex; align-items: flex-end;">
       <h1 class="headline" v-if="routeName != 'Start'" v-bind:style="{ color: routeColors[routeName.toLowerCase()].text }">{{ routeName }}</h1>
     </div>
@@ -60,7 +60,7 @@
 
     @include breakpoint( 'mobile' ) { height: 240px; }
 
-    &-frontpage {
+    &-frontpageFirstVisit {
       transform: translate3d(0, -100vh, 0);
       animation: slideDown 1.6s 0.6s cubic-bezier(0,.5,.0,1) forwards;
     }

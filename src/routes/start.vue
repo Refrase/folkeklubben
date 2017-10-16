@@ -1,8 +1,9 @@
 <template>
-  <div class="start" v-bind:style="{ backgroundImage: backgroundImage ? 'url(' + backgroundImage + ')' : null }">
+  <div class="start">
+    <background :page="page" />
     <ul class="links">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
-      <li><a><span>Koncerter</span></a></li>
+      <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
       <li><a><span>Musik</span></a></li>
       <li><a><span>Merch</span></a></li>
     </ul>
@@ -10,14 +11,12 @@
 </template>
 
 <script>
+  import Background from '@/components/Background'
   export default {
     name: 'StartRoute',
-    components: {},
+    components: { 'background': Background },
     data() {
-      return {
-        page: null,
-        backgroundImage: null
-      }
+      return { page: null }
     },
     created() {
       this.getPage()
@@ -26,14 +25,10 @@
       getPage() {
         this.$http.get(wp.rest_root + '/wp/v2/pages?slug=start').then( (response) => {
           this.page = response.data
-          this.setBackgroundImage()
         }, (error) => {
           this.page = null
           console.log('Could not load page');
         });
-      },
-      setBackgroundImage() {
-        if (this.page) this.backgroundImage = this.page[0].acf['background-image'] ? this.page[0].acf['background-image'] : null
       }
     }
   }
@@ -42,12 +37,13 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
+
   .start {
     background-color: white;
-    background-repeat: no-repeat;
-    background-position: right top;
-    background-size: cover;
-    @include breakpoint( 'mobile' ) { background-position: -650px top; }
+
+    .backgroundImage {
+      @include breakpoint( 'mobile' ) { background-position: -650px top; }
+    }
   }
 
   .links {
