@@ -7,13 +7,11 @@ html {
 body {
   color: $color-darkblue;
   background-color: $color-gold-darker-2;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; // Preventing fonts of getting too thin on Safari
   -moz-osx-font-smoothing: grayscale;
 }
+
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
 h1, h2, h3, h4 { font-family: $fontFamily-sans; }
 h5, h6 { font-family: $fontFamily-sansCondensed; }
@@ -29,6 +27,7 @@ p, li, a, label {
   font-family: $fontFamily-serif;
   font-size: $fontSize-base;
   line-height: 1.5;
+  font-variant-ligatures: none;
 }
 
 a, .a {
@@ -43,13 +42,12 @@ input, textarea, button {
   padding: 12px $scale-2-1;
   border: none;
   background-color: white;
-  border-radius: $borderRadius / 2;
   line-height: 1.5;
 
-  &::-webkit-input-placeholder { font-family: $fontFamily-serif; color: $color-gold-darker-3; font-size: $fontSize-xsmall; } /* Chrome/Opera/Safari */
-  &::-moz-placeholder { font-family: $fontFamily-serif; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 19+ */
-  &:-ms-input-placeholder { font-family: $fontFamily-serif; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  }  /* IE 10+ */
-  &:-moz-placeholder { font-family: $fontFamily-serif; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 18- */
+  &::-webkit-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall; } /* Chrome/Opera/Safari */
+  &::-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 19+ */
+  &:-ms-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  }  /* IE 10+ */
+  &:-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 18- */
 }
 
 textarea:focus,
@@ -66,16 +64,21 @@ input {
     border-right: none; }}
 
 input[type="submit"],
-button {
+button,
+.button {
   font-family: $fontFamily-sans;
-  padding: $scale $scale-2-1;
+  padding: $scale $scale-4-1;
+  padding-bottom: $scale + 2px;
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
-  border-radius: $borderRadius / 2;
-  transition: all 300ms $animationBezier;
-  font-size: $fontSize-xsmall;
+  background-color: $color-gold;
+  color: $color-gold-darker-2;
+  font-size: $fontSize-small;
+  white-space: nowrap;
+  @extend .transitionFadeOnHover;
 
-  &:hover { opacity: 0.9; }
+  &:hover { color: $color-gold-darker-4; }
 
   &.withInput { border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid $color-darkblue; }
   &.submit {

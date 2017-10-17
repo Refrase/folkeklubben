@@ -48,6 +48,7 @@
     // Content-widths
     @include breakpoint( 'tablet' ) { width: 768px; }
     @include breakpoint( 'mobile' ) { width: 100%; }
+    @include breakpoint( 'custom', '1400px', true ) { width: 1320px; }
   }
 
   // Grid

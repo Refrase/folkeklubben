@@ -34,34 +34,44 @@
     flex-wrap: wrap;
     list-style: none;
     white-space: nowrap;
-    margin-top: $scale-1-2;
+    margin-top: $scale;
 
-    @include breakpoint( 'tablet' ) {
-      justify-content: center !important;
-      margin-top: $scale + $scale-1-2;
-    }
+    @include breakpoint( 'tablet' ) { justify-content: center !important; }
+    @include breakpoint( 'custom', '480px' ) { width: 220px; margin: 0 auto; }
+    @include breakpoint( 'custom', '1400px', true ) { margin: 0 auto; width: 316px; }
 
     .navItem {
+      display: block;
       font-family: $fontFamily-sans;
       text-transform: uppercase;
       font-size: $fontSize-xsmall;
       opacity: 1;
       transition: color 0.25s ease-out;
       color: $color-gold-darker-2;
+      line-height: 1.5;
 
       &:hover { color: $color-gold-darker-4; }
-      &-nyheder:hover { color: $color-news; }
-      &-koncerter:hover { color: $color-concerts; }
-      &-musik:hover { color: $color-music; }
+      // &-nyheder:hover { color: $color-news; }
+      // &-koncerter:hover { color: $color-concerts; }
+      // &-musik:hover { color: $color-music; }
 
       @include breakpoint( 'tablet' ) { margin-right: $scale; }
     }
 
     .active {
       // color: $color-start;
-      &-nyheder { color: $color-news; }
-      &-koncerter { color: $color-concerts; }
-      &-musik { color: $color-music; }
+      &-nyheder,
+      &-nyheder:hover { color: $color-news; }
+      &-koncerter,
+      &-koncerter:hover { color: $color-concerts; }
+      &-musik,
+      &-musik:hover { color: $color-music; }
+      &-merch,
+      &-merch:hover { color: $color-gold-darker-4; }
+      &-om,
+      &-om:hover { color: $color-gold-darker-4; }
+      &-kontakt,
+      &-kontakt:hover { color: $color-gold-darker-4; }
     }
   }
 </style>

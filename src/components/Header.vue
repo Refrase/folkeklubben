@@ -40,11 +40,11 @@
     height: 153px;
     z-index: 101;
 
-    @include breakpoint( 'mobile' ) { height: 240px; }
+    @include breakpoint( 'mobile' ) { height: 135px; }
 
     &-frontpageFirstVisit {
       transform: translate3d(0, -100vh, 0);
-      animation: slideDown 1.6s 3s cubic-bezier(0,.5,.0,1) forwards;
+      animation: slideDown 1.6s 1.5s cubic-bezier(0,.5,.0,1) forwards;
     }
   }
 
@@ -59,7 +59,8 @@
     }
 
     @include breakpoint( 'mobile' ) {
-      font-size: 48px !important;
+      margin-left: 0px;
+      font-size: 36px !important;
       margin-top: 180px;
       text-align: center;
     }

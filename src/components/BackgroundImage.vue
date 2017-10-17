@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="backgroundImageContainer">
     <div v-if="backgroundColor" class="backgroundColor" v-bind:style="{ backgroundColor: backgroundColor }" />
     <div
       class="backgroundImage"
@@ -21,8 +21,17 @@
 <style lang="scss" scoped>
   @import '~@/styles/helpers';
 
-  .backgroundColor {
+  .backgroundImageContainer {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .backgroundColor {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -30,7 +39,7 @@
   }
 
   .backgroundImage {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -39,5 +48,5 @@
     background-position: bottom right;
     background-size: cover;
   }
-  
+
 </style>

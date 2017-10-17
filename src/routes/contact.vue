@@ -1,5 +1,5 @@
 <template>
-  <div class="contact">
+  <div class="contactPage">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-12">
@@ -43,5 +43,5 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-  .contact * { color: white; }
+  .contactPage { color: white; }
 </style>

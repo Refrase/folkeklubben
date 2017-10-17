@@ -1,5 +1,5 @@
 <template>
-  <div class="start">
+  <div class="startPage">
     <background :page="page" :color="backgroundColor" />
     <h1 class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <ul class="links">
@@ -58,7 +58,7 @@
     @include breakpoint( 'tablet' ) { font-size: $fontSize-base; }
 
     opacity: 0;
-    animation: fadeIn .6s ease-out forwards, slideUp .6s 3s ease-in forwards, fadeOut .6s 3s ease-out forwards;
+    animation: fadeIn .6s ease-out forwards, slideUp .6s 1.5s ease-in forwards, fadeOut .6s 1.5s ease-out forwards;
 
     span {
       display: block;
@@ -88,7 +88,7 @@
       height: 100%;
       opacity: 0;
 
-      $animationDelay: 4;
+      $animationDelay: 2.5;
       animation: fadeIn .6s #{$animationDelay}s ease-out forwards;
 
       @include breakpoint( 'tablet' ) { width: 50%; height: 50%; }

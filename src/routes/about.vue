@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="aboutPage">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-12">
@@ -43,5 +43,5 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-  .about * { color: white; }
+  .aboutPage { color: white; }
 </style>

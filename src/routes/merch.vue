@@ -1,5 +1,5 @@
 <template>
-  <div class="merch">
+  <div class="merchPage">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-12">
@@ -43,5 +43,5 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-  .merch * { color: white; }
+  .merchPage { color: white; }
 </style>

@@ -17,7 +17,7 @@ $scale-2-1: $scale * 2;
 $scale-1-2: $scale / 2;
 $scale-1-4: $scale / 4;
 
-/* ----- Colors ----- */
+/* ----- Colors ----- */ // ATTENTION! THE COLOR VARIABLES ARE DUPLICATED INTO UTILS/COLORVARS.JS TO MAKE COLORS AVAILABLE IN JS
 
 $color-darkblue: #2B2847;
 $color-darkblue-lighter-6: mix(white, $color-darkblue, 98% );
@@ -166,3 +166,12 @@ $shadow-3: 0px 4px 10px 0px rgba(0,0,0,0.12);
 $animationBezier: cubic-bezier(0.1, 0.95, 0.65, 1);
 $animationBezier-easeOut-extreme: cubic-bezier(0, 0.8, 0.05, 0.95);
 $animationSpeed: 200ms;
+
+/* ----- Header & Routes ----- */
+
+$headerHeight: 153px;
+$headerHeightMobile: 134px;
+
+$routePaddingTop: $headerHeight + $scale-4-1;
+$routePaddingTopTablet: $headerHeight + $scale-2-1;
+$routePaddingTopMobile: $headerHeightMobile + $scale-12-1;

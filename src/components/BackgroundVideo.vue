@@ -6,7 +6,7 @@
       :src="backgroundVideo ? backgroundVideo : null"
       :poster="backgroundImage ? backgroundImage : null"
       muted
-      autoplay
+      :autoplay="pause ? !pause : true"
       playsinline
       preload />
     <div class="backgroundVideoOverlay" v-bind:style="{ backgroundColor: videoOverlayColor ? videoOverlayColor : null }" />
@@ -19,7 +19,8 @@
     props: {
       backgroundVideo: String,
       backgroundImage: String,
-      videoOverlayColor: String
+      videoOverlayColor: String,
+      pause: Boolean
     }
   }
 </script>

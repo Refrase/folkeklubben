@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <background-video v-if="video" :backgroundVideo="backgroundVideo" :backgroundImage="backgroundImage" :videoOverlayColor="color" />
+    <background-video v-if="video" :backgroundVideo="backgroundVideo" :backgroundImage="backgroundImage" :videoOverlayColor="color" :pause="pause ? pause : false" />
     <background-image v-else :backgroundImage="backgroundImage" :backgroundColor="color" />
   </div>
 </template>
@@ -17,7 +17,8 @@
     props: {
       video: Boolean,
       page: Array,
-      color: String
+      color: String,
+      pause: Boolean
     },
     data() {
       return {

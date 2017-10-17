@@ -1,0 +1,55 @@
+<template>
+  <li class="tab" :class="{ active: active }" @click="handleClick">
+    <h3 class="title">{{ tab.title }}</h3>
+    <p class="date">{{ tab.date }}</p>
+  </li>
+</template>
+
+<script>
+  export default {
+    name: 'Tab',
+    props: {
+      tab: Object,
+      active: Boolean,
+      domRefs: Object
+    },
+    methods: {
+      scrollToRef() { this.domRefs[this.tab.title][0].$el.scrollIntoView({ behavior: "smooth", block: "start" }) },
+      handleClick() {
+        this.scrollToRef()
+        this.$bus.$emit( 'clickedTab', this.tab.title )
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import '~@/styles/vars';
+  @import '~@/styles/helpers';
+
+  .tab {
+    margin-right: $scale-4-1;
+    display: inline-block;
+    color: $color-gold;
+    cursor: pointer;
+    padding-bottom: $scale;
+    @extend .transitionFadeOnHover;
+
+    &:hover,
+    &.active { color: white; }
+    &.active { border-bottom: 4px solid $color-lightred-darker-2; }
+
+    .title {
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: $scale-1-2;
+    }
+
+    .date {
+      font-size: $fontSize-small;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  }
+
+</style>

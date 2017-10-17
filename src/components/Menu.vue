@@ -9,7 +9,7 @@
         <appNav />
       </div>
       <form class="newsletter" action="index.html" method="post">
-        <input type="email" name="email" id="email" placeholder="Meld dig til nyhedsbrevet her..." />
+        <input type="email" name="email" id="email" placeholder="Få vores nyhedsbrev..." />
         <input type="submit" value="Tilmeld" />
       </form>
     </div>
@@ -50,14 +50,17 @@
     transform: translate3d(0,0,0);
 
     @include breakpoint( 'tablet' ) {
-      width: 274px;
+      width: 275px;
       top: 0;
     }
 
     @include breakpoint( 'mobile' ) {
       left: 50%;
       transform: translate3d(-50%, 0, 0);
+      width: calc( 100% - 40px );
     }
+
+    @include breakpoint( 'custom', '1400px', true ) { width: 505px; }
 
     &-frontpage {
       left: 50%;
@@ -81,7 +84,7 @@
 
   .top {
     background-color: $color-gold;
-    padding: $scale-2-1 $scale-3-1;
+    padding: $scale-2-1 $scale-4-1;
   }
 
   .logo {
@@ -91,13 +94,14 @@
     width: 100%;
     text-align: center;
     line-height: 0.8;
-    font-size: 61px;
-    margin-bottom: $scale-1-2;
+    font-size: 57.7px;
+    margin-bottom: $scale;
     margin-left: -2px;
     color: $color-start;
     transition: color .2s ease-out;
 
-    @include breakpoint( 'tablet' ) { font-size: 41.3px; }
+    @include breakpoint( 'tablet' ) { font-size: 39px; }
+    @include breakpoint( 'custom', '1400px', true ) { margin-bottom: $scale-2-1; }
 
     &:hover { color: $color-darkblue; }
   }
@@ -120,23 +124,28 @@
     input { border-radius: 0; }
 
     input[type="email"] {
-      width: 68%;
-      font-size: $fontSize-xsmall;
-      padding: $scale $scale-3-1;
+      display: block;
+      width: 70%;
+      font-size: $fontSize-small;
+      font-weight: bold;
+      line-height: 1.3;
+      padding: $scale $scale-4-1;
       padding-right: $scale-1-2;
       display: inline-block;
       float: left;
-      background-color: rgba($color-gold, 0.8);
+      background-color: rgba($color-gold-lighter-2, 0.95);
     }
 
     input[type="submit"] {
-      min-width: 80px;
-      width: 32%;
-      float: left;
       display: inline-block;
+      min-width: 64px;
+      width: 30%;
+      float: left;
+      font-size: $fontSize-xsmall;
       background-color: $color-gold;
       color: $color-gold-darker-2;
-      &:hover { color: $color-darkblue; }
+      padding: $scale;
+      &:hover { color: $color-gold-darker-4; }
     }
   }
 </style>

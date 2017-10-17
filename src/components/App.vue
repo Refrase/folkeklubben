@@ -49,23 +49,20 @@
     & .left { top: 0; left: 0; }
   }
 
-  $headerHeight: 153px;
-  $headerHeightMobile: 240px;
-
   .route {
     width: 100%;
     min-height: 100vh;
     margin-top: -$headerHeight;
-    padding-top: $headerHeight + $scale-4-1;
+    padding-top: $routePaddingTop;
     padding-bottom: $headerHeight;
 
     @include breakpoint( 'tablet' ) {
-      padding-top: $headerHeight + $scale-2-1;
+      padding-top: $routePaddingTopTablet;
     }
 
     @include breakpoint( 'mobile' ) {
       margin-top: -$headerHeightMobile;
-      padding-top: $headerHeightMobile + $scale-4-1;
+      padding-top: $routePaddingTopMobile;
       padding-bottom: $headerHeightMobile;
     }
   }
