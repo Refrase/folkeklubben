@@ -1,7 +1,7 @@
 <template>
   <div class="startPage">
     <background :page="page" :color="backgroundColor" />
-    <h1 class="welcome">Velkommen i <span>Folkeklubben</span></h1>
+    <h1 v-if="page" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <ul class="links">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
@@ -88,7 +88,7 @@
       height: 100%;
       opacity: 0;
 
-      $animationDelay: 2.5;
+      $animationDelay: 3;
       animation: fadeIn .6s #{$animationDelay}s ease-out forwards;
 
       @include breakpoint( 'tablet' ) { width: 50%; height: 50%; }

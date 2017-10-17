@@ -44,7 +44,7 @@
 
     &-frontpageFirstVisit {
       transform: translate3d(0, -100vh, 0);
-      animation: slideDown 1.6s 1.5s cubic-bezier(0,.5,.0,1) forwards;
+      animation: slideDown 1.6s 2s cubic-bezier(0,.5,.0,1) forwards;
     }
   }
 

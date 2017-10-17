@@ -37,12 +37,8 @@
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
 
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 5s;
-  }
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
+  .fade-enter-active, .fade-leave-active { transition: opacity 5s; }
+  .fade-enter, .fade-leave-to { opacity: 0; }
 
   .menu {
     width: 381px;
