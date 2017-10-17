@@ -1,7 +1,7 @@
 <template>
   <div class="background">
     <background-video v-if="video" :backgroundVideo="backgroundVideo" :backgroundImage="backgroundImage" :videoOverlayColor="color" :pause="pause ? pause : false" />
-    <background-image v-else :backgroundImage="backgroundImage" :backgroundColor="color" />
+    <background-image v-else :backgroundImage="backgroundImage" :imageOverlayColor="color" :backgroundColor="color" />
   </div>
 </template>
 

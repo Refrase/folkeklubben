@@ -1,5 +1,5 @@
 <template>
-  <div class="newsPage">
+  <div class="newsRoute">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div class="span-7" v-if="loadingPosts || error">

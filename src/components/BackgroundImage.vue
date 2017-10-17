@@ -5,6 +5,7 @@
       class="backgroundImage"
       :class="{ fadeIn: backgroundImage ? true : null }"
       v-bind:style="{ backgroundImage: backgroundImage ? 'url(' + backgroundImage + ')' : null }" />
+    <div class="backgroundImageOverlay" v-bind:style="{ backgroundColor: imageOverlayColor ? imageOverlayColor : null }" />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
     props: {
       backgroundColor: String,
       backgroundImage: String,
+      imageOverlayColor: String
     }
   }
 </script>
@@ -47,6 +49,15 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: cover;
+  }
+
+  .backgroundImageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
   }
 
 </style>

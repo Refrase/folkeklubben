@@ -92,7 +92,7 @@
         font-size: $fontSize-small;
         margin-top: 4px;
         font-weight: bold;
-        letter-spacing: 2px;
+        letter-spacing: $letterSpacing;
         line-height: 14px;
         display: inline-block;
         @include breakpoint( 'mobile' ) { width: 100%; text-align: center; }

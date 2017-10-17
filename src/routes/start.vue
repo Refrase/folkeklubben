@@ -1,5 +1,5 @@
 <template>
-  <div class="startPage">
+  <div class="startRoute">
     <background :page="page" :color="backgroundColor" />
     <h1 v-if="page" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <ul class="links">
@@ -126,6 +126,7 @@
       text-transform: uppercase;
       color: white;
       font-size: $fontSize-xxxlarge;
+      letter-spacing: 0;
 
       span {
         width: 100%;

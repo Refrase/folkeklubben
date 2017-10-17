@@ -31,11 +31,14 @@ p, li, a, label {
 }
 
 a, .a {
-  color: $color-darkblue;
+  color: $color-gold;
   cursor: pointer;
   text-decoration: none;
-  opacity: 1;
-  transition: opacity 50ms ease;
+  letter-spacing: $letterSpacing;
+  line-height: 1.2;
+  @extend .transitionFadeOnHover;
+
+  &:hover { color: $color-gold-darker-2; }
 }
 
 input, textarea, button {
@@ -66,6 +69,7 @@ input {
 input[type="submit"],
 button,
 .button {
+  display: inline-block;
   font-family: $fontFamily-sans;
   padding: $scale $scale-4-1;
   padding-bottom: $scale + 2px;
@@ -73,12 +77,16 @@ button,
   text-align: center;
   cursor: pointer;
   background-color: $color-gold;
-  color: $color-gold-darker-2;
+  color: $color-darkblue;
   font-size: $fontSize-small;
   white-space: nowrap;
+  letter-spacing: 0;
   @extend .transitionFadeOnHover;
 
-  &:hover { color: $color-gold-darker-4; }
+  &:hover {
+    color: $color-darkblue;
+    background-color: $color-gold-lighter-2;
+  }
 
   &.withInput { border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid $color-darkblue; }
   &.submit {

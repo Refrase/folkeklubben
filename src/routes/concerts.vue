@@ -1,6 +1,6 @@
 <template>
 
-  <div class="concertsPage">
+  <div class="concertsRoute">
 
     <background video pause :page="page" :color="videoOverlayColor" />
 
@@ -78,7 +78,7 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
-  .concertsPage { color: white; }
+  .concertsRoute { color: white; }
   .tours {
     position: absolute;
     top: 0;

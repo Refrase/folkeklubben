@@ -94,6 +94,7 @@
     margin-bottom: $scale;
     margin-left: -2px;
     color: $color-start;
+    letter-spacing: 0;
     transition: color .2s ease-out;
 
     @include breakpoint( 'tablet' ) { font-size: 39px; }
