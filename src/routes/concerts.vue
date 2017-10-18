@@ -17,8 +17,8 @@
       <div class="span-12 position-relative">
         <div class="tours">
           <tour
-            v-for="tour in tours"
-            :key="tour.meta.title"
+            v-for="(tour, index) in tours"
+            :key="index"
             v-bind:ref="tour.meta.title"
             :title="tour.meta.title"
             :concerts="tour.concerts" />

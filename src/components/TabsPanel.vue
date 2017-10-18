@@ -7,7 +7,7 @@
           v-for="(tab, index) in tabs"
           :active="activeTab === tab.title"
           :tab="tab"
-          :key="tab.title"
+          :key="index"
           :domRefs="domRefs" />
       </ul>
       <div class="xScrollShadow" />

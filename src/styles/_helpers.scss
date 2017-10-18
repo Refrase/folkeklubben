@@ -144,6 +144,7 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 	&-both { clear: both; }}
 
 .display {
+	&-block { display: block !important; }
 	&-flex { display: flex; }
 	&-inlineBlock { display: inline-block; }}
 

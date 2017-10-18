@@ -2,97 +2,8 @@
   <div class="musicRoute">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
-      <div class="span-4">
-        <div class="album">
-          <img src="../assets/images/cover.jpg" alt="" width="100%">
-          <div class="links">
-            <a href="#" class="button"><span>Lyt</span></a>
-            <a href="#" class="button"><span>Køb CD</span></a>
-            <a href="#" class="button"><span>Køb LP</span></a>
-          </div>
-          <ul class="tracklist">
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="span-4">
-        <div class="album">
-          <img src="../assets/images/cover.jpg" alt="" width="100%">
-          <div class="links">
-            <a href="#" class="button"><span>Lyt</span></a>
-            <a href="#" class="button"><span>Køb CD</span></a>
-            <a href="#" class="button"><span>Køb LP</span></a>
-          </div>
-          <ul class="tracklist">
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="span-4">
-        <div class="album">
-          <img src="../assets/images/cover.jpg" alt="" width="100%">
-          <div class="links">
-            <a href="#" class="button"><span>Lyt</span></a>
-            <a href="#" class="button"><span>Køb CD</span></a>
-            <a href="#" class="button"><span>Køb LP</span></a>
-          </div>
-          <ul class="tracklist">
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="span-4">
-        <div class="album">
-          <img src="../assets/images/cover.jpg" alt="" width="100%">
-          <div class="links">
-            <a href="#" class="button"><span>Lyt</span></a>
-            <a href="#" class="button"><span>Køb CD</span></a>
-            <a href="#" class="button"><span>Køb LP</span></a>
-          </div>
-          <ul class="tracklist">
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-            <li>Torben Ulrich <a href="#">Tekst</a></li>
-          </ul>
-        </div>
+      <div v-for="(album, index) in albums" class="span-4">
+        <album :album="album" :key="index" />
       </div>
     </grid-block>
   </div>
@@ -101,17 +12,79 @@
 <script>
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
+  import Album from '@/components/Album'
   import { routeColors } from '@/utils/colorVars'
   export default {
     name: 'MusicRoute',
     components: {
       'grid-block': GridBlock,
-      'background': Background
+      'background': Background,
+      'album': Album
     },
     data() {
       return {
+        backgroundColor: routeColors.musik.bg,
         page: null,
-        backgroundColor: routeColors.musik.bg
+        albums: [
+          {
+            title: 'Slår Flint',
+            image: { url: null },
+            releaseDate: '22 jan \'14',
+            links: {
+              listen: '#',
+              buy: {
+                cd: '#',
+                lp: '#'
+              }
+            },
+            tracklist: [
+              {
+                title: 'Torben Ulrich',
+                id: 'torben-ulrich',
+                lyrics: '<p>Der er sol over Danmark.<br>Vi synger dine sange og glemmer dine nederlag.</p><p>Folkehelt, fanebærer, beatnik, laissez-faire,<br>hej hej bolighaj, skåltaler 1. maj.<br>Folkehold, fattigrøve, Egon, Benny, Kjeld og Børge.<br>Kan du ikke gå, så stå på dine ben.</p><p>I dag bliver en god dag.<br>Jeg går som Torben Ulrich efter det perfekte slag.<br>Og jeg klapper det klaptræ. Til filmen om en mand,<br>der blev sin egen herre en dag.<br>Yeah, yeah juhu!<br>Yeah, yeah juhu!</p>'
+              },
+              {
+                title: 'Torben Ulrich 2',
+                id: 'torben-ulrich-2',
+                lyrics: '<p>Der er sol over Danmark.<br>Vi synger dine sange og glemmer dine nederlag.</p>'
+              },
+              {
+                title: 'Torben Ulrich 3',
+                id: 'torben-ulrich-3',
+                lyrics: '<p>Folkehelt, fanebærer, beatnik, laissez-faire,<br>hej hej bolighaj, skåltaler 1. maj.<br>Folkehold, fattigrøve, Egon, Benny, Kjeld og Børge.<br>Kan du ikke gå, så stå på dine ben.</p><p>I dag bliver en god dag.<br>Jeg går som Torben Ulrich efter det perfekte slag.<br>Og jeg klapper det klaptræ. Til filmen om en mand,<br>der blev sin egen herre en dag.<br>Yeah, yeah juhu!<br>Yeah, yeah juhu!</p>'
+              }
+            ]
+          },
+          {
+            title: 'Slår Flint',
+            image: { url: null },
+            releaseDate: '14 aug \'16',
+            links: {
+              listen: '#',
+              buy: {
+                cd: '#',
+                lp: '#'
+              }
+            },
+            tracklist: [
+              {
+                title: 'Torben Ulrich',
+                id: 'torben-ulrich',
+                lyrics: '<p>Der er sol over Danmark.<br>Vi synger dine sange og glemmer dine nederlag.</p><p>Folkehelt, fanebærer, beatnik, laissez-faire,<br>hej hej bolighaj, skåltaler 1. maj.<br>Folkehold, fattigrøve, Egon, Benny, Kjeld og Børge.<br>Kan du ikke gå, så stå på dine ben.</p><p>I dag bliver en god dag.<br>Jeg går som Torben Ulrich efter det perfekte slag.<br>Og jeg klapper det klaptræ. Til filmen om en mand,<br>der blev sin egen herre en dag.<br>Yeah, yeah juhu!<br>Yeah, yeah juhu!</p>'
+              },
+              {
+                title: 'Torben Ulrich 2',
+                id: 'torben-ulrich-2',
+                lyrics: '<p>Der er sol over Danmark.<br>Vi synger dine sange og glemmer dine nederlag.</p>'
+              },
+              {
+                title: 'Torben Ulrich 3',
+                id: 'torben-ulrich-3',
+                lyrics: '<p>Folkehelt, fanebærer, beatnik, laissez-faire,<br>hej hej bolighaj, skåltaler 1. maj.<br>Folkehold, fattigrøve, Egon, Benny, Kjeld og Børge.<br>Kan du ikke gå, så stå på dine ben.</p><p>I dag bliver en god dag.<br>Jeg går som Torben Ulrich efter det perfekte slag.<br>Og jeg klapper det klaptræ. Til filmen om en mand,<br>der blev sin egen herre en dag.<br>Yeah, yeah juhu!<br>Yeah, yeah juhu!</p>'
+              }
+            ]
+          }
+        ]
       }
     },
     created() {
@@ -131,57 +104,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~@/styles/vars';
-
   .musicRoute { color: white; }
-
-  .album {
-    margin-bottom: $scale-4-1;
-
-    img { display: block; }
-
-    .links {
-      display: flex;
-      margin-top: $scale-2-1;
-
-      .button {
-        display: flex;
-        align-items: center;
-        flex-basis: 100%;
-        padding: $scale $scale-2-1;
-        padding-bottom: $scale + 2px;
-        margin-right: $scale-2-1;
-        white-space: normal;
-
-        span {
-          width: 100%;
-          text-align: center;
-        }
-
-        &:last-child { margin-right: 0; }
-      }
-    }
-
-    .tracklist {
-      list-style: none;
-      margin-top: $scale-2-1;
-
-      li {
-        padding: $scale-1-2 $scale ($scale-1-2 - 3px);
-        font-size: $fontSize-small;
-        font-weight: bold;
-
-        &:nth-child(odd) { background-color: rgba(white, 0.05); }
-
-        a {
-          position: relative;
-          float: right;
-          font-size: inherit;
-          bottom: -2px;
-        }
-      }
-    }
-
-  }
-
 </style>

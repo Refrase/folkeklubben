@@ -2,7 +2,7 @@
   <div class="tour">
     <h2 class="title">{{ title }}</h2>
     <ul class="concerts">
-      <concert v-for="concert in concerts" :concert="concert" :key="concert.venue" />
+      <concert v-for="(concert, index) in concerts" :concert="concert" :key="index" />
     </ul>
   </div>
 </template>
