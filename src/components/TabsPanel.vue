@@ -77,7 +77,7 @@
       right: 1px;
       height: 100%;
       width: 48px;
-      background: linear-gradient(to right, transparent, $color-lightred-darker-2);
+      background: linear-gradient(to right, transparent, rgba($color-lightred-darker-2, 0.3));
       display: none;
 
       @include breakpoint( 'mobile' ) { display: block; }
