@@ -1,6 +1,14 @@
 <template>
   <div class="album">
-    <img v-if="album.image && album.image.url" :src="album.image.url" :alt="album.title" width="100%">
+    <img
+      v-if="album.image && album.image.url"
+      :src="album.image.url"
+      :alt="album.title"
+      width="100%"
+      ref="albumcover"
+      data-tilt
+      data-tilt-max="15"
+      data-tilt-speed="1000">
     <img v-else src="../assets/images/album-placeholder.png" :alt="album.title" width="100%">
     <p class="releaseDate">Udgivet {{ album.releaseDate }}</p>
     <div class="links">
@@ -19,9 +27,11 @@
 </template>
 
 <script>
+  import vanillaTilt from 'vanilla-tilt'
   export default {
     name: 'Album',
     props: { album: Object },
+    mounted() { if (this.$refs['albumcover']) vanillaTilt.init(this.$refs['albumcover']) },
     methods: {
       showLyrics(e, trackRef) {
         e.target.innerText = e.target.innerText === 'Tekst' ? 'Skjul' : 'Tekst'
