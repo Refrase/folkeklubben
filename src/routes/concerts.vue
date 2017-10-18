@@ -37,6 +37,7 @@
   import Tour from '@/components/Tour'
   import { routeColors } from '@/utils/colorVars'
   import { tours } from '@/data/tours'
+  import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'ConcertsRoute',
     components: {
@@ -45,9 +46,10 @@
       'tabs-panel': TabsPanel,
       'tour': Tour
     },
+    mixins: [fetchData],
     data() {
       return {
-        page: null,
+        page: [],
         videoOverlayColor: routeColors.koncerter.bg,
         tours: tours
       }
@@ -59,19 +61,7 @@
         return toursMeta
       }
     },
-    created() {
-      this.getPage()
-    },
-    methods: {
-      getPage() {
-        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=koncerter').then( (response) => {
-          this.page = response.data
-        }, (error) => {
-          this.page = null
-          console.log('Could not load page');
-        });
-      }
-    }
+    created() { this.fetchData( 'pages?slug=koncerter' ).then( res => this.page = res ) }
   }
 </script>
 

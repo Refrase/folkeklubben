@@ -14,28 +14,18 @@
 <script>
   import Background from '@/components/Background'
   import { routeColors } from '@/utils/colorVars'
+  import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'StartRoute',
     components: { 'background': Background },
+    mixins: [fetchData],
     data() {
       return {
         page: null,
         backgroundColor: routeColors.start.bg
       }
     },
-    created() {
-      this.getPage()
-    },
-    methods: {
-      getPage() {
-        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=start').then( (response) => {
-          this.page = response.data
-        }, (error) => {
-          this.page = null
-          console.log('Could not load page');
-        });
-      }
-    }
+    created() { this.fetchData( 'pages?slug=start' ).then( res => this.page = res ) }
   }
 </script>
 

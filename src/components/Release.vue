@@ -1,26 +1,26 @@
 <template>
-  <div class="album">
+  <div class="release">
     <img
-      v-if="album.image && album.image.url"
-      :src="album.image.url"
-      :alt="album.title"
+      v-if="release._embedded && release._embedded['wp:featuredmedia'][0]"
+      :src="release._embedded['wp:featuredmedia'][0].source_url"
+      :alt="release.title.rendered"
       width="100%"
-      ref="albumcover"
+      ref="releasecover"
       data-tilt
       data-tilt-max="15"
       data-tilt-speed="1000">
-    <img v-else src="../assets/images/album-placeholder.png" :alt="album.title" width="100%">
-    <p class="releaseDate">Udgivet {{ album.releaseDate }}</p>
+    <img v-else src="../assets/images/album-placeholder.png" :alt="release.title.rendered" width="100%">
+    <p class="releaseDate">Udgivet {{ release.acf.release_date }}</p>
     <div class="links">
-      <a v-if="album.links && album.links.listen" :href="album.links.listen" class="button"><span>Lyt</span></a>
-      <a v-if="album.links && album.links.buy.cd" :href="album.links.buy.cd" class="button"><span>Køb CD</span></a>
-      <a v-if="album.links && album.links.buy.lp" :href="album.links.buy.lp" class="button"><span>Køb LP</span></a>
+      <a v-if="release.acf && release.acf.listen_link" :href="release.acf.listen_link" class="button"><span>Lyt</span></a>
+      <a v-if="release.acf && release.acf.buy_cd_link" :href="release.acf.buy_cd_link" class="button"><span>Køb CD</span></a>
+      <a v-if="release.acf && release.acf.buy_lp_link" :href="release.acf.buy_lp_link" class="button"><span>Køb LP</span></a>
     </div>
-    <ul v-if="album.tracklist" class="tracklist">
-      <li v-for="(track, index) in album.tracklist">
-        <p>{{ track.title }}</p>
-        <p class="showLyrics" @click="showLyrics($event, `${track.id}-lyrics`)">Tekst</p>
-        <p v-if="track.lyrics" class="lyrics" :ref="`${track.id}-lyrics`" v-html="track.lyrics" />
+    <ul v-if="tracklist" class="tracklist">
+      <li v-for="(track, index) in tracklist">
+        <p>{{ track.title.rendered }}</p>
+        <p class="showLyrics" @click="showLyrics($event, `${track.slug}-lyrics`)">Tekst</p>
+        <p v-if="track.acf.lyrics" class="lyrics" :ref="`${track.slug}-lyrics`" v-html="track.acf.lyrics" />
       </li>
     </ul>
   </div>
@@ -29,9 +29,12 @@
 <script>
   import vanillaTilt from 'vanilla-tilt'
   export default {
-    name: 'Album',
-    props: { album: Object },
-    mounted() { if (this.$refs['albumcover']) vanillaTilt.init(this.$refs['albumcover']) },
+    name: 'Release',
+    props: {
+      release: Object,
+      tracklist: Array
+    },
+    mounted() { if (this.$refs['releasecover']) vanillaTilt.init(this.$refs['releasecover']) },
     methods: {
       showLyrics(e, trackRef) {
         e.target.innerText = e.target.innerText === 'Tekst' ? 'Skjul' : 'Tekst'
@@ -47,7 +50,7 @@
   @import '~@/styles/helpers';
   @import '~@/styles/global';
 
-  .album { margin-bottom: $scale-4-1; }
+  .release { margin-bottom: $scale-4-1; }
 
   img { display: block; }
 

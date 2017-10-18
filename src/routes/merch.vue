@@ -13,31 +13,21 @@
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
   import { routeColors } from '@/utils/colorVars'
+  import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'MerchRoute',
     components: {
       'grid-block': GridBlock,
       'background': Background
     },
+    mixins: [fetchData],
     data() {
       return {
-        page: null,
+        page: [],
         backgroundColor: routeColors.merch.bg
       }
     },
-    created() {
-      this.getPage()
-    },
-    methods: {
-      getPage() {
-        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=merch').then( (response) => {
-          this.page = response.data
-        }, (error) => {
-          this.page = null
-          console.log('Could not load page');
-        });
-      }
-    }
+    created() { this.fetchData( 'pages?slug=merch' ).then( res => this.page = res ) }
   }
 </script>
 
