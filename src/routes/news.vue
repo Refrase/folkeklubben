@@ -2,8 +2,8 @@
   <div class="newsRoute">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
-      <div class="span-7" v-if="loadingPosts || error">
-        <h2>{{ loadingPosts ? 'Nyheder hentes...' : error }}</h2>
+      <div class="span-7" v-if="loadingPosts">
+        <h2>Nyheder hentes...</h2>
       </div>
       <div class="span-7" v-else>
         <post
@@ -21,6 +21,7 @@
   import Background from '@/components/Background'
   import Post from '@/components/Post'
   import { routeColors } from '@/utils/colorVars'
+  import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'NewsRoute',
     components: {
@@ -28,41 +29,22 @@
       'background': Background,
       'post': Post
     },
+    mixins: [fetchData],
     data() {
       return {
-        error: null,
+        page: null,
         loadingPosts: false,
         posts: null,
-        page: null,
         backgroundColor: routeColors.nyheder.bg
       }
     },
     created() {
-      this.getPosts()
-      this.getPage()
-    },
-    methods: {
-      getPosts() {
-        this.loadingPosts = true
-        // wp.rest_root is made available in functions.php
-        // the ?_embed expands the returned data with embedded stuff like featured image
-        this.$http.get(wp.rest_root + '/wp/v2/posts?_embed').then( (response) => {
-          this.loadingPosts = false
-          this.posts = response.data
-        }, (error) => {
-          this.loadingPosts = false
-          this.error = 'Der er desværre sket en fejl. Prøv igen senere.'
-          console.log(error)
-        });
-      },
-      getPage() {
-        this.$http.get(wp.rest_root + '/wp/v2/pages?slug=nyheder').then( (response) => {
-          this.page = response.data
-        }, (error) => {
-          this.page = null
-          console.log('Could not load page');
-        });
-      }
+      this.loadingPosts = true
+      this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
+      this.fetchData( 'posts?_embed' ).then( res => {
+        this.loadingPosts = false
+        this.posts = res
+      })
     }
   }
 </script>
