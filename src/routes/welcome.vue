@@ -16,7 +16,7 @@
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   export default {
-    name: 'StartRoute',
+    name: 'WelcomeRoute',
     components: { 'background': Background },
     mixins: [fetchData],
     data() {

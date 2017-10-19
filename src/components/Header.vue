@@ -1,5 +1,5 @@
 <template>
-  <grid-block noPadding class="header" :class="{ 'header-frontpageFirstVisit': routeName == 'Start' && firstVisit }">
+  <grid-block noPadding class="header" :class="{ 'header-frontpageFirstVisit': routeName == 'Velkommen' && firstVisit }">
     <div class="span-7" style="display: flex; align-items: flex-end;">
       <h1
         class="headline"
