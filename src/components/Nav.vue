@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav" v-if="routeName != 'start'">
+  <ul class="nav" v-if="routeName != 'velkommen'">
     <li><router-link :to="{ name: 'nyheder' }" class="navItem navItem-nyheder"
       :exact-active-class="routeName == 'nyheder' ? `active-${routeName}` : null">Nyheder</router-link></li>
     <li><router-link :to="{ name: 'koncerter' }" class="navItem navItem-koncerter"
@@ -60,7 +60,7 @@
     }
 
     .active {
-      // color: $color-start;
+      // color: $color-welcome;
       &-nyheder,
       &-nyheder:hover { color: $color-news; }
       &-koncerter,

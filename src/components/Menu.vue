@@ -2,10 +2,10 @@
   <transition :name="transitionName">
     <div
       class="menu"
-      :class="{ 'menu-frontpage': routeName == 'start' }"
+      :class="{ 'menu-frontpage': routeName == 'velkommen' }"
       :key="routeName">
       <div class="top">
-        <router-link :to="{ name: 'start' }" exact class="logo">Folkeklubben</router-link>
+        <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
         <appNav />
       </div>
       <form class="newsletter" action="index.html" method="post">
@@ -93,7 +93,7 @@
     font-size: 57.7px;
     margin-bottom: $scale;
     margin-left: -2px;
-    color: $color-start;
+    color: $color-welcome;
     letter-spacing: 0;
     transition: color .2s ease-out;
 

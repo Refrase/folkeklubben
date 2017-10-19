@@ -1,5 +1,5 @@
 <template>
-  <div class="startRoute">
+  <div class="welcomeRoute">
     <background :page="page" :color="backgroundColor" />
     <h1 v-if="page" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <ul class="links">
@@ -22,10 +22,10 @@
     data() {
       return {
         page: null,
-        backgroundColor: routeColors.start.bg
+        backgroundColor: routeColors.velkommen.bg
       }
     },
-    created() { this.fetchData( 'pages?slug=start' ).then( res => this.page = res ) }
+    created() { this.fetchData( 'pages?slug=velkommen' ).then( res => this.page = res ) }
   }
 </script>
 
@@ -33,7 +33,7 @@
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
 
-  .start {
+  .welcomeRoute {
     .backgroundImage {
       @include breakpoint( 'mobile' ) { background-position: -650px top; }
     }

@@ -1,7 +1,10 @@
 <template>
   <grid-block noPadding class="header" :class="{ 'header-frontpageFirstVisit': routeName == 'Start' && firstVisit }">
     <div class="span-7" style="display: flex; align-items: flex-end;">
-      <h1 class="headline" v-if="routeName != 'Start'" v-bind:style="{ color: routeColors[routeName.toLowerCase()].text }">{{ routeName }}</h1>
+      <h1
+        class="headline"
+        v-if="routeName && routeName != 'Velkommen'"
+        v-bind:style="{ color: routeColors[routeName.toLowerCase()] ? routeColors[routeName.toLowerCase()].text : null }">{{ routeName }}</h1>
     </div>
     <div class="span-5">
       <appMenu :routeChange="routeChange" />
@@ -24,7 +27,7 @@
       return { routeColors: routeColors }
     },
     computed: {
-      routeName() { return this.$route.name.replace( this.$route.name.charAt(0), this.$route.name.charAt(0).toUpperCase() ) },
+      routeName() { return this.$route.name ? this.$route.name.replace( this.$route.name.charAt(0), this.$route.name.charAt(0).toUpperCase() ) : null },
       firstVisit() { return !this.routeChange.from && !this.routeChange.to }
     }
   }

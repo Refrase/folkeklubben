@@ -6,7 +6,7 @@ export const colors = {
 }
 
 export const routeColors = {
-  start: {
+  velkommen: {
     bg: 'transparent',
     text: colors.darkblue
   },
