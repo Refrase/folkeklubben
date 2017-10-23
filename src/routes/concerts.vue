@@ -76,10 +76,10 @@
     width: 100%;
     left: 2px;
     overflow-y: scroll;
-    height: calc( 100vh - #{$routePaddingTop} - 118px - 16px ); // 118 = tabsPanel height
+    height: calc( 100vh - #{$routePaddingTop} - 96px - 16px ); // 118 = tabsPanel height
 
-    @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 118px - 16px ); }
-    @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 119px - 16px ); }
+    @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 96px - 16px ); }
+    @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 97px - 16px ); }
 
     &::-webkit-scrollbar { width: 4px; }
     &::-webkit-scrollbar-track { background-color: $color-lightred; }

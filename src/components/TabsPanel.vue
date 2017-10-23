@@ -40,14 +40,16 @@
 
   .tabsPanel {
     position: relative;
-    margin-top: $scale-2-1;
 
     .title {
-      color: $color-lightred-darker-2;
+      color: rgba(black, 0.25);
       text-transform: uppercase;
-      margin-bottom: $scale;
+      font-size: $fontSize-large !important;
 
-      @include breakpoint( 'mobile' ) { text-align: center; }
+      @include breakpoint( 'mobile' ) {
+        text-align: center;
+
+      }
     }
 
     .tabsWrap { position: relative; }
@@ -59,6 +61,7 @@
       overflow-x: scroll;
       padding-top: $scale-2-1;
       padding-right: $scale-2-1;
+      margin-top: $scale;
       min-height: 70px;
 
       @include breakpoint( 'mobile' ) {
