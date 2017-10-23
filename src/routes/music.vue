@@ -3,7 +3,7 @@
     <background :page="page" :color="backgroundColor" />
     <grid-block>
       <div v-for="(release, index) in releasesReversed" class="span-4">
-        <release :release="release" :tracklist="tracksByAlbum[release.slug]" :key="index" />
+        <release :release="release" :tracklist="tracksByRelease[release.slug]" :key="index" />
       </div>
     </grid-block>
   </div>
@@ -33,18 +33,18 @@
     },
     computed: {
       releasesReversed() { if (this.releases) return this.releases.reverse() },
-      tracksByAlbum() {
-        const tracksByAlbum = {}
+      tracksByRelease() {
+        const tracksByRelease = {}
         const releaseSlugs = []
         for ( let release of this.releases ) releaseSlugs.push(release.slug)
         for ( let slug of releaseSlugs ) {
-          tracksByAlbum[slug] = []
+          tracksByRelease[slug] = []
           for ( let track of this.tracks ) {
-            if ( track.acf.album === slug ) tracksByAlbum[slug].push(track)
+            if ( track.acf.release === slug ) tracksByRelease[slug].push(track)
           }
-          tracksByAlbum[slug].sort( (a, b) => { return parseInt(a.acf.tracklist_number, 10) - parseInt(b.acf.tracklist_number, 10) }) // Sort albumtracks by tracklist num
+          tracksByRelease[slug].sort( (a, b) => { return parseInt(a.acf.tracklist_number, 10) - parseInt(b.acf.tracklist_number, 10) }) // Sort albumtracks by tracklist num
         }
-        return tracksByAlbum
+        return tracksByRelease
       }
     },
     created() {
