@@ -210,5 +210,5 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 .fadeInWithDelay	{ animation: fadeIn 300ms 1000ms ease-out forwards; }
 .fadeOut 					{ animation: fadeOut 600ms $animationBezier forwards; }
 .slideIn 					{ animation: slideIn 600ms $animationBezier forwards; }
-.transitionFadeOnHover { transition: color .05s ease-out, background-color .05s ease-out; }
+.transitionFadeOnHover { transition: color .1s ease-out, background-color .1s ease-out; }
 .rotateUpsideDown { transform: rotate( 360deg ) !important; }

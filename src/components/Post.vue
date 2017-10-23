@@ -60,7 +60,13 @@
     margin-bottom: $scale + 4px;
     color: $color-gold;
     letter-spacing: $letterSpacing;
+    font-weight: bold;
   }
 
-  .text /deep/ * { font-size: 18px; }
+  .text /deep/ * {
+    font-size: 18px;
+    a { letter-spacing: 0; }
+  }
+
+
 </style>

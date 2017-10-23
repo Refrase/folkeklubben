@@ -34,6 +34,11 @@
     padding: $scale-3-1;
 
     &:nth-child(even) { background-color: rgba($color-lightred-darker-2, 0.3); }
+    &:nth-child(odd) {
+      & .facebookEvent {
+        background-color: rgba($color-lightred-darker-1, 0.5) !important;
+      }
+    }
 
     @include breakpoint( 'mobile' ) {
       align-items: center;
@@ -121,14 +126,14 @@
         position: relative;
         top: -1px;
         color: $color-lightred-darker-2;
-        background-color: $color-lightred;
+        background-color: rgba($color-lightred, 0.5);
         font-weight: bold;
         display: inline-block;
         margin-right: $scale;
 
         &:hover {
           color: white;
-          background-color: $color-blue;
+          background-color: $color-blue !important;
         }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }

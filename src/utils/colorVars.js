@@ -1,6 +1,7 @@
 export const colors = {
   white: "#ffffff",
   darkblue: "#2B2847",
+  blue: "#2C70B6",
   golds: [ "#DEC7A2", "#A08F75", "#A08F75" ],
   lightred: "#FB5B64"
 }
@@ -19,7 +20,7 @@ export const routeColors = {
     text: colors.white
   },
   musik: {
-    bg: colors.darkblue,
+    bg: colors.blue,
     text: colors.white
   },
   merch: {

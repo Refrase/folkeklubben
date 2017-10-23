@@ -87,24 +87,24 @@
       transition: background-color 0.15s ease-out;
 
       &:nth-child(1) {
-        background-color: rgba(white, 0.9);
+        background-color: rgba($color-news, 0.9);
         a { color: $color-darkblue; }
-        &:hover { background-color: white; }}
+        &:hover { background-color: $color-news; }}
 
       &:nth-child(2) {
-        background-color: rgba($color-lightred, 0.9);
+        background-color: rgba($color-concerts, 0.9);
         animation-delay: #{$animationDelay + 0.1}s;
-        &:hover { background-color: $color-lightred; }}
+        &:hover { background-color: $color-concerts; }}
 
       &:nth-child(3) {
-        background-color: rgba($color-darkblue, 0.9);
+        background-color: rgba($color-music, 0.9);
         animation-delay: #{$animationDelay + 0.2}s;
-        &:hover { background-color: $color-darkblue; }}
+        &:hover { background-color: $color-music; }}
 
       &:nth-child(4) {
-        background-color: rgba($color-gold, 0.9);
+        background-color: rgba($color-merch, 0.9);
         animation-delay: #{$animationDelay + 0.3}s;
-        &:hover { background-color: $color-gold; }}
+        &:hover { background-color: $color-merch; }}
     }
 
     a {

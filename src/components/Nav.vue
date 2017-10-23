@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav" v-if="routeName != 'velkommen'">
+  <ul class="nav">
     <li><router-link :to="{ name: 'nyheder' }" class="navItem navItem-nyheder"
       :exact-active-class="routeName == 'nyheder' ? `active-${routeName}` : null">Nyheder</router-link></li>
     <li><router-link :to="{ name: 'koncerter' }" class="navItem navItem-koncerter"
@@ -34,7 +34,7 @@
     flex-wrap: wrap;
     list-style: none;
     white-space: nowrap;
-    margin-top: $scale;
+    margin-top: $scale-1-2;
 
     @include breakpoint( 'tablet' ) { justify-content: center !important; }
     @include breakpoint( 'custom', '480px' ) { width: 220px; margin: 0 auto; }

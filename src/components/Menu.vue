@@ -53,7 +53,7 @@
     @include breakpoint( 'mobile' ) {
       left: 50%;
       transform: translate3d(-50%, 0, 0);
-      width: calc( 100% - 40px );
+      width: calc( 100% - 30px );
     }
 
     @include breakpoint( 'custom', '1400px', true ) { width: 505px; }
@@ -98,7 +98,6 @@
     transition: color .2s ease-out;
 
     @include breakpoint( 'tablet' ) { font-size: 39px; }
-    @include breakpoint( 'custom', '1400px', true ) { margin-bottom: $scale-2-1; }
 
     &:hover { color: $color-darkblue; }
   }
