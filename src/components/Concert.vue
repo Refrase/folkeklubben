@@ -11,10 +11,10 @@
     <div class="right">
       <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
       <a :href="concert.acf.ticket_link" class="buy button" :class="buyButtonClass">
-        <span v-if="concert.acf.free">Find billet (gratis)</span>
+        <span v-if="concert.acf.free">Find gratis billet</span>
         <span v-else-if="concert.acf.sold_out">Udsolgt</span>
         <span v-else-if="concert.acf.cancelled">Aflyst</span>
-        <span v-else-if="concert.acf.few_tickets">Få billetter</span>
+        <span v-else-if="concert.acf.few_tickets">Tæt på udsolgt</span>
         <span v-else>Køb billet</span>
       </a>
     </div>
@@ -152,28 +152,22 @@
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
 
-        &:hover {
-          color: $color-blue;
-          // background-color: $color-blue !important;
-        }
+        &:hover { background-color: rgba($color-lightred, 1); }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }
       }
 
       .buy {
+        background-color: $color-blue;
+        color: white;
         position: relative;
         top: -1px;
         display: inline-block;
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
-        @include breakpoint( 'tablet' ) { order: 1; }
         min-width: 174px;
-      }
-
-      .free {
-        background-color: $color-blue;
-        color: white;
         &:hover { background-color: darken($color-blue, 8%); }
+        @include breakpoint( 'tablet' ) { order: 1; }
       }
 
       .fewTickets {
@@ -184,9 +178,9 @@
 
       .soldOut,
       .cancelled {
-        background-color: $color-lightred;
+        background-color: $color-lightred-darker-2;
         color: white;
-        &:hover { background-color: $color-lightred; }
+        &:hover { background-color: $color-lightred-darker-2; }
       }
 
     }

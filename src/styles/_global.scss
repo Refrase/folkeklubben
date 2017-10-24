@@ -85,7 +85,7 @@ button,
 
   &:hover {
     color: $color-darkblue;
-    background-color: $color-gold-darker-1;
+    background-color: darken($color-gold, 8%);
   }
 
   &.withInput { border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid $color-darkblue; }
