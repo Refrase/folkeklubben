@@ -152,4 +152,47 @@
   }
   add_filter('acf/load_field/name=tour', 'acf_load_tour_field_choices');
 
+  // Add custom field column(s) to a custom post type
+  // In this case the 'Concert' post type gets a 'Concert date' column that the concerts can be sorted by
+
+  // Set label for the column + remove default publish date column
+  function columns_head_concerts($defaults) {
+    $defaults['concert_date'] = 'Concert date';
+    unset($defaults['date']);
+    return $defaults;
+  }
+
+  // If a date is present display it in the specified format for each concert entry
+  function columns_content_concerts($column_name, $post_ID) {
+    if ( $column_name == 'concert_date' ) {
+      $concert_date = get_field('concert_date', $post_ID);
+      if ( $concert_date ) {
+        $date = new DateTime($concert_date);
+        echo '<h2>' . $date->format('j/n/Y') . '</h2>';
+      }
+    }
+  }
+
+  add_filter('manage_concert_posts_columns', 'columns_head_concerts', 10);
+  add_action('manage_concert_posts_custom_column', 'columns_content_concerts', 10, 2);
+
+  // Activate sortablility
+  function columns_sortable_concerts($columns) {
+    $columns['concert_date'] = 'concert_date';
+    return $columns;
+  }
+
+  // Activate sortability
+  function order_by_concert_date_column( $query ) {
+    if ( !is_admin() ) return; // Check that we are on serverside (wp-admin)
+    $orderby = $query->get( 'orderby' );
+    if ( 'concert_date' == $orderby ) { // When 'Concert date' column label is clicked (and 'concert_date' thereby set as $orderby) hook into that query and query with
+      $query->set( 'meta_key', 'concert_date' ); // ... custom field with key 'concert_date'
+      $query->set( 'orderby', 'meta_value_num' ); // ... order by the value of this field for each concert (as a number -> 'meta_value_NUM')
+    }
+  }
+
+  add_filter( 'manage_edit-concert_sortable_columns', 'columns_sortable_concerts' );
+  add_action( 'pre_get_posts', 'order_by_concert_date_column' );
+
 ?>
