@@ -2,6 +2,9 @@
   <div class="musicRoute">
     <background :page="page" :color="backgroundColor" />
     <grid-block>
+      <div class="span-12" v-if="loadingReleases">
+        <h2>Udgivelser hentes...</h2>
+      </div>
       <div v-for="(release, index) in releasesReversed" class="span-4">
         <release :release="release" :tracklist="tracksByRelease[release.slug]" :key="index" />
       </div>
@@ -27,6 +30,7 @@
       return {
         backgroundColor: routeColors.musik.bg,
         page: [],
+        loadingReleases: true,
         releases: [],
         tracks: []
       }
@@ -49,7 +53,10 @@
     },
     created() {
       this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
-      this.fetchData( 'releases?_embed' ).then( res => this.releases = res )
+      this.fetchData( 'releases?_embed' ).then( res => {
+        this.loadingReleases = false
+        this.releases = res
+      })
       this.fetchData( 'tracks' ).then( res => this.tracks = res )
     }
   }

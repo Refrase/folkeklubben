@@ -1,24 +1,29 @@
 <template>
   <li class="concert">
     <div class="left">
-      <p class="date">{{ concert.date }}</p>
+      <p v-if="prettyDate" class="date">{{ prettyDate }}</p>
       <div class="place">
-        <p class="venue">{{ concert.venue }}</p>
-        <p class="city">{{ concert.city }}</p>
-        <p class="stage">{{ concert.stage ? concert.stage : null }}</p>
+        <p class="venue">{{ concert.acf.venue }}</p>
+        <p class="city">{{ concert.acf.city }}<span v-if="concert.acf.country">, {{ concert.acf.country }}</span></p>
+        <p v-if="concert.acf.stage" class="stage">{{ concert.acf.stage }}</p>
       </div>
     </div>
     <div class="right">
-      <a :href="concert.facebookEventUrl" class="facebookEvent button">Facebook event</a>
-      <a :href="concert.ticketUrl" class="buy button">Køb billet</a>
+      <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
+      <a :href="concert.acf.ticket_link" class="buy button">Køb billet</a>
     </div>
   </li>
 </template>
 
 <script>
+  import { getPrettyDate } from '@/utils/date'
   export default {
     name: 'Concert',
-    props: { concert: Object }
+    props: { concert: Object },
+    mixins: [getPrettyDate],
+    computed: {
+      prettyDate() { return this.getPrettyDate(this.concert.acf.concert_date, 'shorter', true) }
+    }
   }
 </script>
 

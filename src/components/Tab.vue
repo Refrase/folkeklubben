@@ -1,7 +1,7 @@
 <template>
   <li class="tab" :class="{ active: active }" @click="handleClick">
-    <h3 class="title">{{ tab.title }}</h3>
-    <p class="date">{{ tab.date }}</p>
+    <h3 class="title">{{ tab.title.rendered }}</h3>
+    <p class="date">{{ tab.acf.period }}</p>
   </li>
 </template>
 
@@ -14,10 +14,10 @@
       domRefs: Object
     },
     methods: {
-      scrollToRef() { this.domRefs[this.tab.title][0].$el.scrollIntoView({ behavior: "smooth", block: "start" }) },
+      scrollToRef() { this.domRefs[this.tab.title.rendered][0].$el.scrollIntoView({ behavior: "smooth", block: "start" }) },
       handleClick() {
         this.scrollToRef()
-        this.$bus.$emit( 'clickedTab', this.tab.title )
+        this.$bus.$emit( 'clickedTab', this.tab.title.rendered )
       }
     }
   }

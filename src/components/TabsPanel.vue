@@ -5,7 +5,8 @@
       <ul class="tabs">
         <tab
           v-for="(tab, index) in tabs"
-          :active="activeTab === tab.title"
+          v-if="!tab.acf.done"
+          :active="activeTab === tab.title.rendered"
           :tab="tab"
           :key="index"
           :domRefs="domRefs" />
@@ -27,10 +28,17 @@
     },
     data() {
       return {
-        activeTab: this.tabs[0].title
+        activeTab: null
       }
     },
-    created() { this.$bus.$on( 'clickedTab', (e) => { this.activeTab = e }) }
+    watch: { tabs: function() { this.setActiveTab() } },
+    created() { this.$bus.$on( 'clickedTab', (e) => { this.activeTab = e }) },
+    mounted() { this.setActiveTab() },
+    methods: {
+      setActiveTab() {
+        this.activeTab = this.tabs[0] ? this.tabs[0].title.rendered : null
+      }
+    }
   }
 </script>
 

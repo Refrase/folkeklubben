@@ -4,24 +4,29 @@
 
     <background video pause :page="page" :color="videoOverlayColor" />
 
-    <grid-block noPadding>
+    <grid-block noPadding v-if="tours">
       <div class="span-12">
         <tabs-panel
+          v-if="tours"
           title="Vælg turné"
           :domRefs="this.$refs"
-          :tabs="toursMeta" />
+          :tabs="toursNotDone" />
       </div>
     </grid-block>
 
     <grid-block noPadding>
-      <div class="span-12 position-relative">
+      <div class="span-12" v-if="loadingConcerts">
+        <h2>Koncerter hentes...</h2>
+      </div>
+      <div class="span-12 position-relative" v-if="tours">
         <div class="tours">
           <tour
             v-for="(tour, index) in tours"
+            v-if="!tour.acf.done"
             :key="index"
-            v-bind:ref="tour.meta.title"
-            :title="tour.meta.title"
-            :concerts="tour.concerts" />
+            v-bind:ref="tour.title.rendered"
+            :tour="tour"
+            :concerts="concertsByTour[tour.slug]" />
         </div>
       </div>
     </grid-block>
@@ -36,7 +41,6 @@
   import TabsPanel from '@/components/TabsPanel'
   import Tour from '@/components/Tour'
   import { routeColors } from '@/utils/colorVars'
-  import { tours } from '@/data/tours'
   import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'ConcertsRoute',
@@ -49,19 +53,43 @@
     mixins: [fetchData],
     data() {
       return {
-        page: [],
         videoOverlayColor: routeColors.koncerter.bg,
-        tours: tours
+        page: [],
+        tours: null,
+        loadingConcerts: true,
+        concerts: []
       }
     },
     computed: {
-      toursMeta() {
-        let toursMeta = []
-        this.tours.forEach( (tour) => { toursMeta.push(tour.meta) })
-        return toursMeta
+      toursNotDone() {
+        let toursNotDone = []
+        for ( let tour of this.tours ) {
+          if ( !tour.acf.done ) toursNotDone.push(tour)
+        }
+        return toursNotDone
+      },
+      concertsByTour() {
+        const concertsByTour = {}
+        const tourSlugs = []
+        for ( let tour of this.tours ) tourSlugs.push(tour.slug)
+        for ( let slug of tourSlugs ) {
+          concertsByTour[slug] = []
+          for ( let concert of this.concerts ) {
+            if ( concert.acf.tour === slug ) concertsByTour[slug].push(concert)
+          }
+          concertsByTour[slug].sort( (a, b) => { return parseInt(a.acf.concert_date, 10) - parseInt(b.acf.concert_date, 10) }) // Sort albumtracks by tracklist num
+        }
+        return concertsByTour
       }
     },
-    created() { this.fetchData( 'pages?slug=koncerter' ).then( res => this.page = res ) }
+    created() {
+      this.fetchData( 'pages?slug=koncerter' ).then( res => this.page = res )
+      this.fetchData( 'tours' ).then( res => this.tours = res )
+      this.fetchData( 'concerts' ).then( res => {
+        this.loadingConcerts = false
+        this.concerts = res
+      })
+    }
   }
 </script>
 

@@ -1,6 +1,9 @@
 <template>
   <div class="tour">
-    <h2 class="title">{{ title }}</h2>
+    <div class="header">
+      <h2 class="title">{{ tour.title.rendered }}</h2>
+      <p v-if="tour.acf.period" class="period">{{ tour.acf.period }}</p>
+    </div>
     <ul class="concerts">
       <concert v-for="(concert, index) in concerts" :concert="concert" :key="index" />
     </ul>
@@ -13,7 +16,7 @@
     name: 'Concerts',
     components: { concert: Concert },
     props: {
-      title: String,
+      tour: Object,
       concerts: Array
     }
   }
@@ -25,17 +28,27 @@
 
   .tour:not(:first-child) { margin-top: $scale-4-1; }
 
-  .title {
+  .header {
     background-color: $color-lightred-darker-2;
-    padding: $scale-2-1;
-    padding-bottom: $scale-2-1 + 4px;
-    text-align: center;
+    padding: $scale-3-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
     text-transform: uppercase;
+    text-align: center;
     font-family: $fontFamily-sansCondensed;
     font-size: $fontSize-xxxlarge;
     margin-bottom: 1px;
+    margin-bottom: $scale;
+  }
 
-    @include breakpoint( 'tablet' ) { padding-bottom: $scale-2-1 + 2px; }
+  .period {
+    color: $color-lightred;
+    font-weight: bold;
+    letter-spacing: $letterSpacing;
   }
 
   .concerts { list-style: none; }

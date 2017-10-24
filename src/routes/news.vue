@@ -33,13 +33,12 @@
     data() {
       return {
         page: null,
-        loadingPosts: false,
+        loadingPosts: true,
         posts: null,
         backgroundColor: routeColors.nyheder.bg
       }
     },
     created() {
-      this.loadingPosts = true
       this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
       this.fetchData( 'posts?_embed' ).then( res => {
         this.loadingPosts = false
