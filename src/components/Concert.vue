@@ -10,7 +10,13 @@
     </div>
     <div class="right">
       <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
-      <a :href="concert.acf.ticket_link" class="buy button">Køb billet</a>
+      <a :href="concert.acf.ticket_link" class="buy button" :class="buyButtonClass">
+        <span v-if="concert.acf.free">Find billet (gratis)</span>
+        <span v-else-if="concert.acf.sold_out">Udsolgt</span>
+        <span v-else-if="concert.acf.cancelled">Aflyst</span>
+        <span v-else-if="concert.acf.few_tickets">Få billetter</span>
+        <span v-else>Køb billet</span>
+      </a>
     </div>
   </li>
 </template>
@@ -22,7 +28,15 @@
     props: { concert: Object },
     mixins: [getPrettyDate],
     computed: {
-      prettyDate() { return this.getPrettyDate(this.concert.acf.concert_date, 'shorter', true) }
+      prettyDate() { return this.getPrettyDate(this.concert.acf.concert_date, 'shorter', true) },
+      buyButtonClass() {
+        return {
+          free: this.concert.acf.free,
+          soldOut: this.concert.acf.sold_out,
+          cancelled: this.concert.acf.cancelled,
+          fewTickets: this.concert.acf.few_tickets
+        }
+      }
     }
   }
 </script>
@@ -135,10 +149,12 @@
         font-weight: bold;
         display: inline-block;
         margin-right: $scale;
+        padding-left: $scale-2-1 !important;
+        padding-right: $scale-2-1 !important;
 
         &:hover {
-          color: white;
-          background-color: $color-blue !important;
+          color: $color-blue;
+          // background-color: $color-blue !important;
         }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }
@@ -148,7 +164,29 @@
         position: relative;
         top: -1px;
         display: inline-block;
+        padding-left: $scale-2-1 !important;
+        padding-right: $scale-2-1 !important;
         @include breakpoint( 'tablet' ) { order: 1; }
+        min-width: 174px;
+      }
+
+      .free {
+        background-color: $color-blue;
+        color: white;
+        &:hover { background-color: darken($color-blue, 8%); }
+      }
+
+      .fewTickets {
+        background-color: $color-orange;
+        color: white;
+        &:hover { background-color: darken($color-orange, 8%); }
+      }
+
+      .soldOut,
+      .cancelled {
+        background-color: $color-lightred;
+        color: white;
+        &:hover { background-color: $color-lightred; }
       }
 
     }
