@@ -9,6 +9,14 @@
 
   <div>
     <!-- Put PHP content here - eg. for better Google ranking purposes  -->
+
+    <!-- Only for development testing -->
+    <!-- <p style="padding: 60px;">
+      <?php
+        var_dump($all_releases);
+      ?>
+    </p> -->
+
     <!-- <?php
       if ( have_posts() ) :
 
