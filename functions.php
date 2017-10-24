@@ -62,6 +62,38 @@
     unset($submenu['themes.php'][15]);
   }
 
+  // Rearrange wp-admin menu
+	function custom_menu_order($menu_ord) {
+	    if (!$menu_ord) return true;
+
+	    return array(
+	        'index.php', // Dashboard
+					'edit.php?post_type=page', // Pages
+					'edit.php', // Posts
+					'edit.php?post_type=release', // Releases
+          'edit.php?post_type=track', // Tracks
+          'edit.php?post_type=tour', // Tours
+          'edit.php?post_type=concert', // Concerts
+	        'separator1', // First separator
+	        'upload.php', // Media
+	        'separator2', // Second separator
+	        'themes.php', // Appearance
+	        'plugins.php', // Plugins
+	        'users.php', // Users
+	        'tools.php', // Tools
+	        'options-general.php', // Settings
+	        'separator-last', // Last separator
+	    );
+	}
+	add_filter('custom_menu_order', 'custom_menu_order'); // Activate custom_menu_order
+	add_filter('menu_order', 'custom_menu_order');
+
+	function rrh_change_post_links() {
+		global $menu;
+		unset($menu[25]); // Remove comments from menu
+	}
+  add_action('admin_menu', 'rrh_change_post_links');
+
   function slugify($text, $strict = false) {
     $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
     $text = preg_replace('~[^\\pL\d.]+~u', '-', $text); // replace non letter or digits by -
