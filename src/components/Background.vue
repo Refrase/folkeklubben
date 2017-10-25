@@ -16,7 +16,7 @@
     },
     props: {
       video: Boolean,
-      page: Array,
+      page: Object,
       color: String,
       pause: Boolean
     },
@@ -34,8 +34,8 @@
           else this.setBackgroundImage()
         }
       },
-      setBackgroundImage() { this.backgroundImage = this.page[0] && this.page[0].acf['background_image'] ? this.page[0].acf['background_image'] : null },
-      setBackgroundVideo() { this.backgroundVideo = this.page[0] && this.page[0].acf['background_video'] ? this.page[0].acf['background_video'] : null },
+      setBackgroundImage() { this.backgroundImage = this.page && this.page.acf['background_image'] ? this.page.acf['background_image'] : null },
+      setBackgroundVideo() { this.backgroundVideo = this.page && this.page.acf['background_video'] ? this.page.acf['background_video'] : null },
     }
   }
 </script>

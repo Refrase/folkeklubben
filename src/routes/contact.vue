@@ -1,6 +1,6 @@
 <template>
   <div class="contactRoute">
-    <background :page="page" :color="backgroundColor" />
+    <background :page="page ? page[0] : null" :color="backgroundColor" />
     <grid-block>
       <div class="span-12">
         <h2>Kontakt</h2>

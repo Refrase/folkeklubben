@@ -49,6 +49,7 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: cover;
+    opacity: 0;
   }
 
   .backgroundImageOverlay {

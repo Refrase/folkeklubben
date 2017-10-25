@@ -2,7 +2,7 @@
 
   <div class="concertsRoute">
 
-    <background video pause :page="page" :color="videoOverlayColor" />
+    <background video pause :page="page ? page[0] : null" :color="videoOverlayColor" />
 
     <grid-block noPadding v-if="tours">
       <div class="span-12">

@@ -1,6 +1,6 @@
 <template>
   <div class="newsRoute">
-    <background :page="page" :color="backgroundColor" />
+    <background :page="page ? page[0] : null" :color="backgroundColor" />
     <grid-block>
       <div class="span-7" v-if="loadingPosts">
         <h2>Nyheder hentes...</h2>

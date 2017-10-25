@@ -1,6 +1,6 @@
 <template>
   <div class="musicRoute">
-    <background :page="page" :color="backgroundColor" />
+    <background :page="page ? page[0] : null" :color="backgroundColor" />
     <grid-block>
       <div class="span-12" v-if="loadingReleases">
         <h2>Udgivelser hentes...</h2>
