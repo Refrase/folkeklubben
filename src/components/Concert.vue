@@ -56,6 +56,7 @@
     &:nth-child(odd) {
       & .facebookEvent {
         background-color: rgba($color-lightred-darker-1, 0.5) !important;
+        &:hover { background-color: rgba($color-lightred-darker-1, 1) !important; }
       }
     }
 
@@ -152,7 +153,7 @@
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
 
-        &:hover { background-color: rgba($color-lightred, 1); }
+        &:hover { background-color: rgba($color-lightred, 1) !important; }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }
       }
