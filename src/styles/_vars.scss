@@ -147,10 +147,7 @@ $letterSpacing: 2px;
 
 /* ----- Layout ----- */
 
-$contentWidth-tablet: 100%;
-$contentWidth-desktop: 720px; // 48px up to 768px
-$contentWidth-widescreen: 976px; // 48px up to 1024px
-$contentWidth-extraWidescreen: 1152px; // 48px up tp 1200px
+$paddingBox: $scale-3-1 $scale-4-1 $scale-4-1;
 
 /* ----- Border-radius ----- */
 

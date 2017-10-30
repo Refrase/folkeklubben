@@ -212,3 +212,10 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 .slideIn 					{ animation: slideIn 600ms $animationBezier forwards; }
 .transitionFadeOnHover { transition: color .1s ease-out, background-color .1s ease-out; }
 .rotateUpsideDown { transform: rotate( 360deg ) !important; }
+
+.box {
+	animation: fadeIn 1s ease-out forwards;
+	padding: $paddingBox;
+	border: 1px solid $color-gold;
+	background-color: white;
+}
