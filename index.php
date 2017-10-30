@@ -7,7 +7,6 @@
 </head>
 <body>
   <div id="fb-root"></div>
-  <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
   <!--<div>Put PHP content here - eg. for better Google ranking purposes </div>-->
   <div id="app"></div>
   <?php wp_footer(); ?>
