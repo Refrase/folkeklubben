@@ -14,7 +14,7 @@
       </div>
       <div class="span-5" v-if="notPhone">
 
-        <div class="facebook">
+        <div v-if="posts" class="facebook">
           <h3>Følg eller like os på Facebook</h3>
           <div class="facebook_button">
             <div class="fb-follow" data-href="https://www.facebook.com/folkeklubben" data-layout="button" data-size="large" data-show-faces="false" />
@@ -53,6 +53,7 @@
     data() {
       return {
         backgroundColor: routeColors.nyheder.bg,
+        created: false,
         page: null,
         loadingPosts: true,
         posts: null,
@@ -71,12 +72,19 @@
         this.loadingPosts = false
         this.posts = res
       })
-      if ( this.notPhone ) { // Only fetch if not phone
-        this.$http.jsonp( 'https://api.instagram.com/v1/users/self/media/recent/?access_token=354252845.1677ed0.01fc64c82cd64fdd92b91f248c804ef7' )
-        .then( res => this.instagramImage = res.body.data[0] )
-      }
     },
-    mounted() { if ( this.notPhone ) window.FB.XFBML.parse() }  // Re-render Facebook plugins when this route is mounted
+    watch: {
+      posts: function() { this.renderSocialMediaContent ? this.renderSocialMediaContent() : null }
+    },
+    methods: {
+      renderSocialMediaContent() {
+        if ( this.notPhone ) { // Only fetch if not phone
+          this.$http.jsonp( 'https://api.instagram.com/v1/users/self/media/recent/?access_token=354252845.1677ed0.01fc64c82cd64fdd92b91f248c804ef7' )
+          .then( res => this.instagramImage = res.body.data[0] )
+          window.setTimeout( () => { window.FB.XFBML.parse() }, 100) // Re-render Facebook plugins when this route is mounted
+        }
+      }
+    }
   }
 </script>
 
@@ -87,6 +95,8 @@
     @extend .box;
     border-color: $color-blue;
     text-align: center;
+    min-height: 122px;
+    @extend .fadeInWithDelay;
     h3 {
       color: $color-blue;
       margin-bottom: $scale-2-1;
@@ -94,6 +104,7 @@
   }
 
   .instagram {
+    @extend .fadeInWithDelay;
     &_content {
       @extend .box;
       border-top: none;

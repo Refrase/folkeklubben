@@ -205,9 +205,9 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 }
 
 // Animation
-.fadeIn 					{ animation: fadeIn 600ms ease-out forwards; }
-.fadeInFast				{ animation: fadeIn 300ms ease-out forwards; }
-.fadeInWithDelay	{ animation: fadeIn 300ms 1000ms ease-out forwards; }
+.fadeIn 					{ opacity: 0; animation: fadeIn 600ms ease-out forwards !important; }
+.fadeInFast				{ opacity: 0; animation: fadeIn 300ms ease-out forwards !important; }
+.fadeInWithDelay	{ opacity: 0; animation: fadeIn 300ms 1000ms ease-out forwards !important; }
 .fadeOut 					{ animation: fadeOut 600ms $animationBezier forwards; }
 .slideIn 					{ animation: slideIn 600ms $animationBezier forwards; }
 .transitionFadeOnHover { transition: color .1s ease-out, background-color .1s ease-out; }
