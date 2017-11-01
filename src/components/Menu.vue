@@ -8,26 +8,43 @@
         <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
         <appNav />
       </div>
-      <form class="newsletter" action="index.html" method="post">
-        <input type="email" name="email" id="email" placeholder="Få vores nyhedsbrev..." />
-        <input type="submit" value="Tilmeld" />
-      </form>
+      <div id="mc_embed_signup">
+        <form class="newsletter validate" @submit="runMailchimpSubscriptionFlow" action="https://folkeklubben.us6.list-manage.com/subscribe/post?u=f8cc3389c3d2cb830f3cd936d&amp;id=86364cbe93" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Indtast mail og få vores nyhedsbrev..." />
+          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f8cc3389c3d2cb830f3cd936d_86364cbe93" tabindex="-1" value=""></div>
+          <!-- end bot signup wall -->
+          <input type="submit" value="Tilmeld" name="subscribe" id="mc-embedded-subscribe" />
+        </form>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none" />
+        </div>
+      </div>
     </div>
   </transition>
 </template>
 
 <script>
   import Nav from '@/components/Nav'
+  import { mailchimpValidate } from '@/utils/mailchimpValidate'
+  import { mailchimpConfig } from '@/utils/mailchimpConfig'
   export default {
     name: 'Menu',
     components: { appNav: Nav },
     props: { routeChange: Object },
+    mixins: [mailchimpValidate, mailchimpConfig],
     computed: {
       routeName() { return this.$route.name },
       transitionName() {
         if (this.routeChange.from || this.routeChange.to) {
           return this.routeChange.from.path === '/' ? 'slideToSide' : this.routeChange.to.path === '/' ? 'slideToCenter' : null
         }
+      }
+    },
+    methods: {
+      runMailchimpSubscriptionFlow() {
+        this.mailchimpValidate()
+        this.mailchimpConfig()
       }
     }
   }
