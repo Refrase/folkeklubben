@@ -4,7 +4,7 @@
 
     <background video pause :page="page ? page[0] : null" :color="videoOverlayColor" />
 
-    <grid-block noPadding v-if="tours">
+    <grid-block noPadding v-if="tours && !loadingConcerts">
       <div class="span-12">
         <tabs-panel
           v-if="tours"
@@ -18,7 +18,7 @@
       <div class="span-12" v-if="loadingConcerts">
         <h2>Koncerter hentes...</h2>
       </div>
-      <div class="span-12 position-relative" v-if="tours">
+      <div class="span-12 position-relative" v-if="tours && !loadingConcerts">
         <div class="tours">
           <tour
             v-for="(tour, index) in tours"
