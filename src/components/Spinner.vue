@@ -1,5 +1,5 @@
 <template>
-  <img src="../assets/images/folkeklubben-bike-darkblue.svg" width="200" class="loadingSpinner" alt="Cykel som loading spinner" />
+  <img src="../assets/images/folkeklubben-bike-darkblue.svg" width="200" class="loadingSpinner" alt="Loading..." />
 </template>
 
 <script>
