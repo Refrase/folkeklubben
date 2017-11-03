@@ -3,7 +3,7 @@
     <background :page="page ? page[0] : null" :color="backgroundColor" />
     <grid-block>
       <div class="span-12" v-if="loadingReleases">
-        <h2>Udgivelser hentes...</h2>
+        <spinner />
       </div>
       <div v-for="(release, index) in releasesReversed" class="span-4">
         <release :release="release" :tracklist="tracksByRelease[release.slug]" :key="index" />
@@ -16,6 +16,7 @@
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
   import Release from '@/components/Release'
+  import Spinner from '@/components/Spinner'
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   export default {
@@ -23,7 +24,8 @@
     components: {
       'grid-block': GridBlock,
       'background': Background,
-      'release': Release
+      'release': Release,
+      'spinner': Spinner
     },
     mixins: [fetchData],
     data() {

@@ -16,7 +16,7 @@
 
     <grid-block noPadding>
       <div class="span-12" v-if="loadingConcerts">
-        <h2>Koncerter hentes...</h2>
+        <spinner />
       </div>
       <div class="span-12 position-relative" v-if="tours && !loadingConcerts">
         <div class="tours">
@@ -40,6 +40,7 @@
   import Background from '@/components/Background'
   import TabsPanel from '@/components/TabsPanel'
   import Tour from '@/components/Tour'
+  import Spinner from '@/components/Spinner'
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   export default {
@@ -48,7 +49,8 @@
       'grid-block': GridBlock,
       'background': Background,
       'tabs-panel': TabsPanel,
-      'tour': Tour
+      'tour': Tour,
+      'spinner': Spinner
     },
     mixins: [fetchData],
     data() {

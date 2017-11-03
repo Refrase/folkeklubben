@@ -22,3 +22,8 @@
   from { transform: translate3d(0, -100vh, 0); }
   to   { transform: translate3d(0, 0, 0); }
 }
+
+@keyframes rotate360 {
+  from { transform: rotate3d(0,0,0,0deg); }
+  to   { transform: rotate3d(0,1,0,360deg); }
+}
