@@ -53,29 +53,22 @@
       color: rgba(black, 0.25);
       text-transform: uppercase;
       font-size: $fontSize-large !important;
-
-      @include breakpoint( 'mobile' ) {
-        text-align: center;
-
-      }
+      @include breakpoint( 'mobile' ) { text-align: center; }
     }
 
-    .tabsWrap { position: relative; }
+    .tabsWrap {
+      position: relative;
+      @include breakpoint( 'mobile' ) { width: calc( 100% + 18px ); }
+    }
 
     .tabs {
-      border-bottom: 1px solid $color-lightred-darker-2;
       list-style: none;
       white-space: nowrap;
       overflow-x: scroll;
       padding-top: $scale-2-1;
       padding-right: $scale-2-1;
       margin-top: $scale;
-      min-height: 70px;
-
-      @include breakpoint( 'mobile' ) {
-        border-top: 1px solid $color-lightred-darker-2;
-        border-right: 1px solid $color-lightred-darker-2;
-      }
+      min-height: 69px;
 
       &::-webkit-scrollbar { height: 0; }
       &::-webkit-scrollbar-track { background-color: transparent; }
@@ -88,7 +81,7 @@
       right: 1px;
       height: 100%;
       width: 48px;
-      background: linear-gradient(to right, transparent, rgba($color-lightred-darker-2, 0.3));
+      background: linear-gradient(to right, transparent, rgba($color-lightred-darker-1, 0.3));
       display: none;
 
       @include breakpoint( 'mobile' ) { display: block; }

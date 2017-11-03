@@ -159,15 +159,14 @@
       }
 
       .buy {
-        background-color: $color-blue;
-        color: white;
+        background-color: $color-gold;
         position: relative;
         top: -1px;
         display: inline-block;
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
         min-width: 174px;
-        &:hover { background-color: darken($color-blue, 8%); }
+        &:hover { background-color: $color-gold-darker-1; }
         @include breakpoint( 'tablet' ) { order: 1; }
       }
 

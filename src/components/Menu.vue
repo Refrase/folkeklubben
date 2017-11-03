@@ -60,6 +60,7 @@
   .menu {
     width: 381px;
     position: fixed;
+    box-shadow: 0px 16px 16px -16px rgba(black, 0.1);
     transform: translate3d(0,0,0);
 
     @include breakpoint( 'tablet' ) {
