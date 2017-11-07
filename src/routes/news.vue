@@ -2,17 +2,23 @@
   <div class="newsRoute">
     <background :page="page ? page[0] : null" :color="backgroundColor" />
     <grid-block>
+
       <div class="span-7" v-if="loadingPosts">
         <spinner />
       </div>
+
       <div class="span-7" v-else>
         <post
           v-for="(post, index) in posts"
           :key="index"
           :post="post"
           class="margin-bottom-4-1" />
+        <spinner v-if="loadingMorePosts" />
+        <p v-if="noMorePosts" :style="{ textAlign: 'center', marginBottom: '32px', fontWeight: 'bold' }">Det var det :)</p>
+        <button @click.prevent="loadMorePosts" :style="{ display: 'block', margin: '0 auto 32px' }">Hent flere nyheder</button>
       </div>
-      <div class="span-5" v-if="posts && notPhone">
+
+      <div class="span-5" v-if="posts.length && notPhone">
 
         <social-links />
 
@@ -62,7 +68,11 @@
         created: false,
         page: null,
         loadingPosts: true,
-        posts: null,
+        loadingMorePosts: false,
+        posts: [],
+        postsPerPage: 2,
+        postsCollectionNumber: 1,
+        noMorePosts: null,
         instagramImage: null
       }
     },
@@ -74,7 +84,7 @@
     },
     created() {
       this.fetchData( 'pages?slug=nyheder' ).then( res => this.page = res )
-      this.fetchData( 'posts?_embed' ).then( res => {
+      this.fetchData( 'posts?_embed&per_page=' + this.postsPerPage + '&page=1' ).then( res => {
         this.loadingPosts = false
         this.posts = res
       })
@@ -89,6 +99,17 @@
           .then( res => this.instagramImage = res.body.data[0] )
           window.setTimeout( () => { window.FB.XFBML.parse() }, 100) // Re-render Facebook plugins when this route is mounted
         }
+      },
+      loadMorePosts() {
+        this.loadingMorePosts = true
+        this.postsCollectionNumber = this.postsCollectionNumber + 1
+        this.fetchData( 'posts?_embed&per_page=' + this.postsPerPage + '&page=' + this.postsCollectionNumber ).then( res => {
+          this.loadingMorePosts = false
+          this.posts = this.posts.concat(res)
+        }).catch( () => {
+          this.loadingMorePosts = false
+          this.noMorePosts = true
+        })
       }
     }
   }

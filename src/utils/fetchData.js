@@ -6,12 +6,10 @@ export const fetchData = {
         return this.$http
         .get( wp.rest_root + 'wp/v2/' + endpoint )
         .then( (response) => {
-          if ( response && response.ok ) {
-            resolve(response.body)
-          } else {
-            console.log('Responded with statuscode ' + status + '. Could not load data from ' + endpoint)
-            reject()
-          }
+          resolve(response.body)
+        }).catch( e => {
+          console.log('Responded with statuscode ' + e.status + '. Could not load data from ' + endpoint)
+          reject()
         })
       })
     }
