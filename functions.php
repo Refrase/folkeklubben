@@ -74,6 +74,7 @@
           'edit.php?post_type=track', // Tracks
           'edit.php?post_type=tour', // Tours
           'edit.php?post_type=concert', // Concerts
+          'edit.php?post_type=video', // Videos
 	        'separator1', // First separator
 	        'upload.php', // Media
 	        'separator2', // Second separator
@@ -152,9 +153,8 @@
   }
   add_filter('acf/load_field/name=tour', 'acf_load_tour_field_choices');
 
-  // Add custom field column(s) to a custom post type
-  // In this case the 'Concert' post type gets a 'Concert date' column that the concerts can be sorted by
-
+  // ##### Enabling custom field sortable column for a custom post type #####
+  // In this case the 'Concert' post type gets a 'Concert date' column that the concerts can be sorted by (only on admin side though!)
   // Set label for the column + remove default publish date column
   function columns_head_concerts($defaults) {
     $defaults['concert_date'] = 'Concert date';
@@ -176,13 +176,13 @@
   add_filter('manage_concert_posts_columns', 'columns_head_concerts', 10);
   add_action('manage_concert_posts_custom_column', 'columns_content_concerts', 10, 2);
 
-  // Activate sortablility
+  // Activate sortablility concert_date
   function columns_sortable_concerts($columns) {
     $columns['concert_date'] = 'concert_date';
     return $columns;
   }
 
-  // Activate sortability
+  // Activate sortability of concerts in the admin
   function order_by_concert_date_column( $query ) {
     if ( !is_admin() ) return; // Check that we are on serverside (wp-admin)
     $orderby = $query->get( 'orderby' );
@@ -194,5 +194,47 @@
 
   add_filter( 'manage_edit-concert_sortable_columns', 'columns_sortable_concerts' );
   add_action( 'pre_get_posts', 'order_by_concert_date_column' );
+
+  // ##### Enabling custom field sortable column for a custom post type #####
+  // In this case the 'Video' post type gets a 'Video release date' column that the videos can be sorted by (only on admin side though!)
+  // Set label for the column + remove default publish date column
+  function columns_head_videos($defaults) {
+    $defaults['video_release_date'] = 'Video release date';
+    unset($defaults['date']);
+    return $defaults;
+  }
+
+  // If a date is present display it in the specified format for each video entry
+  function columns_content_videos($column_name, $post_ID) {
+    if ( $column_name == 'video_release_date' ) {
+      $concert_date = get_field('video_release_date', $post_ID);
+      if ( $concert_date ) {
+        $date = new DateTime($concert_date);
+        echo '<h2>' . $date->format('j/n/Y') . '</h2>';
+      }
+    }
+  }
+
+  add_filter('manage_video_posts_columns', 'columns_head_videos', 10);
+  add_action('manage_video_posts_custom_column', 'columns_content_videos', 10, 2);
+
+  // Activate sortablility on video_release_date
+  function columns_sortable_videos($columns) {
+    $columns['video_release_date'] = 'video_release_date';
+    return $columns;
+  }
+
+  // Activate sortability of videos in the admin
+  function order_by_video_release_date_column( $query ) {
+    if ( !is_admin() ) return; // Check that we are on serverside (wp-admin)
+    $orderby = $query->get( 'orderby' );
+    if ( 'video_release_date' == $orderby ) { // When 'Concert date' column label is clicked (and 'video_release_date' thereby set as $orderby) hook into that query and query with
+      $query->set( 'meta_key', 'video_release_date' ); // ... custom field with key 'video_release_date'
+      $query->set( 'orderby', 'meta_value_num' ); // ... order by the value of this field for each concert (as a number -> 'meta_value_NUM')
+    }
+  }
+
+  add_filter( 'manage_edit-video_sortable_columns', 'columns_sortable_videos' );
+  add_action( 'pre_get_posts', 'order_by_video_release_date_column' );
 
 ?>

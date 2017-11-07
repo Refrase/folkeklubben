@@ -79,7 +79,7 @@
           for ( let concert of this.concerts ) {
             if ( concert.acf.tour === slug ) concertsByTour[slug].push(concert)
           }
-          concertsByTour[slug].sort( (a, b) => { return parseInt(a.acf.concert_date, 10) - parseInt(b.acf.concert_date, 10) }) // Sort albumtracks by tracklist num
+          concertsByTour[slug].sort( (a, b) => { return parseInt(a.acf.concert_date, 10) - parseInt(b.acf.concert_date, 10) }) // Sort concerts by date
         }
         return concertsByTour
       }
