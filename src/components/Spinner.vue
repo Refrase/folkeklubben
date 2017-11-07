@@ -15,7 +15,7 @@
   @import '~@/styles/animations';
   @keyframes bikePassBy {
     from { transform: rotate3d(0,1,0,-180deg) translateX(200px); }
-    to   { transform: rotate3d(0,1,0,-180deg) translateX(calc(-100vw + 200px)); }
+    to   { transform: rotate3d(0,1,0,-180deg) translateX(calc(-100vw - 200px)); }
   }
   .bike {
     display: block;
@@ -36,7 +36,7 @@
     left: 8px;
     width: 55px;
     height: 55px;
-    animation: rotate 0.2s linear infinite reverse;
+    animation: rotate 0.3s linear infinite reverse;
   }
   .wheelBack {
     position: absolute;
@@ -44,6 +44,6 @@
     right: 0px;
     width: 68px;
     height: 68px;
-    animation: rotate 0.2s linear infinite reverse;
+    animation: rotate 0.3s linear infinite reverse;
   }
 </style>
