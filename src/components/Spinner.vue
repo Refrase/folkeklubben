@@ -8,11 +8,16 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-  @import '~@/styles/animations';
+  @keyframes bikePassBy {
+    from { transform: rotate3d(0,1,0,180deg) translateX(calc(50vw - 200px)); }
+    to   { transform: rotate3d(0,1,0,180deg) translateX(calc(-100vw + 200px)); }
+  }
   .loadingSpinner {
     display: block;
-    margin: $scale-4-1 auto;
-    opacity: 0.2;
-    animation: rotate360 10s cubic-bezier(0.1, 0.95, 0.65, 1) infinite;
+    position: fixed;
+    bottom: 5px;
+    opacity: 0.3;
+    transform: rotate3d(0,1,0,360deg);
+    animation: bikePassBy 3s linear infinite;
   }
 </style>
