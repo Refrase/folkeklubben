@@ -2,6 +2,7 @@
   <div class="welcomeRoute">
     <background :page="page ? page[0] : null" :color="backgroundColor" />
     <h1 v-if="1 === 2" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
+    <spinner v-if="loadingPage" />
     <ul class="links" v-bind:style="{ height: 'calc( 100vh - ' + backgroundImageHeight + 'px )' }">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
@@ -13,15 +14,20 @@
 
 <script>
   import Background from '@/components/Background'
+  import Spinner from '@/components/Spinner'
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'WelcomeRoute',
-    components: { 'background': Background },
+    components: {
+      background: Background,
+      spinner: Spinner
+    },
     mixins: [fetchData],
     data() {
       return {
         backgroundColor: routeColors.velkommen.bg,
+        loadingPage: true,
         page: null
       }
     },
@@ -40,7 +46,10 @@
         return backgroundImageHeight
       }
     },
-    created() { this.fetchData( 'pages?slug=velkommen' ).then( res => this.page = res ) }
+    created() { this.fetchData( 'pages?slug=velkommen' ).then( res => {
+      this.loadingPage = false
+      this.page = res
+    })}
   }
 </script>
 

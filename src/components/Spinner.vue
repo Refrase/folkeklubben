@@ -13,6 +13,6 @@
     display: block;
     margin: $scale-4-1 auto;
     opacity: 0.2;
-    animation: rotate360 2s cubic-bezier(0.1, 0.95, 0.65, 1) infinite;
+    animation: rotate360 10s cubic-bezier(0.1, 0.95, 0.65, 1) infinite;
   }
 </style>

@@ -47,10 +47,10 @@ input, textarea, button {
   background-color: white;
   line-height: 1.5;
 
-  &::-webkit-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall; } /* Chrome/Opera/Safari */
-  &::-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 19+ */
-  &:-ms-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  }  /* IE 10+ */
-  &:-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-3; font-size: $fontSize-xsmall;  } /* Firefox 18- */
+  &::-webkit-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-2; font-size: $fontSize-xsmall; } /* Chrome/Opera/Safari */
+  &::-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-2; font-size: $fontSize-xsmall;  } /* Firefox 19+ */
+  &:-ms-input-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-2; font-size: $fontSize-xsmall;  }  /* IE 10+ */
+  &:-moz-placeholder { font-family: $fontFamily-serif; font-weight: bold; color: $color-gold-darker-2; font-size: $fontSize-xsmall;  } /* Firefox 18- */
 }
 
 textarea:focus,

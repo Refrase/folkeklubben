@@ -99,6 +99,7 @@
 
   .facebook {
     @extend .box;
+    background-color: transparent;
     border-color: $color-blue;
     text-align: center;
     min-height: 122px;
