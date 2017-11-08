@@ -7,7 +7,7 @@
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
       <li><router-link :to="{ name: 'musik' }"><span>Musik</span></router-link></li>
-      <li><router-link :to="{ name: 'merch' }"><span>Merch</span></router-link></li>
+      <li><a :href="merchLink" target="_blank"><span>Merch</span></a></li>
     </ul>
   </div>
 </template>
@@ -28,7 +28,8 @@
       return {
         backgroundColor: routeColors.velkommen.bg,
         loadingPage: true,
-        page: null
+        page: null,
+        merchLink: null
       }
     },
     computed: {
@@ -46,10 +47,13 @@
         return backgroundImageHeight
       }
     },
-    created() { this.fetchData( 'pages?slug=velkommen' ).then( res => {
-      this.loadingPage = false
-      this.page = res
-    })}
+    created() {
+      this.fetchData( 'pages?slug=velkommen' ).then( res => {
+        this.loadingPage = false
+        this.page = res
+      })
+      this.fetchData( 'pages?slug=merch' ).then( res => { this.merchLink = res ? res[0].acf.external_link : null })
+    }
   }
 </script>
 

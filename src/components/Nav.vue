@@ -6,8 +6,7 @@
       :exact-active-class="routeName == 'koncerter' ? `active-${routeName}` : null">Koncerter</router-link></li>
     <li><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
-    <li><router-link :to="{ name: 'merch' }" class="navItem navItem-merch"
-      :exact-active-class="routeName == 'merch' ? `active-${routeName}` : null">Merch</router-link></li>
+    <li><a :href="merchLink" target="_blank" class="navItem navItem-merch">Merch</a></li>
     <li><router-link :to="{ name: 'om' }" class="navItem navItem-om"
       :exact-active-class="routeName == 'om' ? `active-${routeName}` : null">Om</router-link></li>
     <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
@@ -16,10 +15,20 @@
 </template>
 
 <script>
+  import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'Nav',
+    mixins: [fetchData],
+    data() {
+      return {
+        merchLink: null
+      }
+    },
     computed: {
       routeName() { return this.$route.name }
+    },
+    created() {
+      this.fetchData( 'pages?slug=merch' ).then( res => { this.merchLink = res ? res[0].acf.external_link : null })
     }
   }
 </script>
