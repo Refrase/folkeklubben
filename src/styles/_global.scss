@@ -35,11 +35,10 @@ a, .a, .link {
   color: $color-gold;
   cursor: pointer;
   text-decoration: none;
-  letter-spacing: $letterSpacing;
   line-height: 1.2;
   @extend .transitionFadeOnHover;
 
-  &:hover { color: $color-gold-darker-2; }
+  &:hover { color: $color-gold-darker-1; }
 }
 
 input, textarea, button {

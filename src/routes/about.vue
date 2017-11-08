@@ -1,6 +1,7 @@
 <template>
   <div class="aboutRoute">
-    <background :page="page" :color="backgroundColor" />
+    <background :page="page ? page : null" :color="backgroundColor" />
+    <spinner v-if="!page" />
     <grid-block v-if="page" class="grid-upper">
       <div class="span-6 margin-bottom-4-1">
         <div v-html="page.content.rendered" />
@@ -14,17 +15,13 @@
         <social-links />
       </div>
     </grid-block>
-    <!-- <grid-block>
-      <div class="span-7">
-
-      </div>
-    </grid-block> -->
   </div>
 </template>
 
 <script>
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
+  import Spinner from '@/components/Spinner'
   import SocialLinks from '@/components/SocialLinks'
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
@@ -33,13 +30,14 @@
     components: {
       'grid-block': GridBlock,
       'background': Background,
+      'spinner': Spinner,
       'social-links': SocialLinks,
     },
     mixins: [fetchData],
     data() {
       return {
-        page: null,
-        backgroundColor: routeColors.om.bg
+        backgroundColor: routeColors.om.bg,
+        page: null
       }
     },
     created() { this.fetchData( 'pages?slug=om&_embed' ).then( res => this.page = res[0] ) }

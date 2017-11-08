@@ -23,7 +23,7 @@
     width: 200px;
     bottom: 5px;
     left: 0;
-    opacity: 0.3;
+    opacity: 1;
     animation: bikePassBy 3s linear infinite;
     z-index: 99;
   }

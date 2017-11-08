@@ -75,6 +75,7 @@
           'edit.php?post_type=tour', // Tours
           'edit.php?post_type=concert', // Concerts
           'edit.php?post_type=video', // Videos
+          'edit.php?post_type=contact', // Contacts
 	        'separator1', // First separator
 	        'upload.php', // Media
 	        'separator2', // Second separator
