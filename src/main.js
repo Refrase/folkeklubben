@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VueAnalytics from 'vue-analytics'
 import App from './components/App.vue'
 import { routes } from './routes'
 
@@ -64,6 +65,14 @@ const Folkeklubben = Vue.extend({
   },
   template: '<app :routeChange="routeChange" />'
 })
+
+const notLocalhost = window.location.host != 'localhost:8080' ? true : null
+if (notLocalhost) { // Only track if not in dev env (localhost)
+  Vue.use(VueAnalytics, {
+    id: 'UA-78898537-1',
+    router
+  })
+}
 
 new Vue({
   el: '#app',
