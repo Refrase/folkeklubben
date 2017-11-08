@@ -61,6 +61,8 @@
 
     @each $span in $spans {
       .gridBlock-columns-#{$col} > *.span-#{$span} { width: percentage(1/$col * $span); } // Set num. of columns to span for direct children
-      .gridBlock-columns-#{$col} > *.offset-#{$span} { margin-left: percentage(1/$col * $span); }} // Set num. of columns to offset
+      .gridBlock-columns-#{$col} > *.offset-#{$span} {
+        margin-left: percentage(1/$col * $span); // Set num. of columns to offset
+        @include breakpoint( 'mobile' ) { margin-left: 0 !important; }}} // Never offset on mobile
   }
 </style>

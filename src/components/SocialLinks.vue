@@ -36,18 +36,19 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
+  @import '~@/styles/helpers';
   .socialLinks {
-    border: 1px solid $color-gold;
+    @extend .box;
     padding: $scale-3-1;
     padding-top: $scale-4-1 - 2px;
-    margin-bottom: $scale-4-1;
     display: flex;
     justify-content: space-around;
     width: 100%;
+    background-color: transparent;
     a {
       display: block;
       svg { fill: $color-gold; transition: fill .25s ease-out; }
     }
-    a:hover svg { fill: $color-gold-darker-2; }
+    a:hover svg { fill: $color-gold-darker-1; }
   }
 </style>

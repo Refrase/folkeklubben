@@ -224,3 +224,10 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 	border: 1px solid $color-gold;
 	background-color: white;
 }
+
+.caption,
+.caption /deep/ * {
+	font-family: $fontFamily-sans !important;
+	color: $color-darkblue;
+	font-size: $fontSize-xsmall;
+}

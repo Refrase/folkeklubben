@@ -20,7 +20,7 @@
 
       <div class="span-5" v-if="posts.length && notPhone">
 
-        <social-links />
+        <social-links class="margin-bottom-4-1" />
 
         <div class="facebook">
           <h3>Følg eller like os på Facebook</h3>
