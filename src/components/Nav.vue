@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   export default {
     name: 'Nav',
@@ -79,9 +80,9 @@
       &-merch,
       &-merch:hover { color: $color-gold-darker-4; }
       &-om,
-      &-om:hover { color: $color-gold-darker-4; }
+      &-om:hover { color: $color-orange; }
       &-kontakt,
-      &-kontakt:hover { color: $color-gold-darker-4; }
+      &-kontakt:hover { color: $color-darkblue-lighter-1; }
     }
   }
 </style>

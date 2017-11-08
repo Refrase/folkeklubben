@@ -10,7 +10,8 @@ export const colors = {
     base: "#DEC7A2",
     darker: ["#A08F75", "#A08F75"]
   },
-  lightred: "#FB5B64"
+  lightred: "#FB5B64",
+  orange: "#FF5837"
 }
 
 export const routeColors = {
@@ -35,7 +36,7 @@ export const routeColors = {
     text: colors.white
   },
   om: {
-    bg: colors.gold.darker[1],
+    bg: colors.orange,
     text: colors.white
   },
   kontakt: {

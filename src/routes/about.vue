@@ -11,7 +11,7 @@
           width="100%"
           :src="page._embedded['wp:featuredmedia'][0].source_url"
           :alt="page._embedded['wp:featuredmedia'][0].alt_text ? page._embedded['wp:featuredmedia'][0].alt_text : null">
-        <div class="caption margin-bottom-2-1" v-html="page._embedded['wp:featuredmedia'][0].caption.rendered" />
+        <div class="caption margin-bottom-4-1" v-html="page._embedded['wp:featuredmedia'][0].caption.rendered" />
         <social-links />
       </div>
     </grid-block>
