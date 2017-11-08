@@ -12,3 +12,4 @@ Running development environment:
 Preparing for production:
 - npm run build
 - uncomment code under '// PROD' and comment out code under '// DEV' in functions.php
+- change __webpack_public_path__ in webpack.config.js to the right live url

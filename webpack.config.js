@@ -7,7 +7,7 @@ module.exports = function( env = {} ) {
 
   if ( env.production ) process.env.NODE_ENV = 'production';
 
-  if ( process.env.NODE_ENV == 'production' ) __webpack_public_path__ = 'http://folkeklubben.dk/dist/';
+  if ( process.env.NODE_ENV == 'production' ) __webpack_public_path__ = 'http://www.type16.com/folkeklubben/wp-content/themes/folkeklubben/dist/';
 
   function makeStyleLoader( type ) {
     const cssLoader = {
@@ -36,7 +36,7 @@ module.exports = function( env = {} ) {
     output: {
       path: path.resolve( __dirname, './dist' ),
       filename: env.production ? 'js/main.min.js' : 'js/main.js',
-      publicPath: env.production ? '/dist/' : 'http://localhost:8080/wp-content/themes/folkeklubben/'
+      publicPath: env.production ? __webpack_public_path__ : 'http://localhost:8080/wp-content/themes/folkeklubben/'
     },
 
     // About combining webpack-dev-server and (in this project) MAMP server: https://webpack.github.io/docs/webpack-dev-server.html#combining-with-an-existing-server
