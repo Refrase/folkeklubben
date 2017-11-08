@@ -29,15 +29,12 @@
 
 <style lang="scss" scoped>
   @import '~@/styles/vars';
-  @import '~@/styles/animations';
+  @import '~@/styles/helpers';
 
   .post {
     width: 100%;
-
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-    @for $i from 1 through 10 { &:nth-child(#{$i}) { animation-duration: #{$i / 2}s; } }
-
+    @extend .fadeInSequence;
+    
     img { display: block; }
   }
 

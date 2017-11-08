@@ -45,9 +45,11 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
+  @import '~@/styles/helpers';
 
   .tabsPanel {
     position: relative;
+    @extend .fadeIn;
 
     .title {
       color: rgba(black, 0.25);

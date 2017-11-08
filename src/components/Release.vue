@@ -50,7 +50,10 @@
   @import '~@/styles/helpers';
   @import '~@/styles/global';
 
-  .release { margin-bottom: $scale-4-1; }
+  .release {
+    margin-bottom: $scale-4-1;
+    @extend .fadeInSequence;
+  }
 
   img { display: block; }
 

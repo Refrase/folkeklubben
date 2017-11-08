@@ -98,6 +98,7 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
+  @import '~@/styles/helpers';
   .concertsRoute { color: white; }
   .tours {
     position: absolute;
@@ -107,6 +108,8 @@
     left: 2px;
     overflow-y: scroll;
     height: calc( 100vh - #{$routePaddingTop} - 96px - 16px ); // 118 = tabsPanel height
+
+    @extend .fadeIn;
 
     @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 96px - 16px ); }
     @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 97px - 16px ); }

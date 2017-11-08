@@ -25,6 +25,7 @@
     left: 0;
     opacity: 0.3;
     animation: bikePassBy 3s linear infinite;
+    z-index: 99;
   }
   .frame {
     position: absolute;

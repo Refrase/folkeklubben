@@ -2,7 +2,7 @@
   <div class="welcomeRoute">
     <background :page="page ? page[0] : null" :color="backgroundColor" />
     <h1 v-if="1 === 2" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
-    <spinner v-if="loadingPage" />
+    <spinner v-if="loadingPage" v-bind:style="{ bottom: 'calc( 100vh - ' + (backgroundImageHeight - 7) + 'px )' }" />
     <ul class="links" v-bind:style="{ height: 'calc( 100vh - ' + backgroundImageHeight + 'px )' }">
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
@@ -107,7 +107,7 @@
     height: 100px;
     list-style: none;
     opacity: 0;
-    animation: fadeIn 1.2s 1.5s ease-out forwards, slideUpToPlace 1.2s 1.5s cubic-bezier(0,.5,.0,1) forwards;
+    animation: fadeIn 0.6s ease-out forwards;
 
     @include breakpoint( 'tablet' ) {
       animation-delay: 0s !important;
