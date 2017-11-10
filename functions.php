@@ -208,9 +208,9 @@
   // If a date is present display it in the specified format for each video entry
   function columns_content_videos($column_name, $post_ID) {
     if ( $column_name == 'video_release_date' ) {
-      $concert_date = get_field('video_release_date', $post_ID);
-      if ( $concert_date ) {
-        $date = new DateTime($concert_date);
+      $video_release_date = get_field('video_release_date', $post_ID);
+      if ( $video_release_date ) {
+        $date = new DateTime($video_release_date);
         echo '<h2>' . $date->format('j/n/Y') . '</h2>';
       }
     }
@@ -231,11 +231,74 @@
     $orderby = $query->get( 'orderby' );
     if ( 'video_release_date' == $orderby ) { // When 'Concert date' column label is clicked (and 'video_release_date' thereby set as $orderby) hook into that query and query with
       $query->set( 'meta_key', 'video_release_date' ); // ... custom field with key 'video_release_date'
-      $query->set( 'orderby', 'meta_value_num' ); // ... order by the value of this field for each concert (as a number -> 'meta_value_NUM')
+      $query->set( 'orderby', 'meta_value_num' ); // ... order by the value of this field for each video (as a number -> 'meta_value_NUM')
     }
   }
 
   add_filter( 'manage_edit-video_sortable_columns', 'columns_sortable_videos' );
   add_action( 'pre_get_posts', 'order_by_video_release_date_column' );
+
+  // ##### Enabling custom field sortable column for a custom post type #####
+  // In this case the 'Track' post type gets a 'Release' column that the tracks can be sorted by (only on admin side though!)
+  // Set label for the column + remove default publish date column
+  function columns_head_tracks($defaults) {
+    $defaults['release'] = 'Release';
+    $defaults['tracklist_number'] = 'Tracklist number';
+    unset($defaults['date']);
+    return $defaults;
+  }
+
+  // If a date is present display it in the specified format for each track entry
+  function columns_content_tracks($column_name, $post_ID) {
+    if ( $column_name == 'release' ) {
+      $release = get_field('release', $post_ID);
+      $field = get_field_object('release');
+      $label = $field['choices'][$release];
+      if ( $label ) {
+        echo '<h2>' . $label . '</h2>';
+      }
+    }
+    if ( $column_name == 'tracklist_number' ) {
+      $tracklist_number = get_field('tracklist_number', $post_ID);
+      if ( $tracklist_number ) {
+        echo '<h2>' . $tracklist_number . '</h2>';
+      }
+    }
+  }
+
+  add_filter('manage_track_posts_columns', 'columns_head_tracks', 10);
+  add_action('manage_track_posts_custom_column', 'columns_content_tracks', 10, 2);
+
+  // Activate sortablility on release
+  function columns_sortable_tracks($columns) {
+    $columns['release'] = 'release';
+    $columns['tracklist_number'] = 'tracklist_number';
+    return $columns;
+  }
+
+  add_filter( 'manage_edit-track_sortable_columns', 'columns_sortable_tracks' );
+
+  // Activate sortability of tracks in the admin
+  function order_by_release_column( $query ) {
+    if ( !is_admin() ) return; // Check that we are on serverside (wp-admin)
+    $orderby = $query->get( 'orderby' );
+    if ( 'release' == $orderby ) { // When 'Concert date' column label is clicked (and 'release' thereby set as $orderby) hook into that query and query with
+      $query->set( 'meta_key', 'release' ); // ... custom field with key 'release'
+      $query->set( 'orderby', 'meta_value' ); // ... order by the value of this field for each track
+    }
+  }
+
+  add_action( 'pre_get_posts', 'order_by_release_column' );
+
+  function order_by_tracklist_number_column( $query ) {
+    if ( !is_admin() ) return; // Check that we are on serverside (wp-admin)
+    $orderby = $query->get( 'orderby' );
+    if ( 'tracklist_number' == $orderby ) { // When 'Concert date' column label is clicked (and 'tracklist_number' thereby set as $orderby) hook into that query and query with
+      $query->set( 'meta_key', 'tracklist_number' ); // ... custom field with key 'tracklist_number'
+      $query->set( 'orderby', 'meta_value_num' ); // ... order by the value of this field for each track (as a number -> 'meta_value_NUM')
+    }
+  }
+
+  add_action( 'pre_get_posts', 'order_by_tracklist_number_column' );
 
 ?>
