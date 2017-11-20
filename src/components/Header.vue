@@ -34,16 +34,16 @@
 </script>
 
 <style lang="scss" scoped>
-
+  @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
   @import '~@/styles/animations';
 
   .header {
     position: relative;
-    height: 153px;
+    height: $headerHeight;
     z-index: 101;
 
-    @include breakpoint( 'mobile' ) { height: 135px; }
+    @include breakpoint( 'mobile' ) { height: $headerHeightMobile; }
 
     &-frontpageFirstVisit {
       transform: translate3d(0, -100vh, 0);
