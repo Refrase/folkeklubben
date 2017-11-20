@@ -65,8 +65,8 @@
     font-size: $fontSize-xsmall;
     padding: $scale 0;
     padding-top: $scale - 2px;
-    color: $color-blue-lighter-3;
-    border: 1px solid $color-blue-lighter-1;
+    color: $color-darkblue-lighter-3;
+    border: 1px solid $color-darkblue-lighter-1;
   }
 
   .links {
@@ -117,7 +117,7 @@
       margin: $scale 0;
       padding-top: $scale;
       padding-right: $scale;
-      border-top: 1px solid $color-blue-lighter-2;
+      border-top: 1px solid $color-darkblue-lighter-2;
       font-weight: normal;
       display: none;
     }

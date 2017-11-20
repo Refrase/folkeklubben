@@ -6,7 +6,7 @@
       :exact-active-class="routeName == 'koncerter' ? `active-${routeName}` : null">Koncerter</router-link></li>
     <li><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
-    <li><a :href="merchLink" target="_blank" class="navItem navItem-merch">Merch</a></li>
+    <li><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
     <li><router-link :to="{ name: 'presse' }" class="navItem navItem-presse"
       :exact-active-class="routeName == 'presse' ? `active-${routeName}` : null">Presse</router-link></li>
     <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
@@ -62,9 +62,6 @@
       letter-spacing: 0;
 
       &:hover { color: $color-gold-darker-4; }
-      // &-nyheder:hover { color: $color-news; }
-      // &-koncerter:hover { color: $color-concerts; }
-      // &-musik:hover { color: $color-music; }
 
       @include breakpoint( 'tablet' ) {
         font-size: $fontSize-xsmall;
@@ -73,19 +70,12 @@
     }
 
     .active {
-      // color: $color-welcome;
       &-nyheder,
       &-nyheder:hover { color: $color-news; }
       &-koncerter,
       &-koncerter:hover { color: $color-concerts; }
       &-musik,
       &-musik:hover { color: $color-music; }
-      &-merch,
-      &-merch:hover { color: $color-gold-darker-4; }
-      &-presse,
-      &-presse:hover { color: $color-orange; }
-      &-kontakt,
-      &-kontakt:hover { color: $color-darkblue-lighter-1; }
     }
   }
 </style>

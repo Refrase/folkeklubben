@@ -8,7 +8,7 @@ export const colors = {
   blue: "#2C70B6",
   gold: {
     base: "#DEC7A2",
-    darker: ["#A08F75", "#A08F75"]
+    darker: ["#A08F75", "#A08F75", "#7f715c", "#5b5242"]
   },
   lightred: "#FB5B64",
   orange: "#FF5837"
@@ -28,7 +28,7 @@ export const routeColors = {
     text: colors.white
   },
   musik: {
-    bg: colors.blue,
+    bg: colors.darkblue.base,
     text: colors.white
   },
   merch: {
@@ -36,11 +36,11 @@ export const routeColors = {
     text: colors.white
   },
   presse: {
-    bg: colors.orange,
+    bg: colors.gold.darker[3],
     text: colors.white
   },
   kontakt: {
-    bg: colors.darkblue.lighter[0],
+    bg: colors.gold.darker[3],
     text: colors.white
   }
 }

@@ -4,7 +4,7 @@
     <grid-block>
 
       <div class="span-7" v-if="loadingPosts">
-        <spinner />
+        <spinner dark />
       </div>
 
       <div class="span-7" v-else>

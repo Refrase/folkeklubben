@@ -6,7 +6,7 @@ import news from '@/routes/news'
 import concerts from '@/routes/concerts'
 import music from '@/routes/music'
 import merch from '@/routes/merch'
-import about from '@/routes/about'
+import press from '@/routes/press'
 import contact from '@/routes/contact'
 
 // Subsite components -> used below for mapping WP routes
@@ -20,7 +20,7 @@ let routes = [
   { path: '/koncerter', component: concerts, name: 'koncerter' },
   { path: '/musik', component: music, name: 'musik' },
   { path: '/merch', component: merch, name: 'merch' },
-  { path: '/presse', component: about, name: 'presse' },
+  { path: '/presse', component: press, name: 'presse' },
   { path: '/kontakt', component: contact, name: 'kontakt' }
 ]
 
