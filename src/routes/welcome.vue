@@ -68,6 +68,7 @@
     background-size: contain !important;
     @include breakpoint( 'tablet' ) { animation-delay: .5s !important; }
     @include breakpoint( 'mobile' ) { background-position: center 124px !important; }
+    @include breakpoint( 'custom', '1700px', true ) { background-size: cover !important; }
   }
 </style>
 
