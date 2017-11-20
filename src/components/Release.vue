@@ -72,6 +72,8 @@
     padding-top: $scale - 2px;
     color: $color-darkblue-lighter-3;
     border: 1px solid $color-darkblue-lighter-1;
+    letter-spacing: 0.5px;
+    border-radius: $borderRadius;
   }
 
   .links {

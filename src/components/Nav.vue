@@ -83,7 +83,7 @@
       transition: color 0.25s ease-out;
       color: $color-gold-darker-2;
       line-height: 1.5;
-      letter-spacing: 0;
+      letter-spacing: 0.5px;
 
       &:hover { color: $color-gold-darker-4; }
     }

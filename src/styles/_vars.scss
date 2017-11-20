@@ -113,8 +113,8 @@ $color-dark: $color-darkblue-darker-4;
 
 /* ----- Font-family ----- */
 
-$fontFamily-sans: 'DIN Pro', 'Arial', sans-serif, -apple-system, BlinkMacSystemFont;
-$fontFamily-sansCondensed: 'DIN Pro Condensed', 'Trebuchet MS', sans-serif, -apple-system, BlinkMacSystemFont;
+$fontFamily-sans: 'Barlow', 'Arial', sans-serif, -apple-system, BlinkMacSystemFont;
+$fontFamily-sansCondensed: 'Barlow Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
 $fontFamily-serif: 'Minion Pro', serif;
 $fontFamily-system: 'Roboto', 'Arial', sans-serif;
 
@@ -151,7 +151,7 @@ $paddingBox: $scale-3-1 $scale-4-1 $scale-4-1;
 
 /* ----- Border-radius ----- */
 
-$borderRadius: 2px;
+$borderRadius: 1px;
 
 /* ----- Shadows ----- */
 

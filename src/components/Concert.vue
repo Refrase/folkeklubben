@@ -90,6 +90,7 @@
         color: $color-lightred-darker-2;
         margin-right: $scale-3-1;
         display: inline-block;
+        letter-spacing: 0.5px;
 
         @include breakpoint( 'tablet' ) {
           width: auto;
@@ -109,6 +110,7 @@
         font-weight: bold;
         text-transform: uppercase;
         line-height: 1.2;
+        letter-spacing: 0.5px;
 
         @include breakpoint( 'mobile' ) { text-align: center; }
       }

@@ -218,7 +218,10 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 .transitionFadeOnHover { transition: color .1s ease-out, background-color .1s ease-out; }
 .rotateUpsideDown { transform: rotate( 360deg ) !important; }
 
+.roundedCorners { border-radius: $borderRadius; }
+
 .box {
+	@extend .roundedCorners;
 	animation: fadeIn 1s ease-out forwards;
 	padding: $paddingBox;
 	border: 1px solid $color-gold;

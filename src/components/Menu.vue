@@ -4,7 +4,7 @@
       class="menu"
       :class="{ 'menu-frontpage': routeName == 'velkommen' }"
       :key="routeName">
-      <div class="top">
+      <div class="top" :style="{ borderBottomLeftRadius: routeName == 'velkommen' ? '2px' : null, borderBottomRightRadius: routeName == 'velkommen' ? '2px' : null }">
         <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
         <appNav />
       </div>
@@ -110,7 +110,7 @@
     line-height: 0.8;
     font-size: 57.7px !important;
     margin-bottom: $scale;
-    margin-left: -2px;
+    margin-left: 0px;
     color: $color-welcome;
     letter-spacing: 0;
     transition: color .2s ease-out;
@@ -148,6 +148,7 @@
       display: inline-block;
       float: left;
       background-color: rgba($color-gold-lighter-2, 0.95);
+      border-bottom-left-radius: $borderRadius;
     }
 
     input[type="submit"] {
@@ -159,6 +160,9 @@
       background-color: $color-gold;
       color: $color-gold-darker-2;
       padding: $scale;
+      padding-top: $scale - 1px;
+      padding-bottom: $scale + 1px;
+      border-bottom-right-radius: $borderRadius;
       &:hover { color: $color-gold-darker-4; }
     }
   }

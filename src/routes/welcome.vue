@@ -153,7 +153,7 @@
       text-transform: uppercase;
       color: white;
       font-size: $fontSize-xxxlarge;
-      letter-spacing: 0;
+      letter-spacing: 0.5px;
 
       span {
         width: 100%;

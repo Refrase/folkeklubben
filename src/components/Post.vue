@@ -34,11 +34,15 @@
   .post {
     width: 100%;
     @extend .fadeInSequence;
+    @extend .roundedCorners;
+    overflow: hidden;
 
     img { display: block; }
   }
 
   .content {
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
     background-color: white;
     border: 1px solid $color-gold;
     border-top: none;
