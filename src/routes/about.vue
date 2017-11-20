@@ -36,11 +36,11 @@
     mixins: [fetchData],
     data() {
       return {
-        backgroundColor: routeColors.om.bg,
+        backgroundColor: routeColors.presse.bg,
         page: null
       }
     },
-    created() { this.fetchData( 'pages?slug=om&_embed' ).then( res => this.page = res[0] ) }
+    created() { this.fetchData( 'pages?slug=presse&_embed' ).then( res => this.page = res[0] ) }
   }
 </script>
 

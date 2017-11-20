@@ -20,7 +20,7 @@ let routes = [
   { path: '/koncerter', component: concerts, name: 'koncerter' },
   { path: '/musik', component: music, name: 'musik' },
   { path: '/merch', component: merch, name: 'merch' },
-  { path: '/om', component: about, name: 'om' },
+  { path: '/presse', component: about, name: 'presse' },
   { path: '/kontakt', component: contact, name: 'kontakt' }
 ]
 

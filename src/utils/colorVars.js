@@ -35,7 +35,7 @@ export const routeColors = {
     bg: colors.gold.darker[1],
     text: colors.white
   },
-  om: {
+  presse: {
     bg: colors.orange,
     text: colors.white
   },

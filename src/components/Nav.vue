@@ -7,8 +7,8 @@
     <li><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
     <li><a :href="merchLink" target="_blank" class="navItem navItem-merch">Merch</a></li>
-    <li><router-link :to="{ name: 'om' }" class="navItem navItem-om"
-      :exact-active-class="routeName == 'om' ? `active-${routeName}` : null">Om</router-link></li>
+    <li><router-link :to="{ name: 'presse' }" class="navItem navItem-presse"
+      :exact-active-class="routeName == 'presse' ? `active-${routeName}` : null">Presse</router-link></li>
     <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
       :exact-active-class="routeName == 'kontakt' ? `active-${routeName}` : null">Kontakt</router-link></li>
   </ul>
@@ -54,7 +54,7 @@
       display: block;
       font-family: $fontFamily-sans;
       text-transform: uppercase;
-      font-size: $fontSize-xsmall;
+      font-size: 11px;
       opacity: 1;
       transition: color 0.25s ease-out;
       color: $color-gold-darker-2;
@@ -66,7 +66,10 @@
       // &-koncerter:hover { color: $color-concerts; }
       // &-musik:hover { color: $color-music; }
 
-      @include breakpoint( 'tablet' ) { margin-right: $scale; }
+      @include breakpoint( 'tablet' ) {
+        font-size: $fontSize-xsmall;
+        margin-right: $scale;
+      }
     }
 
     .active {
@@ -79,8 +82,8 @@
       &-musik:hover { color: $color-music; }
       &-merch,
       &-merch:hover { color: $color-gold-darker-4; }
-      &-om,
-      &-om:hover { color: $color-orange; }
+      &-presse,
+      &-presse:hover { color: $color-orange; }
       &-kontakt,
       &-kontakt:hover { color: $color-darkblue-lighter-1; }
     }
