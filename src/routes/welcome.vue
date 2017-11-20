@@ -7,7 +7,7 @@
       <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
       <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
       <li><router-link :to="{ name: 'musik' }"><span>Musik</span></router-link></li>
-      <li><a :href="merchLink" target="_blank"><span>Merch</span></a></li>
+      <li><a :href="merchLink ? merchLink : '#'" target="_blank"><span>Merch</span></a></li>
     </ul>
   </div>
 </template>

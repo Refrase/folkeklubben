@@ -34,7 +34,7 @@
   .post {
     width: 100%;
     @extend .fadeInSequence;
-    
+
     img { display: block; }
   }
 
@@ -61,7 +61,8 @@
   }
 
   .text /deep/ * {
-    font-size: 18px;
+    font-size: 16px;
+    @include breakpoint( 'mobile' ) { font-size: $fontSize-small !important; }
     a { letter-spacing: 0; }
   }
 

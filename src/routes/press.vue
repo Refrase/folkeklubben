@@ -8,8 +8,8 @@
         <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
         <div v-html="page.content.rendered" />
       </div>
-      <div class="span-5 margin-bottom-4-1">
-        <social-links class="margin-bottom-4-1" />
+      <div class="span-4 offset-1 margin-bottom-4-1">
+        <social-links class="margin-bottom-4-1" :style="{ backgroundColor: 'transparent' }" />
         <a class="button margin-bottom-4-1 display-block center" :href="page.acf.press_material_package">Download pressemateriale</a>
         <img width="100%" :src="page.acf.press_image_02">
         <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>

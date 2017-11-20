@@ -7,9 +7,9 @@
     <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
     <li v-if="!isWelcomeRoute"><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
-    <li><router-link :to="{ name: 'presse' }" class="navItem navItem-presse"
+    <li :style="{ marginRight: isWelcomeRoute ? '8px' : null }"><router-link :to="{ name: 'presse' }" class="navItem navItem-presse"
       :exact-active-class="routeName == 'presse' ? `active-${routeName}` : null">Presse</router-link></li>
-    <li :style="{ marginLeft: isWelcomeRoute ? '12px' : null }"><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
+    <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
       :exact-active-class="routeName == 'kontakt' ? `active-${routeName}` : null">Kontakt</router-link></li>
   </ul>
 </template>
@@ -51,11 +51,19 @@
     @include breakpoint( 'custom', '480px' ) { width: 220px; margin: 0 auto; }
     @include breakpoint( 'custom', '1400px', true ) { margin: 0 auto; width: 316px; }
 
+    li {
+      @include breakpoint( 'tablet' ) {
+        font-size: 12px !important;
+        margin-right: $scale;
+        &:last-child { margin-right: 0 !important; }
+      }
+    }
+
     .navItem {
       display: block;
       font-family: $fontFamily-sans;
       text-transform: uppercase;
-      font-size: 11px;
+      font-size: 11px !important;
       opacity: 1;
       transition: color 0.25s ease-out;
       color: $color-gold-darker-2;
@@ -63,11 +71,6 @@
       letter-spacing: 0;
 
       &:hover { color: $color-gold-darker-4; }
-
-      @include breakpoint( 'tablet' ) {
-        font-size: $fontSize-xsmall;
-        margin-right: $scale;
-      }
     }
 
     .active {
@@ -77,6 +80,10 @@
       &-koncerter:hover { color: $color-concerts; }
       &-musik,
       &-musik:hover { color: $color-music; }
+      &-presse,
+      &-presse:hover,
+      &-kontakt,
+      &-kontakt:hover { color: $color-gold-darker-4; }
     }
   }
 </style>

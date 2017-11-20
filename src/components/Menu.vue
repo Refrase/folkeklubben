@@ -74,7 +74,7 @@
       width: calc( 100% - 30px );
     }
 
-    @include breakpoint( 'custom', '1400px', true ) { width: 505px; }
+    @include breakpoint( 'custom', '1400px', true ) { width: 397px; transform: translate3d(107px, 0, 0); }
 
     &-frontpage {
       left: 50%;
@@ -108,14 +108,14 @@
     width: 100%;
     text-align: center;
     line-height: 0.8;
-    font-size: 57.7px;
+    font-size: 57.7px !important;
     margin-bottom: $scale;
     margin-left: -2px;
     color: $color-welcome;
     letter-spacing: 0;
     transition: color .2s ease-out;
 
-    @include breakpoint( 'tablet' ) { font-size: 39px; }
+    @include breakpoint( 'tablet' ) { font-size: 39px !important; }
 
     &:hover { color: $color-darkblue; }
   }

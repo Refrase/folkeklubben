@@ -24,7 +24,7 @@ h4, .h4 { font-size: $fontSize-large; }
 h5, .h5 { font-size: $fontSize-base; }
 h6, .h6 { font-size: $fontSize-small; text-transform: uppercase; }
 
-p, li, a, label {
+p, li, a, label, strong {
   font-family: $fontFamily-serif;
   font-size: $fontSize-base;
   line-height: 1.5;

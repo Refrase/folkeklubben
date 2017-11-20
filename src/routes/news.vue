@@ -18,12 +18,11 @@
         <button @click.prevent="loadMorePosts" :style="{ display: 'block', margin: '0 auto 32px' }">Hent flere nyheder</button>
       </div>
 
-      <div class="span-5" v-if="posts.length && notPhone">
+      <div class="span-4 offset-1" v-if="posts.length && notPhone">
 
         <social-links class="margin-bottom-4-1" />
 
         <div class="facebook">
-          <h3>Følg eller like os på Facebook</h3>
           <div class="facebook_button">
             <div class="fb-follow" data-href="https://www.facebook.com/folkeklubben" data-layout="button" data-size="large" data-show-faces="false" />
             <div class="fb-like" data-href="https://www.facebook.com/folkeklubben" data-layout="button" data-size="large" data-show-faces="false" />
@@ -32,9 +31,9 @@
 
         <div v-if="this.instagramImage" class="instagram margin-top-4-1">
           <img :src="this.instagramImage.images.standard_resolution.url" width="100%" class="display-block" alt="">
-          <div class="instagram_content">
+          <div class="margin-top-2-1">
             <p>{{ this.instagramImage.caption.text }}</p>
-            <a href="https://www.instagram.com/folkeklubben/" class="display-block margin-top-2-1 textAlign-center width-full">Følg os på Instagram</a>
+            <a href="https://www.instagram.com/folkeklubben/" target="_blank" class="display-block margin-top-2-1 textAlign-center width-full">Følg os på Instagram</a>
           </div>
         </div>
 
@@ -119,11 +118,8 @@
   @import '~@/styles/helpers';
 
   .facebook {
-    @extend .box;
-    background-color: transparent;
-    border-color: $color-blue;
     text-align: center;
-    min-height: 122px;
+    padding: 0;
     @extend .fadeInWithDelay;
     h3 {
       color: $color-blue;
@@ -132,10 +128,8 @@
   }
 
   .instagram {
+    @extend .box;
     @extend .fadeInWithDelay;
-    &_content {
-      @extend .box;
-      border-top: none;
-    }
+    padding-top: $scale-4-1;
   }
 </style>

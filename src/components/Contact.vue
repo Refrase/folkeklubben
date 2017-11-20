@@ -19,6 +19,7 @@
   @import '~@/styles/helpers';
   .contact {
     @extend .box;
+    background-color: transparent;
     min-height: 200px;
   }
 </style>
