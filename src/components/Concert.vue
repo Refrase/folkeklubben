@@ -10,11 +10,12 @@
     </div>
     <div class="right">
       <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
-      <a :href="concert.acf.ticket_link" class="buy button" :class="buyButtonClass">
-        <span v-if="concert.acf.free">Find gratis billet</span>
+      <a :href="concert.acf.ticket_link && !concert.acf.cancelled ? concert.acf.ticket_link : '#'" target="_blank" class="buy button" :class="buyButtonClass">
+        <span v-if="concert.acf.free">Gratis entré</span>
         <span v-else-if="concert.acf.sold_out">Udsolgt</span>
         <span v-else-if="concert.acf.cancelled">Aflyst</span>
-        <span v-else-if="concert.acf.few_tickets">Tæt på udsolgt</span>
+        <span v-else-if="concert.acf.few_tickets">Få billetter</span>
+        <span v-else-if="concert.acf.waiting_list">Venteliste</span>
         <span v-else>Køb billet</span>
       </a>
     </div>
@@ -34,7 +35,8 @@
           free: this.concert.acf.free,
           soldOut: this.concert.acf.sold_out,
           cancelled: this.concert.acf.cancelled,
-          fewTickets: this.concert.acf.few_tickets
+          fewTickets: this.concert.acf.few_tickets,
+          waitingList: this.concert.acf.waiting_list
         }
       }
     }
@@ -145,7 +147,7 @@
       .facebookEvent {
         position: relative;
         top: -1px;
-        color: $color-lightred-darker-2;
+        color: $color-lightred-darker-3;
         background-color: rgba($color-lightred, 0.5);
         font-weight: bold;
         display: inline-block;
@@ -159,28 +161,28 @@
       }
 
       .buy {
-        background-color: $color-gold;
+        background-color: $color-blue;
+        color: white;
         position: relative;
         top: -1px;
         display: inline-block;
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
-        min-width: 174px;
-        &:hover { background-color: $color-gold-darker-1; }
+        min-width: 154px;
+        &:hover { background-color: $color-blue-darker-1; }
         @include breakpoint( 'tablet' ) { order: 1; }
-      }
-
-      .fewTickets {
-        background-color: $color-orange;
-        color: white;
-        &:hover { background-color: darken($color-orange, 8%); }
       }
 
       .soldOut,
       .cancelled {
         background-color: $color-lightred-darker-2;
-        color: white;
-        &:hover { background-color: $color-lightred-darker-2; }
+        &:hover { background-color: $color-lightred-darker-2 }
+      }
+
+      .fewTickets,
+      .waitingList {
+        background-color: $color-darkblue;
+        &:hover { background-color: $color-darkblue-darker-4; }
       }
 
     }
