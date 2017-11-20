@@ -10,7 +10,7 @@
       data-tilt-max="15"
       data-tilt-speed="1000">
     <img v-else src="../assets/images/album-placeholder.png" :alt="release.title.rendered" width="100%">
-    <p class="releaseDate">Udgivet {{ release.acf.release_date }}</p>
+    <p class="releaseDate">Udgivet {{ prettyDate }}</p>
     <div class="links">
       <a v-if="release.acf && release.acf.listen_link" :href="release.acf.listen_link" class="button"><span>Lyt</span></a>
       <a v-if="release.acf && release.acf.buy_cd_link" :href="release.acf.buy_cd_link" class="button"><span>Køb CD</span></a>
@@ -27,12 +27,17 @@
 </template>
 
 <script>
+  import { getPrettyDate } from '@/utils/date'
   import vanillaTilt from 'vanilla-tilt'
   export default {
     name: 'Release',
+    mixins: [getPrettyDate],
     props: {
       release: Object,
       tracklist: Array
+    },
+    computed: {
+      prettyDate() { return this.getPrettyDate(this.release.acf.release_date, 'short', true) },
     },
     mounted() { if (this.$refs['releasecover']) vanillaTilt.init(this.$refs['releasecover']) },
     methods: {
