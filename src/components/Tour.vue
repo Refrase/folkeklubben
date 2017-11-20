@@ -48,7 +48,6 @@
   .period {
     color: $color-lightred;
     font-weight: bold;
-    letter-spacing: $letterSpacing;
   }
 
   .concerts { list-style: none; }

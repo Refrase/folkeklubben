@@ -60,7 +60,6 @@
     font-size: $fontSize-small;
     margin-bottom: $scale + 4px;
     color: $color-gold;
-    letter-spacing: $letterSpacing;
     font-weight: bold;
   }
 

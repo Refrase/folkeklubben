@@ -48,7 +48,6 @@
     .date {
       font-size: $fontSize-small;
       font-weight: bold;
-      letter-spacing: 2px;
     }
   }
 

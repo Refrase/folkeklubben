@@ -121,7 +121,6 @@
         font-size: $fontSize-small;
         margin-top: 4px;
         font-weight: bold;
-        letter-spacing: $letterSpacing;
         line-height: 14px;
         display: inline-block;
         @include breakpoint( 'mobile' ) { width: 100%; text-align: center; }
@@ -133,7 +132,7 @@
         font-size: $fontSize-xsmall;
         text-transform: uppercase;
         margin-left: $scale;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
 
         @include breakpoint( 'mobile' ) { display: block; margin-left: 0; }
       }
