@@ -13,7 +13,7 @@
           :key="index"
           :post="post"
           class="margin-bottom-4-1" />
-        <spinner v-if="loadingMorePosts" />
+        <spinner dark v-if="loadingMorePosts" />
         <p v-if="noMorePosts" :style="{ textAlign: 'center', marginBottom: '32px', fontWeight: 'bold' }">Det var det :)</p>
         <button @click.prevent="loadMorePosts" :style="{ display: 'block', margin: '0 auto 32px' }">Hent flere nyheder</button>
       </div>
