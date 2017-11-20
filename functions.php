@@ -301,4 +301,9 @@
 
   add_action( 'pre_get_posts', 'order_by_tracklist_number_column' );
 
+  // Enabling ACF options page
+  if( function_exists('acf_add_options_page') ) {
+  	acf_add_options_page();
+  }
+
 ?>
