@@ -1,8 +1,8 @@
 <template>
   <div class="pressRoute">
     <background :page="page ? page : null" :color="backgroundColor" />
-    <spinner v-if="!page" />
-    <grid-block v-if="page" class="grid-upper">
+    <spinner v-if="!page || !page.acf.press_image_01" />
+    <grid-block v-if="page && page.acf.press_image_01" class="grid-upper fadeIn">
       <div class="span-7 margin-bottom-4-1">
         <img width="100%" :src="page.acf.press_image_01">
         <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
