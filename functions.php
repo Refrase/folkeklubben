@@ -66,6 +66,12 @@
 	function custom_menu_order($menu_ord) {
 	    if (!$menu_ord) return true;
 
+      // // Uncomment this block and refresh wp-admin to see the current order
+      // echo '<pre>';
+      // print_r( $menu_ord );
+      // echo '</pre>';
+      // die;
+
 	    return array(
 	        'index.php', // Dashboard
 					'edit.php?post_type=page', // Pages
@@ -76,6 +82,7 @@
           'edit.php?post_type=concert', // Concerts
           'edit.php?post_type=video', // Videos
           'edit.php?post_type=contact', // Contacts
+          'acf-options', // ACF options page
 	        'separator1', // First separator
 	        'upload.php', // Media
 	        'separator2', // Second separator
