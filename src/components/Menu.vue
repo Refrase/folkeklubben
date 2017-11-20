@@ -110,7 +110,7 @@
     line-height: 0.8;
     font-size: 57.7px !important;
     margin-bottom: $scale;
-    margin-left: 0px;
+    margin-left: -1px;
     color: $color-welcome;
     letter-spacing: 0;
     transition: color .2s ease-out;
