@@ -49,6 +49,6 @@
       display: block;
       svg { fill: $color-gold; transition: fill .25s ease-out; }
     }
-    a:hover svg { fill: $color-gold-darker-1; }
+    a:hover svg { fill: darken($color-gold, 8%); }
   }
 </style>

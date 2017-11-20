@@ -1,18 +1,20 @@
 <template>
-  <div class="aboutRoute">
+  <div class="pressRoute">
     <background :page="page ? page : null" :color="backgroundColor" />
     <spinner v-if="!page" />
     <grid-block v-if="page" class="grid-upper">
-      <div class="span-6 margin-bottom-4-1">
+      <div class="span-7 margin-bottom-4-1">
+        <img width="100%" :src="page.acf.press_image_01">
+        <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
         <div v-html="page.content.rendered" />
       </div>
-      <div class="span-5 offset-1 margin-bottom-4-1">
-        <img
-          width="100%"
-          :src="page._embedded['wp:featuredmedia'][0].source_url"
-          :alt="page._embedded['wp:featuredmedia'][0].alt_text ? page._embedded['wp:featuredmedia'][0].alt_text : null">
-        <div class="caption margin-bottom-4-1" v-html="page._embedded['wp:featuredmedia'][0].caption.rendered" />
-        <social-links />
+      <div class="span-5 margin-bottom-4-1">
+        <social-links class="margin-bottom-4-1" />
+        <a class="button margin-bottom-4-1 display-block center" :href="page.acf.press_material_package">Download pressemateriale</a>
+        <img width="100%" :src="page.acf.press_image_02">
+        <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
+        <img width="100%" :src="page.acf.press_image_03">
+        <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
       </div>
     </grid-block>
   </div>
@@ -47,6 +49,5 @@
 <style lang="scss" scoped>
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
-  .aboutRoute { color: white; }
-  .grid-upper { @include breakpoint( 'mobile' ) { flex-direction: column-reverse; } }
+  .pressRoute { color: white; }
 </style>
