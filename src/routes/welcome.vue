@@ -38,7 +38,6 @@
 
         let menuHeight = 0
         if ( window.innerWidth < 768 ) menuHeight = 124
-        else if ( window.innerWidth < 480 ) menuHeight = 157
 
         let backgroundImageHeight = null
         if ( actualImageHeight > window.innerHeight - 100 ) backgroundImageHeight = window.innerHeight - 100 + 15 + menuHeight
@@ -69,7 +68,6 @@
     background-size: contain !important;
     @include breakpoint( 'tablet' ) { animation-delay: .5s !important; }
     @include breakpoint( 'mobile' ) { background-position: center 124px !important; }
-    @include breakpoint( 'custom', '480px') { background-position: center 142px !important; }
   }
 </style>
 

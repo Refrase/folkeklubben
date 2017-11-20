@@ -1,15 +1,15 @@
 <template>
-  <ul class="nav">
-    <li><router-link :to="{ name: 'nyheder' }" class="navItem navItem-nyheder"
+  <ul class="nav" :style="{ justifyContent: isWelcomeRoute ? 'center' : null }">
+    <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'nyheder' }" class="navItem navItem-nyheder"
       :exact-active-class="routeName == 'nyheder' ? `active-${routeName}` : null">Nyheder</router-link></li>
-    <li><router-link :to="{ name: 'koncerter' }" class="navItem navItem-koncerter"
+    <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'koncerter' }" class="navItem navItem-koncerter"
       :exact-active-class="routeName == 'koncerter' ? `active-${routeName}` : null">Koncerter</router-link></li>
-    <li><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
+    <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
-    <li><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
+    <li v-if="!isWelcomeRoute"><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
     <li><router-link :to="{ name: 'presse' }" class="navItem navItem-presse"
       :exact-active-class="routeName == 'presse' ? `active-${routeName}` : null">Presse</router-link></li>
-    <li><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
+    <li :style="{ marginLeft: isWelcomeRoute ? '12px' : null }"><router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt"
       :exact-active-class="routeName == 'kontakt' ? `active-${routeName}` : null">Kontakt</router-link></li>
   </ul>
 </template>
@@ -26,7 +26,8 @@
       }
     },
     computed: {
-      routeName() { return this.$route.name }
+      routeName() { return this.$route.name },
+      isWelcomeRoute() { return this.$route.name == 'velkommen' }
     },
     created() {
       this.fetchData( 'pages?slug=merch' ).then( res => { this.merchLink = res ? res[0].acf.external_link : null })

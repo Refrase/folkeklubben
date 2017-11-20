@@ -81,6 +81,7 @@ button,
   font-size: $fontSize-small;
   white-space: nowrap;
   letter-spacing: 0;
+  border-radius: 0;
   @extend .transitionFadeOnHover;
 
   &:hover {
