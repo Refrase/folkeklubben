@@ -40,8 +40,8 @@
         if ( window.innerWidth < 768 ) menuHeight = 71
 
         let backgroundImageHeight = null
-        if ( actualImageHeight > window.innerHeight - 100 ) backgroundImageHeight = window.innerHeight - 100 + 10 + menuHeight
-        else                                                backgroundImageHeight = window.innerWidth / 1.8 + 10 + menuHeight
+        if ( actualImageHeight > window.innerHeight - 100 ) backgroundImageHeight = window.innerHeight - 100 + 10
+        else                                                backgroundImageHeight = window.innerWidth / 1.8 + 10
 
         return backgroundImageHeight
       }
@@ -67,7 +67,7 @@
     background-position: top center !important;
     background-size: contain !important;
     @include breakpoint( 'tablet' ) { animation-delay: .5s !important; }
-    @include breakpoint( 'mobile' ) { background-position: center 71px !important; }
+    @include breakpoint( 'mobile' ) { background-position: center 0px !important; }
     @include breakpoint( 'custom', '1700px', true ) { background-size: cover !important; }
   }
 </style>

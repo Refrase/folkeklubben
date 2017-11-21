@@ -7,22 +7,11 @@
     <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
     <li v-if="!isWelcomeRoute"><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
-    <li
-      :style="{ 
-        position: isWelcomeRoute ? 'absolute' : null,
-        transform: isWelcomeRoute ? 'translate3d(32px,32px,0)' : null,
-        marginRight: isWelcomeRoute ? '8px' : null,
-        textShadow: isWelcomeRoute ? '0px 0px 10px black' : null
-      }">
+    <li :class="{ 'navItemWrap-frontpage': isWelcomeRoute }">
       <router-link :to="{ name: 'presse' }" :style="{ color: isWelcomeRoute ? 'white' : null }" class="navItem navItem-presse"
       :exact-active-class="routeName == 'presse' ? `active-${routeName}` : null">Presse</router-link>
     </li>
-    <li
-      :style="{ 
-        position: isWelcomeRoute ? 'absolute' : null,
-        transform: isWelcomeRoute ? 'translate3d(-32px,32px,0)' : null,
-        textShadow: isWelcomeRoute ? '0px 0px 10px black' : null
-      }">
+    <li :class="{ 'navItemWrap-frontpage': isWelcomeRoute }">
       <router-link :to="{ name: 'kontakt' }" class="navItem navItem-kontakt" :style="{ color: isWelcomeRoute ? 'white' : null }"
       :exact-active-class="routeName == 'kontakt' ? `active-${routeName}` : null">Kontakt</router-link>
     </li>
@@ -71,6 +60,23 @@
         font-size: 12px !important;
         margin-right: $scale;
         &:last-child { margin-right: 0 !important; }
+      }
+    }
+
+    .navItemWrap {
+      &-frontpage {
+        position: absolute;
+        margin-right: 8px;
+        text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+
+        & .navItem-presse {
+          transform: translate3d(32px,48px,0);
+          @include breakpoint( 'tablet' ) { transform: translate3d(32px,4px,0); }
+        }
+        & .navItem-kontakt {
+          transform: translate3d(-32px,48px,0);
+          @include breakpoint( 'tablet' ) { transform: translate3d(-32px,4px,0); }
+        }
       }
     }
 

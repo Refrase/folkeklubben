@@ -65,7 +65,7 @@
     @include breakpoint( 'mobile' ) {
       margin-left: 0px;
       font-size: 36px !important;
-      margin-top: 180px;
+      margin-top: 170px;
       text-align: center;
     }
   }

@@ -2,9 +2,9 @@
   <transition :name="transitionName">
     <div
       class="menu"
-      :class="{ 'menu-frontpage': routeName == 'velkommen' }"
+      :class="{ 'menu-frontpage': isVelkommen }"
       :key="routeName">
-      <div class="top" :style="{ borderBottomLeftRadius: routeName == 'velkommen' ? '2px' : null, borderBottomRightRadius: routeName == 'velkommen' ? '2px' : null }">
+      <div class="top" :class="{ 'top-frontpage': isVelkommen }">
         <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
         <appNav />
       </div>
@@ -35,6 +35,7 @@
     mixins: [mailchimpValidate, mailchimpConfig],
     computed: {
       routeName() { return this.$route.name },
+      isVelkommen() { return this.$route.name == 'velkommen' },
       transitionName() {
         if (this.routeChange.from || this.routeChange.to) {
           return this.routeChange.from.path === '/' ? 'slideToSide' : this.routeChange.to.path === '/' ? 'slideToCenter' : null
@@ -60,7 +61,6 @@
   .menu {
     width: 381px;
     position: fixed;
-    box-shadow: 0px 16px 16px -16px rgba(black, 0.1);
     transform: translate3d(0,0,0);
 
     @include breakpoint( 'tablet' ) {
@@ -79,6 +79,12 @@
     &-frontpage {
       left: 50%;
       transform: translate3d(-50%, 0, 0);
+
+      @include breakpoint( 'tablet' ) {
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+        width: 100%;
+      }
     }
   }
 
@@ -99,6 +105,28 @@
   .top {
     background-color: $color-gold;
     padding: $scale-2-1 $scale-4-1;
+
+    &-frontpage {
+      border-radius: 0 2px 2px 0;
+      background-color: transparent;
+      border: 16px solid $color-gold;
+      border-width: 16px 15px;
+
+      @include breakpoint( 'tablet' ) {
+        border-bottom: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .logo {
+        color: white;
+        text-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+        font-size: 55px !important;
+        @include breakpoint( 'custom', '1400px' ) { font-size: 53px !important; }
+        @include breakpoint( 'tablet' ) { font-size: 42px !important; }
+        &:hover { color: white; }
+      }
+    }
   }
 
   .logo {
