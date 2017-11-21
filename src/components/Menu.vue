@@ -74,7 +74,7 @@
       width: calc( 100% - 30px );
     }
 
-    @include breakpoint( 'custom', '1400px', true ) { width: 397px; transform: translate3d(107px, 0, 0); }
+    @include breakpoint( 'custom', '1400px', true ) { width: 397px; transform: translate3d(108px, 0, 0); }
 
     &-frontpage {
       left: 50%;
