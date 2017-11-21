@@ -18,17 +18,21 @@
     // DEV
     wp_enqueue_script( 'main_js', get_template_directory_uri() . '/js/main.js', array(), null, true );
     // Making the rest url dynamically available to the JavaScript
+    // And the ACF options page (where custom colors can be set)
     wp_localize_script( 'main_js', 'wp', array(
       'rest_root' => esc_url_raw( rest_url() ),
       'routes'    => rest_theme_routes(),
+      'colors'    => rest_theme_colors()
     ));
 
     // PROD
     // wp_enqueue_script( 'main_min_js', get_template_directory_uri() . '/dist/js/main.min.js', array(), '', true );
-    // Making the rest url dynamically available to the JavaScript
+    // // Making the rest url dynamically available to the JavaScript
+    // // And the ACF options page (where custom colors can be set)
     // wp_localize_script( 'main_min_js', 'wp', array(
     //   'rest_root' => esc_url_raw( rest_url() ),
     //   'routes'    => rest_theme_routes(),
+    //   'colors'    => rest_theme_colors()
     // ));
 
   } add_action( 'wp_enqueue_scripts', 'folkeklubben_theme_js' );
@@ -52,6 +56,34 @@
   	}
   	wp_reset_postdata();
   	return $routes;
+  }
+
+  // Enabling ACF options page
+  if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(
+      array(
+        'page_title' 	=> 'Colors',
+        'menu_title'	=> 'Colors',
+        'menu_slug'	  => 'app-colors',
+        'icon_url'    => 'dashicons-admin-appearance',
+        'capability'	=> 'edit_posts',
+        'redirect'		=> false
+      )
+    );
+  }
+
+  function rest_theme_colors() {
+    if( have_rows('app_colors', 'option') ) {
+      while( have_rows('app_colors', 'option') ) {
+        the_row();
+        $colors[] = array(
+          'name'  => get_sub_field('color_name'),
+          'color' => get_sub_field('color'),
+          'color_original' => get_sub_field('color_original_value')
+        );
+      }
+    }
+    return $colors;
   }
 
   // Disable possibility of changing theme
@@ -82,7 +114,7 @@
           'edit.php?post_type=concert', // Concerts
           'edit.php?post_type=video', // Videos
           'edit.php?post_type=contact', // Contacts
-          'acf-options', // ACF options page
+          'app-colors', // ACF options page
 	        'separator1', // First separator
 	        'upload.php', // Media
 	        'separator2', // Second separator
@@ -307,10 +339,5 @@
   }
 
   add_action( 'pre_get_posts', 'order_by_tracklist_number_column' );
-
-  // Enabling ACF options page
-  if( function_exists('acf_add_options_page') ) {
-  	acf_add_options_page();
-  }
 
 ?>
