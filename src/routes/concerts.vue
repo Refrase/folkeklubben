@@ -41,8 +41,8 @@
   import TabsPanel from '@/components/TabsPanel'
   import Tour from '@/components/Tour'
   import Spinner from '@/components/Spinner'
-  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'ConcertsRoute',
     components: {
@@ -52,10 +52,9 @@
       'tour': Tour,
       'spinner': Spinner
     },
-    mixins: [fetchData],
+    mixins: [fetchData, decideRouteBackgroundColor],
     data() {
       return {
-        videoOverlayColor: routeColors.koncerter.bg,
         page: [],
         tours: null,
         loadingConcerts: true,
@@ -63,6 +62,7 @@
       }
     },
     computed: {
+      videoOverlayColor() { return this.decideRouteBackgroundColor( 'Concerts page', 'koncerter' ) },
       toursNotDone() {
         let toursNotDone = []
         for ( let tour of this.tours ) {
@@ -115,7 +115,7 @@
     @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 97px - 16px ); }
 
     &::-webkit-scrollbar { width: 4px; }
-    &::-webkit-scrollbar-track { background-color: $color-lightred; }
-    &::-webkit-scrollbar-thumb { background-color: $color-lightred-darker-2; }
+    &::-webkit-scrollbar-track { background-color: rgba(black, 0.1); }
+    &::-webkit-scrollbar-thumb { background-color: rgba(black, 0.2); }
   }
 </style>

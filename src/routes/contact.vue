@@ -18,8 +18,8 @@
   import Background from '@/components/Background'
   import Contact from '@/components/Contact'
   import Spinner from '@/components/Spinner'
-  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'ContactRoute',
     components: {
@@ -28,14 +28,16 @@
       'spinner': Spinner,
       'contact': Contact
     },
-    mixins: [fetchData],
+    mixins: [fetchData, decideRouteBackgroundColor],
     data() {
       return {
-        backgroundColor: routeColors.kontakt.bg,
         page: null,
         contacts: [],
         loadingContacts: true
       }
+    },
+    computed: {
+      backgroundColor() { return this.decideRouteBackgroundColor( 'Contact page', 'kontakt' ) }
     },
     created() {
       this.fetchData( 'pages?slug=kontakt' ).then( res => this.page = res[0] )

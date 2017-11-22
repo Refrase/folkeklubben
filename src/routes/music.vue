@@ -28,8 +28,8 @@
   import Background from '@/components/Background'
   import Release from '@/components/Release'
   import Spinner from '@/components/Spinner'
-  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'MusicRoute',
     components: {
@@ -38,10 +38,9 @@
       'release': Release,
       'spinner': Spinner
     },
-    mixins: [fetchData],
+    mixins: [fetchData, decideRouteBackgroundColor],
     data() {
       return {
-        backgroundColor: routeColors.musik.bg,
         page: [],
         releases: null,
         tracks: [],
@@ -49,6 +48,7 @@
       }
     },
     computed: {
+      backgroundColor() { return this.decideRouteBackgroundColor( 'Music page', 'musik' ) },
       releasesReversed() { if (this.releases) return this.releases.reverse() },
       tracksByRelease() {
         const tracksByRelease = {}

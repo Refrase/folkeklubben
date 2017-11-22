@@ -10,7 +10,12 @@
     </div>
     <div class="right">
       <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
-      <a :href="concert.acf.ticket_link && !concert.acf.cancelled ? concert.acf.ticket_link : '#'" target="_blank" class="buy button" :class="buyButtonClass">
+      <a
+        :href="concert.acf.ticket_link && !concert.acf.cancelled ? concert.acf.ticket_link : '#'"
+        target="_blank"
+        class="buy button"
+        :class="buyButtonClass"
+        :style="{ backgroundColor: concert.acf.few_tickets || concert.acf.waiting_list ? buttonAttentionColor : null }">
         <span v-if="concert.acf.free">Gratis entré</span>
         <span v-else-if="concert.acf.sold_out">Udsolgt</span>
         <span v-else-if="concert.acf.cancelled">Aflyst</span>
@@ -29,6 +34,11 @@
     props: { concert: Object },
     mixins: [getPrettyDate],
     computed: {
+      buttonAttentionColor() {
+        const colorObj = wp.colors ? wp.colors.find( x => x.name === 'Concerts button attention' ) : null
+        if ( colorObj && colorObj.color ) return colorObj.color
+        else return '#ffe059'
+      },
       prettyDate() { return this.getPrettyDate(this.concert.acf.concert_date, 'shorter', true) },
       buyButtonClass() {
         return {
@@ -47,6 +57,7 @@
   @import '~@/styles/vars';
   @import '~@/styles/breakpoints';
   @import '~@/styles/helpers';
+  @import '~@/styles/global';
 
   .concert {
     display: flex;
@@ -54,11 +65,11 @@
     align-items: center;
     padding: $scale-3-1;
 
-    &:nth-child(even) { background-color: rgba($color-lightred-darker-2, 0.3); }
+    &:nth-child(even) { background-color: rgba(black, 0.1); }
     &:nth-child(odd) {
       & .facebookEvent {
-        background-color: rgba($color-lightred-darker-1, 0.5) !important;
-        &:hover { background-color: rgba($color-lightred-darker-1, 1) !important; }
+        background-color: rgba(black, 0.25) !important;
+        &:hover { background-color: rgba(black, 0.15) !important; }
       }
     }
 
@@ -87,7 +98,7 @@
         line-height: 32px;
         position: relative;
         top: -2px;
-        color: $color-lightred-darker-2;
+        color: rgba(black, 0.6);
         margin-right: $scale-3-1;
         display: inline-block;
         letter-spacing: 0.5px;
@@ -117,7 +128,7 @@
 
       .city,
       .stage {
-        color: $color-gold;
+        color: white;
         font-size: $fontSize-small;
         margin-top: 4px;
         font-weight: bold;
@@ -127,7 +138,7 @@
       }
 
       .stage {
-        color: $color-lightred-darker-2;
+        color: rgba(black, 0.6);
         font-family: $fontFamily-sans;
         font-size: $fontSize-xsmall;
         text-transform: uppercase;
@@ -148,42 +159,41 @@
       .facebookEvent {
         position: relative;
         top: -1px;
-        color: $color-lightred-darker-3;
-        background-color: rgba($color-lightred, 0.5);
+        color: rgba(black, 0.9);
+        background-color: rgba(black, 0.2);
         font-weight: bold;
         display: inline-block;
         margin-right: $scale;
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
 
-        &:hover { background-color: rgba($color-lightred, 1) !important; }
+        &:hover { background-color: rgba(black, 0.1) !important; }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }
       }
 
       .buy {
-        background-color: $color-blue;
-        color: white;
+        background-color: white;
         position: relative;
         top: -1px;
         display: inline-block;
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
         min-width: 154px;
-        &:hover { background-color: $color-blue-darker-1; }
+        &:hover { background-color: rgba(white, 0.9); }
         @include breakpoint( 'tablet' ) { order: 1; }
       }
 
       .soldOut,
       .cancelled {
-        background-color: $color-lightred-darker-2;
-        &:hover { background-color: $color-lightred-darker-2 }
+        color: rgba(black, 0.6);
+        background-color: rgba(black, 0.15);
+        &:hover { background-color: rgba(black, 0.1); }
       }
 
       .fewTickets,
       .waitingList {
-        background-color: $color-darkblue;
-        &:hover { background-color: $color-darkblue-darker-4; }
+        &:hover { opacity: 0.9 }
       }
 
     }

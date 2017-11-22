@@ -30,14 +30,14 @@
   .tab {
     margin-right: $scale-4-1;
     display: inline-block;
-    color: $color-gold;
+    color: rgba(black, 0.3);
     cursor: pointer;
     padding-bottom: $scale;
     @extend .transitionFadeOnHover;
 
     &:hover,
     &.active { color: white; }
-    &.active { border-bottom: 4px solid $color-lightred-darker-2; }
+    &.active { border-bottom: 4px solid white; }
 
     .title {
       font-size: 16px;

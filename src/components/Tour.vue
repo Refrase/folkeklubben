@@ -29,7 +29,7 @@
   .tour:not(:first-child) { margin-top: $scale-4-1; }
 
   .header {
-    background-color: $color-lightred-darker-2;
+    background-color: rgba(black, 0.3);
     padding: $scale-3-1;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
   }
 
   .period {
-    color: $color-lightred;
+    color: rgba(black, 0.6);
     font-weight: bold;
   }
 

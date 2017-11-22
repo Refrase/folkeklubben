@@ -2,7 +2,7 @@
   <div class="pressRoute">
     <background :page="page ? page : null" :color="backgroundColor" />
     <spinner v-if="!page || !page.acf.press_image_01" />
-    <grid-block v-if="page && page.acf.press_image_01" class="grid-upper fadeIn">
+    <grid-block v-else class="grid-upper fadeIn">
       <div class="span-7 margin-bottom-4-1">
         <img width="100%" :src="page.acf.press_image_01">
         <p class="caption margin-bottom-4-1">{{ page.acf.press_image_01_caption }}</p>
@@ -25,8 +25,8 @@
   import Background from '@/components/Background'
   import Spinner from '@/components/Spinner'
   import SocialLinks from '@/components/SocialLinks'
-  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'AboutRoute',
     components: {
@@ -35,12 +35,14 @@
       'spinner': Spinner,
       'social-links': SocialLinks,
     },
-    mixins: [fetchData],
+    mixins: [fetchData, decideRouteBackgroundColor],
     data() {
       return {
-        backgroundColor: routeColors.presse.bg,
         page: null
       }
+    },
+    computed: {
+      backgroundColor() { return this.decideRouteBackgroundColor( 'Press page', 'presse' ) }
     },
     created() { this.fetchData( 'pages?slug=presse&_embed' ).then( res => this.page = res[0] ) }
   }

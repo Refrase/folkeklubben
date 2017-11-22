@@ -70,8 +70,8 @@
     font-size: $fontSize-xsmall;
     padding: $scale 0;
     padding-top: $scale - 2px;
-    color: $color-darkblue-lighter-3;
-    border: 1px solid $color-darkblue-lighter-1;
+    color: rgba(white, 0.5);
+    border: 1px solid rgba(white, 0.5);
     letter-spacing: 0.5px;
     border-radius: $borderRadius;
   }
@@ -124,7 +124,7 @@
       margin: $scale 0;
       padding-top: $scale;
       padding-right: $scale;
-      border-top: 1px solid $color-darkblue-lighter-2;
+      border-top: 1px solid rgba(black, 0.3);
       font-weight: normal;
       display: none;
     }

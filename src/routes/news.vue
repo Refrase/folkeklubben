@@ -48,9 +48,9 @@
   import Post from '@/components/Post'
   import SocialLinks from '@/components/SocialLinks'
   import Spinner from '@/components/Spinner'
-  import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
   import { whichDevice } from '@/utils/detectDevice'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'NewsRoute',
     components: {
@@ -60,10 +60,9 @@
       'social-links': SocialLinks,
       'spinner': Spinner
     },
-    mixins: [fetchData, whichDevice],
+    mixins: [fetchData, whichDevice, decideRouteBackgroundColor],
     data() {
       return {
-        backgroundColor: routeColors.nyheder.bg,
         created: false,
         page: null,
         loadingPosts: true,
@@ -76,6 +75,7 @@
       }
     },
     computed: {
+      backgroundColor() { return this.decideRouteBackgroundColor( 'News page', 'nyheder' ) },
       notPhone() {
         const device = this.whichDevice()
         return device !== 'iPhone' && device !== 'android mobile'
