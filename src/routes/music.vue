@@ -11,7 +11,7 @@
       <grid-block>
         <h1 class="span-12 margin-bottom-4-1">Musikvideoer</h1>
         <div v-for="(video, index) in videosByReleasedateReversed" v-if="index < 2" class="span-6">
-          <div  class="videoWrap margin-bottom-4-1">
+          <div class="videoWrap margin-bottom-4-1">
             <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
           </div>
         </div>
