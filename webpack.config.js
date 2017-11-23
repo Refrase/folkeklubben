@@ -7,7 +7,7 @@ module.exports = function( env = {} ) {
 
   if ( env.production ) process.env.NODE_ENV = 'production';
 
-  if ( process.env.NODE_ENV == 'production' ) __webpack_public_path__ = 'http://www.type16.com/folkeklubben/wp-content/themes/folkeklubben/dist/';
+  if ( process.env.NODE_ENV == 'production' ) __webpack_public_path__ = 'http://www.type16-preview.com/wp-content/themes/folkeklubben/dist/';
 
   function makeStyleLoader( type ) {
     const cssLoader = {
