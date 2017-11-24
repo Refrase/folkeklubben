@@ -3,24 +3,23 @@
     <div class="left">
       <p v-if="prettyDate" class="date">{{ prettyDate }}</p>
       <div class="place">
-        <p class="venue">{{ concert.acf.venue }}</p>
-        <p class="city">{{ concert.acf.city }}<span v-if="concert.acf.country">, {{ concert.acf.country }}</span></p>
-        <p v-if="concert.acf.stage" class="stage">{{ concert.acf.stage }}</p>
+        <p class="venue">{{ concert.venue }}</p>
+        <p class="city">{{ concert.city }}<span v-if="concert.country">, {{ concert.country }}</span></p>
+        <p v-if="concert.stage" class="stage">{{ concert.stage }}</p>
       </div>
     </div>
     <div class="right">
-      <a v-if="concert.acf.facebook_event_link" :href="concert.acf.facebook_event_link" class="facebookEvent button">Facebook event</a>
-      <a
-        :href="concert.acf.ticket_link && !concert.acf.cancelled ? concert.acf.ticket_link : '#'"
+      <a v-if="concert.facebook_event_link" :href="concert.facebook_event_link" class="facebookEvent button">Facebook event</a>
+      <a :href="concert.ticket_link && !concert.cancelled ? concert.ticket_link : '#'"
         target="_blank"
         class="buy button"
         :class="buyButtonClass"
-        :style="{ backgroundColor: concert.acf.few_tickets || concert.acf.waiting_list ? buttonAttentionColor : null }">
-        <span v-if="concert.acf.free">Gratis entré</span>
-        <span v-else-if="concert.acf.sold_out">Udsolgt</span>
-        <span v-else-if="concert.acf.cancelled">Aflyst</span>
-        <span v-else-if="concert.acf.few_tickets">Få billetter</span>
-        <span v-else-if="concert.acf.waiting_list">Venteliste</span>
+        :style="{ backgroundColor: concert.status === 'few_tickets' || concert.status === 'waiting_list' ? buttonAttentionColor : null }">
+        <span v-if="concert.status === 'free'">Gratis entré</span>
+        <span v-else-if="concert.status === 'sold_out'">Udsolgt</span>
+        <span v-else-if="concert.status === 'cancelled'">Aflyst</span>
+        <span v-else-if="concert.status === 'few_tickets'">Få billetter</span>
+        <span v-else-if="concert.status === 'waiting_list'">Venteliste</span>
         <span v-else>Køb billet</span>
       </a>
     </div>
@@ -39,14 +38,14 @@
         if ( colorObj && colorObj.color ) return colorObj.color
         else return '#ffe059'
       },
-      prettyDate() { return this.getPrettyDate(this.concert.acf.concert_date, 'shorter', true) },
+      prettyDate() { return this.getPrettyDate(this.concert.date, 'shorter', true) },
       buyButtonClass() {
         return {
-          free: this.concert.acf.free,
-          soldOut: this.concert.acf.sold_out,
-          cancelled: this.concert.acf.cancelled,
-          fewTickets: this.concert.acf.few_tickets,
-          waitingList: this.concert.acf.waiting_list
+          free: this.concert.status === 'free',
+          soldOut: this.concert.status === 'sold_out',
+          cancelled: this.concert.status === 'cancelled',
+          fewTickets: this.concert.status === 'few_tickets',
+          waitingList: this.concert.status === 'waiting_list'
         }
       }
     }

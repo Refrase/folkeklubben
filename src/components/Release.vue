@@ -16,11 +16,11 @@
       <a v-if="release.acf && release.acf.buy_cd_link" :href="release.acf.buy_cd_link" class="button"><span>Køb CD</span></a>
       <a v-if="release.acf && release.acf.buy_lp_link" :href="release.acf.buy_lp_link" class="button"><span>Køb LP</span></a>
     </div>
-    <ul v-if="tracklist" class="tracklist">
-      <li v-for="(track, index) in tracklist">
-        <p>{{ track.title.rendered }}</p>
-        <p class="showLyrics" @click="showLyrics($event, `${track.slug}-lyrics`)">Tekst</p>
-        <p v-if="track.acf.lyrics" class="lyrics" :ref="`${track.slug}-lyrics`" v-html="track.acf.lyrics" />
+    <ul v-if="release.acf.tracks" class="tracklist">
+      <li v-for="(track, index) in release.acf.tracks">
+        <p>{{ track.title }}</p>
+        <p class="showLyrics" @click="showLyrics($event, `${track.title.replace(/\s+/g, '-').toLowerCase()}-lyrics`)">Tekst</p>
+        <p v-if="track.lyrics" class="lyrics" :ref="`${track.title.replace(/\s+/g, '-').toLowerCase()}-lyrics`" v-html="track.lyrics" />
       </li>
     </ul>
   </div>
@@ -32,10 +32,7 @@
   export default {
     name: 'Release',
     mixins: [getPrettyDate],
-    props: {
-      release: Object,
-      tracklist: Array
-    },
+    props: { release: Object },
     computed: {
       prettyDate() { return this.getPrettyDate(this.release.acf.release_date, 'short', true) },
     },

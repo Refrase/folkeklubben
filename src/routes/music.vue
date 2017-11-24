@@ -5,7 +5,7 @@
     <div v-if="releases" class="fadeIn">
       <grid-block>
         <div v-for="(release, index) in releasesReversed" class="span-4">
-          <release :release="release" :tracklist="tracksByRelease[release.slug]" :key="index" />
+          <release :release="release" :key="index" />
         </div>
       </grid-block>
       <grid-block>
@@ -43,26 +43,12 @@
       return {
         page: [],
         releases: null,
-        tracks: [],
         videos: []
       }
     },
     computed: {
       backgroundColor() { return this.decideRouteBackgroundColor( 'Music page', 'musik' ) },
       releasesReversed() { if (this.releases) return this.releases.reverse() },
-      tracksByRelease() {
-        const tracksByRelease = {}
-        const releaseSlugs = []
-        for ( let release of this.releases ) releaseSlugs.push(release.slug)
-        for ( let slug of releaseSlugs ) {
-          tracksByRelease[slug] = []
-          for ( let track of this.tracks ) {
-            if ( track.acf.release === slug ) tracksByRelease[slug].push(track)
-          }
-          tracksByRelease[slug].sort( (a, b) => { return parseInt(a.acf.tracklist_number, 10) - parseInt(b.acf.tracklist_number, 10) }) // Sort albumtracks by tracklist num
-        }
-        return tracksByRelease
-      },
       videosByReleasedateReversed() {
         let videos = this.videos
         videos.sort( (a, b) => { return parseInt(a.acf.video_release_date, 10) - parseInt(b.acf.video_release_date, 10) })
@@ -72,7 +58,6 @@
     created() {
       this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
       this.fetchData( 'releases?_embed' ).then( res => this.releases = res )
-      this.fetchData( 'tracks' ).then( res => this.tracks = res )
       this.fetchData( 'videos?order=asc' ).then( res => this.videos = res )
     }
   }

@@ -109,9 +109,9 @@
 					'edit.php?post_type=page', // Pages
 					'edit.php', // Posts
 					'edit.php?post_type=release', // Releases
-          'edit.php?post_type=track', // Tracks
+          'edit.php?post_type=track', // Tracks - ATT: REMOVED FROM MENU BELOW AS IT IS LEGACY
           'edit.php?post_type=tour', // Tours
-          'edit.php?post_type=concert', // Concerts
+          'edit.php?post_type=concert', // Concerts - ATT: REMOVED FROM MENU BELOW AS IT IS LEGACY
           'edit.php?post_type=video', // Videos
           'edit.php?post_type=contact', // Contacts
           'app-colors', // ACF options page
@@ -132,6 +132,8 @@
 	function rrh_change_post_links() {
 		global $menu;
 		unset($menu[25]); // Remove comments from menu
+    remove_menu_page('edit.php?post_type=track'); // Legacy post type (has been moved to Releases as an ACF repeater)
+    remove_menu_page('edit.php?post_type=concert'); // Legacy post type (has been moved to Tours as an ACF repeater)
 	}
   add_action('admin_menu', 'rrh_change_post_links');
 
@@ -339,5 +341,25 @@
   }
 
   add_action( 'pre_get_posts', 'order_by_tracklist_number_column' );
+
+  // ----- Sorting ACF repeaters by subfield-key (takes effect on both front- and backend)
+  // Concerts by date
+  function concerts_acf_load_value( $value, $post_id, $field ) {
+  	$order = array();
+  	if( empty($value) ) { return $value; }
+  	foreach( $value as $i => $row ) { $order[ $i ] = strtotime($row['field_5a18259f341ca']); } // KEY of the field (visible by toggling it under Screen Options i WP admin)
+  	array_multisort( $order, SORT_ASC, $value );
+  	return $value;
+  }
+  add_filter('acf/load_value/name=concerts', 'concerts_acf_load_value', 10, 3);
+  // Tracks by tracklist number
+  function tracks_acf_load_value( $value, $post_id, $field ) {
+    $order = array();
+    if( empty($value) ) { return $value; }
+    foreach( $value as $i => $row ) { $order[ $i ] = $row['field_5a18386226a05']; } // KEY of the field (visible by toggling it under Screen Options i WP admin)
+    array_multisort( $order, SORT_ASC, $value );
+    return $value;
+  }
+  add_filter('acf/load_value/name=tracks', 'tracks_acf_load_value', 10, 3);
 
 ?>

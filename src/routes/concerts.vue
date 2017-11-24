@@ -4,7 +4,7 @@
 
     <background video pause :page="page ? page[0] : null" :color="videoOverlayColor" />
 
-    <grid-block noPadding v-if="tours && !loadingConcerts">
+    <grid-block noPadding v-if="tours">
       <div class="span-12">
         <tabs-panel
           v-if="tours"
@@ -15,10 +15,10 @@
     </grid-block>
 
     <grid-block noPadding>
-      <div class="span-12" v-if="loadingConcerts">
+      <div class="span-12" v-if="!tours">
         <spinner />
       </div>
-      <div class="span-12 position-relative" v-if="tours && !loadingConcerts">
+      <div class="span-12 position-relative" v-else>
         <div class="tours">
           <tour
             v-for="(tour, index) in tours"
@@ -26,7 +26,7 @@
             :key="index"
             v-bind:ref="tour.title.rendered"
             :tour="tour"
-            :concerts="concertsByTour[tour.slug]" />
+            :concerts="tour.acf.concerts" />
         </div>
       </div>
     </grid-block>
@@ -56,9 +56,7 @@
     data() {
       return {
         page: [],
-        tours: null,
-        loadingConcerts: true,
-        concerts: []
+        tours: null
       }
     },
     computed: {
@@ -69,28 +67,11 @@
           if ( !tour.acf.done ) toursNotDone.push(tour)
         }
         return toursNotDone
-      },
-      concertsByTour() {
-        const concertsByTour = {}
-        const tourSlugs = []
-        for ( let tour of this.tours ) tourSlugs.push(tour.slug)
-        for ( let slug of tourSlugs ) {
-          concertsByTour[slug] = []
-          for ( let concert of this.concerts ) {
-            if ( concert.acf.tour === slug ) concertsByTour[slug].push(concert)
-          }
-          concertsByTour[slug].sort( (a, b) => { return parseInt(a.acf.concert_date, 10) - parseInt(b.acf.concert_date, 10) }) // Sort concerts by date
-        }
-        return concertsByTour
       }
     },
     created() {
       this.fetchData( 'pages?slug=koncerter' ).then( res => this.page = res )
       this.fetchData( 'tours' ).then( res => this.tours = res )
-      this.fetchData( 'concerts' ).then( res => {
-        this.loadingConcerts = false
-        this.concerts = res
-      })
     }
   }
 </script>
