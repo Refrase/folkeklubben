@@ -4,9 +4,9 @@
     <h1 v-if="1 === 2" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <spinner v-if="loadingPage" v-bind:style="{ bottom: 'calc( 100vh - ' + (backgroundImageHeight - 7) + 'px )' }" />
     <ul class="links" v-bind:style="{ height: 'calc( 100vh - ' + backgroundImageHeight + 'px )' }">
-      <li><router-link :to="{ name: 'nyheder' }"><span>Nyheder</span></router-link></li>
-      <li><router-link :to="{ name: 'koncerter' }"><span>Koncerter</span></router-link></li>
-      <li><router-link :to="{ name: 'musik' }"><span>Musik</span></router-link></li>
+      <li><router-link :to="{ name: 'nyheder' }" :style="{ backgroundColor: getPageColor( 'News page', 'nyheder' ) }"><span>Nyheder</span></router-link></li>
+      <li><router-link :to="{ name: 'koncerter' }" :style="{ backgroundColor: getPageColor( 'Concerts page', 'koncerter' ) }"><span>Koncerter</span></router-link></li>
+      <li><router-link :to="{ name: 'musik' }" :style="{ backgroundColor: getPageColor( 'Music page', 'musik' ) }"><span>Musik</span></router-link></li>
       <li><a :href="merchLink ? merchLink : '#'" target="_blank"><span>Merch</span></a></li>
     </ul>
   </div>
@@ -17,13 +17,14 @@
   import Spinner from '@/components/Spinner'
   import { routeColors } from '@/utils/colorVars'
   import { fetchData } from '@/utils/fetchData'
+  import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
   export default {
     name: 'WelcomeRoute',
+    mixins: [fetchData, decideRouteBackgroundColor],
     components: {
       background: Background,
       spinner: Spinner
     },
-    mixins: [fetchData],
     data() {
       return {
         backgroundColor: routeColors.velkommen.bg,
@@ -52,6 +53,9 @@
         this.page = res
       })
       this.fetchData( 'pages?slug=merch' ).then( res => { this.merchLink = res ? res[0].acf.external_link : null })
+    },
+    methods: {
+      getPageColor( colorNameWP, routeLowercase ) { return this.decideRouteBackgroundColor( colorNameWP, routeLowercase ) },
     }
   }
 </script>
