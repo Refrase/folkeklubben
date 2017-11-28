@@ -49,6 +49,7 @@
 
   .tabsPanel {
     position: relative;
+    border-bottom: 1px solid white;
     @extend .fadeIn;
 
     .title {
@@ -83,7 +84,7 @@
       right: 1px;
       height: 100%;
       width: 48px;
-      background: linear-gradient(to right, transparent, rgba(black, 0.1));
+      background: linear-gradient(to right, transparent, rgba(black, 0.05));
       display: none;
 
       @include breakpoint( 'mobile' ) { display: block; }
