@@ -70,11 +70,11 @@
         text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 
         & .navItem-presse {
-          transform: translate3d(32px,48px,0);
+          transform: translate3d(32px,80px,0);
           @include breakpoint( 'tablet' ) { transform: translate3d(32px,4px,0); }
         }
         & .navItem-kontakt {
-          transform: translate3d(-32px,48px,0);
+          transform: translate3d(-32px,80px,0);
           @include breakpoint( 'tablet' ) { transform: translate3d(-32px,4px,0); }
         }
       }

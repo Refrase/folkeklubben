@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
         <appNav />
       </div>
-      <div v-if="routeName != 'velkommen'" id="mc_embed_signup">
+      <div :class="{ 'newsletterWrap-frontpage': isVelkommen }" id="mc_embed_signup">
         <form class="newsletter validate" @submit="runMailchimpSubscriptionFlow" action="https://folkeklubben.us6.list-manage.com/subscribe/post?u=f8cc3389c3d2cb830f3cd936d&amp;id=86364cbe93" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
           <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Få vores nyhedsbrev..." />
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
@@ -107,7 +107,6 @@
     padding: $scale-2-1 $scale-4-1;
 
     &-frontpage {
-      border-radius: 0 0 2px 2px;
       background-color: transparent;
       border: 16px solid $color-gold;
       border-width: 16px 15px;
@@ -146,6 +145,10 @@
     @include breakpoint( 'tablet' ) { font-size: 39px !important; }
 
     &:hover { color: $color-darkblue; }
+  }
+
+  .newsletterWrap-frontpage {
+    @include breakpoint( 'tablet' ) { display: none; }
   }
 
   .newsletter {
