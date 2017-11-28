@@ -72,7 +72,7 @@
 
         opacity: 0;
         transform: translate3d( 0, -48px, 0 );
-        animation: fadeIn 0.6s 4.6s ease-out forwards, slideDownFrontpageNavItems .6s 4.6s ease-out forwards;
+        animation: fadeIn 0.6s 3.6s ease-out forwards, slideDownFrontpageNavItems .6s 3.6s ease-out forwards;
         @include breakpoint( 'tablet' ) { opacity: 1; animation: none; transform: translate3d(0,0,0); }
 
         & .navItem-presse {

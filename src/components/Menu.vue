@@ -157,7 +157,7 @@
 
   .newsletterWrap-frontpage {
     opacity: 0;
-    animation: fadeIn .3s 4s ease-out forwards;
+    animation: fadeIn .3s 3s ease-out forwards;
     @include breakpoint( 'tablet' ) { display: none; }
   }
 

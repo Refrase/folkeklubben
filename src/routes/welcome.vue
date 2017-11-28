@@ -134,7 +134,8 @@
       &:hover {
         height: calc( 100% + #{$scale} );
         transform: translateY(-$scale);
-        @include breakpoint( 'tablet' ) { height: auto; transform: translateY(0); }
+        @include breakpoint( 'tablet' ) { height: 50%; transform: translateY(0); }
+        @include breakpoint( 'custom', '480px' ) { height: 25%; }
       }
 
       &:nth-child(1) { background-color: $color-news;
