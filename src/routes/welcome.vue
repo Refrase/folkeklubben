@@ -130,9 +130,11 @@
       @include breakpoint( 'custom', '480px' ) { width: 100%; height: 25%; }
 
       transition: all 0.15s ease-out;
+
       &:hover {
         height: calc( 100% + #{$scale} );
         transform: translateY(-$scale);
+        @include breakpoint( 'tablet' ) { height: auto; transform: translateY(0); }
       }
 
       &:nth-child(1) { background-color: $color-news;
