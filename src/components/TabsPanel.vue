@@ -67,7 +67,7 @@
     .tabs {
       list-style: none;
       white-space: nowrap;
-      overflow-x: scroll;
+      overflow-x: auto;
       padding-top: $scale-2-1;
       padding-right: $scale-2-1;
       margin-top: $scale;
