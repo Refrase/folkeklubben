@@ -63,11 +63,4 @@
     font-weight: bold;
   }
 
-  .text /deep/ * {
-    font-size: 16px;
-    @include breakpoint( 'mobile' ) { font-size: $fontSize-small !important; }
-    a { letter-spacing: 0; }
-  }
-
-
 </style>

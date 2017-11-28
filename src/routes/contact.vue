@@ -52,5 +52,5 @@
 <style lang="scss" scoped>
   @import '~@/styles/breakpoints';
   .contactRoute { color: white; }
-  .subheader /deep/ * { @include breakpoint('mobile') { text-align: center; }}
+  .subheader { @include breakpoint('mobile') { text-align: center; }}
 </style>

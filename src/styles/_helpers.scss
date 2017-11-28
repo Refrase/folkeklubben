@@ -228,8 +228,7 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 	background-color: white;
 }
 
-.caption,
-.caption /deep/ * {
+.caption {
 	font-family: $fontFamily-sans !important;
 	color: $color-gold;
 	font-size: $fontSize-xsmall;
