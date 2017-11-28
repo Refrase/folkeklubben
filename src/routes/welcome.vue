@@ -128,24 +128,16 @@
       @include breakpoint( 'tablet' ) { width: 50%; height: 50%; }
       @include breakpoint( 'custom', '480px' ) { width: 100%; height: 25%; }
 
-      transition: background-color 0.15s ease-out;
+      transition: opacity 0.15s ease-out;
+      &:hover { opacity: 0.9; }
 
-      &:nth-child(1) {
-        background-color: $color-news;
+      &:nth-child(1) { background-color: $color-news;
         a { color: $color-darkblue; }
-        &:hover { background-color: mix(black, $color-news, 8%); }}
+      }
 
-      &:nth-child(2) {
-        background-color: $color-concerts;
-        &:hover { background-color: mix(black, $color-concerts, 8%); }}
-
-      &:nth-child(3) {
-        background-color: $color-music;
-        &:hover { background-color: mix(black, $color-music, 8%); }}
-
-      &:nth-child(4) {
-        background-color: $color-merch;
-        &:hover { background-color: mix(black, $color-merch, 8%); }}
+      &:nth-child(2) { background-color: $color-concerts; }
+      &:nth-child(3) { background-color: $color-music; }
+      &:nth-child(4) { background-color: $color-merch; }
     }
 
     a {
