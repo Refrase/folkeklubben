@@ -166,7 +166,7 @@
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
 
-        &:hover { background-color: rgba(black, 0.1) !important; }
+        &:hover { background-color: rgba(black, 0.1); }
 
         @include breakpoint( 'tablet' ) { margin-right: 0; margin-top: $scale; order: 2; }
       }
@@ -179,7 +179,7 @@
         padding-left: $scale-2-1 !important;
         padding-right: $scale-2-1 !important;
         min-width: 154px;
-        &:hover { background-color: rgba(white, 0.9); }
+        &:hover { background-color: rgba(white, 0.8); }
         @include breakpoint( 'tablet' ) { order: 1; }
       }
 
