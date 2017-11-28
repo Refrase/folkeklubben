@@ -122,14 +122,18 @@
     }
 
     li {
+      position: relative;
       width: 25%;
       height: 100%;
 
       @include breakpoint( 'tablet' ) { width: 50%; height: 50%; }
       @include breakpoint( 'custom', '480px' ) { width: 100%; height: 25%; }
 
-      transition: opacity 0.15s ease-out;
-      &:hover { opacity: 0.9; }
+      transition: all 0.15s ease-out;
+      &:hover {
+        height: calc( 100% + #{$scale} );
+        transform: translateY(-$scale);
+      }
 
       &:nth-child(1) { background-color: $color-news;
         a { color: $color-darkblue; }
