@@ -107,7 +107,7 @@
     padding: $scale-2-1 $scale-4-1;
 
     &-frontpage {
-      border-radius: 0 2px 2px 0;
+      border-radius: 0 0 2px 2px;
       background-color: transparent;
       border: 16px solid $color-gold;
       border-width: 16px 15px;
