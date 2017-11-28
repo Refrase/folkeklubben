@@ -14,7 +14,7 @@
           action="https://folkeklubben.us6.list-manage.com/subscribe/post?u=f8cc3389c3d2cb830f3cd936d&amp;id=86364cbe93"
           method="post" id="mc-embedded-subscribe-form"
           name="mc-embedded-subscribe-form"
-          target="_blank" 
+          target="_blank"
           novalidate
           autocomplete="off">
           <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Få vores nyhedsbrev..." />
@@ -156,6 +156,8 @@
   }
 
   .newsletterWrap-frontpage {
+    opacity: 0;
+    animation: fadeIn .3s 4s ease-out forwards;
     @include breakpoint( 'tablet' ) { display: none; }
   }
 

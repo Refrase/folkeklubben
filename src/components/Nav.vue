@@ -68,6 +68,12 @@
         position: absolute;
         margin-right: 8px;
         text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        z-index: 0;
+
+        opacity: 0;
+        transform: translate3d( 0, -48px, 0 );
+        animation: fadeIn 0.6s 4.6s ease-out forwards, slideDownFrontpageNavItems .6s 4.6s ease-out forwards;
+        @include breakpoint( 'tablet' ) { opacity: 1; animation: none; transform: translate3d(0,0,0); }
 
         & .navItem-presse {
           transform: translate3d(32px,80px,0);
