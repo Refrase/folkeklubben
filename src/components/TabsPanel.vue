@@ -52,7 +52,7 @@
     @extend .fadeIn;
 
     .title {
-      color: rgba(black, 0.25);
+      color: rgba(black, 0.3);
       text-transform: uppercase;
       font-size: $fontSize-large !important;
       @include breakpoint( 'mobile' ) { text-align: center; }
