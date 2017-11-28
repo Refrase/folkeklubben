@@ -355,7 +355,7 @@ export const mailchimpValidate = {
 		mc.closePopup();
 	});
 	$(document).keydown(function(e){
-        keycode = (e == null) ? event.keyCode : e.which;
+        var keycode = (e == null) ? event.key || event.keyIdentifier || event.keyCode : e.which;
         if (keycode == 27 && typeof mc.showPopup != 'undefined') mc.closePopup();
     });
 

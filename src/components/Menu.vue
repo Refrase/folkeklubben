@@ -9,7 +9,14 @@
         <appNav />
       </div>
       <div :class="{ 'newsletterWrap-frontpage': isVelkommen }" id="mc_embed_signup">
-        <form class="newsletter validate" @submit="runMailchimpSubscriptionFlow" action="https://folkeklubben.us6.list-manage.com/subscribe/post?u=f8cc3389c3d2cb830f3cd936d&amp;id=86364cbe93" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+        <form class="newsletter validate"
+          @submit="runMailchimpSubscriptionFlow"
+          action="https://folkeklubben.us6.list-manage.com/subscribe/post?u=f8cc3389c3d2cb830f3cd936d&amp;id=86364cbe93"
+          method="post" id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          target="_blank" 
+          novalidate
+          autocomplete="off">
           <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Få vores nyhedsbrev..." />
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
           <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f8cc3389c3d2cb830f3cd936d_86364cbe93" tabindex="-1" value=""></div>
