@@ -96,7 +96,7 @@
         text-transform: uppercase;
         line-height: 32px;
         position: relative;
-        top: -2px;
+        top: -4px;
         color: rgba(black, 0.6);
         margin-right: $scale-3-1;
         display: inline-block;
