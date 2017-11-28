@@ -93,6 +93,7 @@
   .slideToSide-enter-to {
     transform: translate3d(0, 0, 0);
     @include breakpoint( 'mobile' ) { transform: translate3d(-50%, 0, 0); }
+    @include breakpoint( 'custom', '1400px', true ) { transform: translate3d(108px, 0, 0); }
   }
 
   .slideToCenter-enter {
