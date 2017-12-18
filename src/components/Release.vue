@@ -106,6 +106,11 @@
 
       &:nth-child(odd) { background-color: rgba(white, 0.05); }
 
+      > * {
+        @include breakpoint('tablet') { font-size: 13px !important; }
+        @include breakpoint('mobile') { font-size: 16px !important; }
+      }
+
       p { display: inline-block; }
     }
 
