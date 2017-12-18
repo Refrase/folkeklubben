@@ -7,7 +7,7 @@
   export default {
     name: 'ReleaseDate',
     mixins: [getPrettyDate],
-    props: { date: Object },
+    props: { date: String },
     computed: { prettyDate() { return this.getPrettyDate(this.date, 'short', true) } }
   }
 </script>
