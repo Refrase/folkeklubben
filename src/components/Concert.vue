@@ -14,7 +14,7 @@
         target="_blank"
         class="buy button"
         :class="buyButtonClass"
-        :style="{ backgroundColor: concert.status === 'few_tickets' || concert.status === 'waiting_list' ? buttonAttentionColor : null }">
+        :style="{ backgroundColor: concert.status === 'few_tickets' ? buttonAttentionColor : concert.status === 'waiting_list' ? buttonDimmedColor : null }">
         <span v-if="concert.status === 'free'">Gratis entré</span>
         <span v-else-if="concert.status === 'sold_out'">Udsolgt</span>
         <span v-else-if="concert.status === 'cancelled'">Aflyst</span>
@@ -37,6 +37,11 @@
         const colorObj = wp.colors ? wp.colors.find( x => x.name === 'Concerts button attention' ) : null
         if ( colorObj && colorObj.color ) return colorObj.color
         else return '#ffe059'
+      },
+      buttonDimmedColor() {
+        const colorObj = wp.colors ? wp.colors.find( x => x.name === 'Concerts button dimmed' ) : null
+        if ( colorObj && colorObj.color ) return colorObj.color
+        else return '#2C70B6'
       },
       prettyDate() { return this.getPrettyDate(this.concert.date, 'shorter', true) },
       buyButtonClass() {
