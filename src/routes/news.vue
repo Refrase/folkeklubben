@@ -24,6 +24,7 @@
 
         <div class="facebook">
           <div class="facebook_button">
+            <a href="https://www.facebook.com/folkeklubben" target="_blank" class="display-block margin-bottom-2-1 textAlign-center width-full">Folkeklubben på Facebook</a>
             <div class="fb-follow" data-href="https://www.facebook.com/folkeklubben" data-layout="button" data-size="large" data-show-faces="false" />
             <div class="fb-like" data-href="https://www.facebook.com/folkeklubben" data-layout="button" data-size="large" data-show-faces="false" />
           </div>
@@ -33,7 +34,7 @@
           <img :src="instagramImage.images.standard_resolution.url" width="100%" class="display-block" alt="">
           <div class="margin-top-4-1">
             <p v-if="instagramImage.caption">{{ instagramImage.caption.text }}</p>
-            <a href="https://www.instagram.com/folkeklubben/" target="_blank" class="display-block margin-top-2-1 textAlign-center width-full">Følg os på Instagram</a>
+            <a href="https://www.instagram.com/folkeklubben/" target="_blank" class="display-block margin-top-2-1 textAlign-center width-full">Folkeklubben på Instagram</a>
           </div>
         </div>
 
