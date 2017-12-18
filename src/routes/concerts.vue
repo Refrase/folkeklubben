@@ -4,10 +4,15 @@
 
     <background video pause :page="page ? page[0] : null" :color="videoOverlayColor" />
 
-    <grid-block noPadding v-if="tours">
+    <grid-block noPadding v-if="tours && !toursNotDone.length">
+      <div class="span-12 margin-top-2-1 textAlign-center">
+        <p :style="{ fontSize: '20px' }">Der er desværre ingen koncerter i kalenderen...</p>
+      </div>
+    </grid-block>
+
+    <grid-block noPadding v-if="tours && toursNotDone.length > 1">
       <div class="span-12">
         <tabs-panel
-          v-if="tours"
           title="Vælg turné"
           :domRefs="this.$refs"
           :tabs="toursNotDone" />
@@ -15,14 +20,13 @@
     </grid-block>
 
     <grid-block noPadding>
-      <div class="span-12" v-if="!tours">
+      <div class="span-12" v-if="loadingTours">
         <spinner />
       </div>
       <div class="span-12 position-relative" v-else>
-        <div class="tours">
+        <div class="tours" :class="{ 'tours-noTabs': toursNotDone.length < 2 }">
           <tour
-            v-for="(tour, index) in tours"
-            v-if="!tour.acf.done"
+            v-for="(tour, index) in toursNotDone"
             :key="index"
             v-bind:ref="tour.title.rendered"
             :tour="tour"
@@ -56,22 +60,38 @@
     data() {
       return {
         page: [],
+        loadingTours: true,
         tours: null
       }
     },
     computed: {
       videoOverlayColor() { return this.decideRouteBackgroundColor( 'Concerts page', 'koncerter' ) },
+      today() {
+        const today = new Date()
+        const todayFull = today.getFullYear() + '' + ( today.getMonth() + 1 ) + '' + today.getDate()
+        return parseInt(todayFull)
+      },
       toursNotDone() {
         let toursNotDone = []
         for ( let tour of this.tours ) {
-          if ( !tour.acf.done ) toursNotDone.push(tour)
+          if ( tour.acf.done ) continue
+          if ( this.tourHasUpcomingConcerts(tour.acf.concerts) ) toursNotDone.push(tour)
         }
         return toursNotDone
       }
     },
     created() {
       this.fetchData( 'pages?slug=koncerter' ).then( res => this.page = res )
-      this.fetchData( 'tours' ).then( res => this.tours = res )
+      this.fetchData( 'tours' ).then( res => {
+        this.loadingTours = false
+        this.tours = res
+      })
+    },
+    methods: {
+      tourHasUpcomingConcerts(concerts) {
+        for ( let concert of concerts ) if ( concert.date >= this.today ) return true
+        return false
+      }
     }
   }
 </script>
@@ -88,12 +108,18 @@
     width: 100%;
     left: 2px;
     overflow-y: scroll;
-    height: calc( 100vh - #{$routePaddingTop} - 104px - 16px ); // 104 = tabsPanel height
-
     @extend .fadeIn;
 
-    @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 104px - 16px ); }
-    @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 104px - 16px ); }
+    height: calc( 100vh - #{$routePaddingTop} - 104px - 24px ); // 104 = tabsPanel height
+    @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 104px - 24px ); }
+    @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 104px - 24px ); }
+
+    &-noTabs {
+      margin-top: $scale-2-1;
+      height: calc( 100vh - #{$routePaddingTop} - 32px );
+      @include breakpoint( 'tablet' ) { height: calc( 100vh - #{$routePaddingTopTablet} - 32px ); }
+      @include breakpoint( 'mobile' ) { height: calc( 100vh - #{$routePaddingTopMobile} - 32px ); }
+    }
 
     &::-webkit-scrollbar { width: 4px; }
     &::-webkit-scrollbar-track { background-color: rgba(black, 0.1); }

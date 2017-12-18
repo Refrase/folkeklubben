@@ -54,6 +54,8 @@
 
     .title {
       color: rgba(black, 0.3);
+      margin-top: $scale-2-1;
+      margin-bottom: 0 !important;
       text-transform: uppercase;
       font-size: $fontSize-large !important;
       @include breakpoint( 'mobile' ) { text-align: center; }

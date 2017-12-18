@@ -1,11 +1,11 @@
 <template>
-  <div class="tour">
+  <div class="tour" v-if="upcomingConcerts.length">
     <div class="header">
       <h2 class="title">{{ tour.title.rendered }}</h2>
       <p v-if="tour.acf.period" class="period">{{ tour.acf.period }}</p>
     </div>
     <ul class="concerts">
-      <concert v-for="(concert, index) in concerts" :concert="concert" :key="index" />
+      <concert v-for="(concert, index) in upcomingConcerts" :concert="concert" :key="index" />
     </ul>
   </div>
 </template>
@@ -18,6 +18,20 @@
     props: {
       tour: Object,
       concerts: Array
+    },
+    computed: {
+      today() {
+        const today = new Date()
+        const todayFull = today.getFullYear() + '' + ( today.getMonth() + 1 ) + '' + today.getDate()
+        return parseInt(todayFull)
+      },
+      upcomingConcerts() {
+        let upcomingConcerts = []
+        for ( let concert of this.concerts ) {
+          if ( concert.date >= this.today ) upcomingConcerts.push(concert)
+        }
+        return upcomingConcerts
+      }
     }
   }
 </script>
