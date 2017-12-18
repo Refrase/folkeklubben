@@ -16,6 +16,10 @@
           </div>
           <release-date v-if="video.acf.video_release_date" :date="video.acf.video_release_date" />
         </div>
+        <div class="span-12">
+          <p v-if="noMoreVideos" :style="{ textAlign: 'center', marginBottom: '32px', fontWeight: 'bold' }">Det var det :)</p>
+          <button @click.prevent="loadMoreVideos" :style="{ display: 'block', margin: '0 auto 32px' }">Vis flere videoer</button>
+        </div>
       </grid-block>
     </div>
   </div>
@@ -43,7 +47,11 @@
       return {
         page: [],
         releases: null,
-        videos: []
+        videos: [],
+        loadingMoreVideos: false,
+        videosPerPage: 6,
+        videosCollectionNumber: 1,
+        noMoreVideos: null,
       }
     },
     computed: {
@@ -58,7 +66,20 @@
     created() {
       this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
       this.fetchData( 'releases?_embed' ).then( res => this.releases = res )
-      this.fetchData( 'videos?order=asc' ).then( res => this.videos = res )
+      this.fetchData( 'videos?order=asc&per_page=' + this.videosPerPage + '&page=1' ).then( res => this.videos = res )
+    },
+    methods: {
+      loadMoreVideos() {
+        this.loadingMoreVideos = true
+        this.videosCollectionNumber = this.videosCollectionNumber + 1
+        this.fetchData( 'videos?order=asc&per_page=' + this.videosPerPage + '&page=' + this.videosCollectionNumber ).then( res => {
+          this.loadingMoreVideos = false
+          this.videos = this.videos.concat(res)
+        }).catch( () => {
+          this.loadingMoreVideos = false
+          this.noMoreVideos = true
+        })
+      }
     }
   }
 </script>
