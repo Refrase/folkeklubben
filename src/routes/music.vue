@@ -10,20 +10,11 @@
       </grid-block>
       <grid-block>
         <h1 class="span-12 margin-bottom-4-1">Musikvideoer</h1>
-        <div v-for="(video, index) in videosByReleasedateReversed" v-if="index == 0" class="span-12">
-          <div class="videoWrap margin-bottom-4-1">
+        <div v-for="(video, index) in videosByReleasedateReversed" class="span-4 margin-bottom-4-1">
+          <div class="videoWrap">
             <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
           </div>
-        </div>
-        <div v-else-if="index > 0 && index < 3" class="span-6">
-          <div class="videoWrap margin-bottom-4-1">
-            <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
-          </div>
-        </div>
-        <div v-else class="span-4 margin-bottom-2-1">
-          <div class="videoWrap margin-bottom-4-1">
-            <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
-          </div>
+          <release-date v-if="video.acf.video_release_date" :date="video.acf.video_release_date" />
         </div>
       </grid-block>
     </div>
@@ -34,6 +25,7 @@
   import GridBlock from '@/components/GridBlock'
   import Background from '@/components/Background'
   import Release from '@/components/Release'
+  import ReleaseDate from '@/components/ReleaseDate'
   import Spinner from '@/components/Spinner'
   import { fetchData } from '@/utils/fetchData'
   import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
@@ -43,6 +35,7 @@
       'grid-block': GridBlock,
       'background': Background,
       'release': Release,
+      'release-date': ReleaseDate,
       'spinner': Spinner
     },
     mixins: [fetchData, decideRouteBackgroundColor],
