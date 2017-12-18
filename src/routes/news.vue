@@ -29,10 +29,10 @@
           </div>
         </div>
 
-        <div v-if="this.instagramImage" class="instagram margin-top-4-1">
-          <img :src="this.instagramImage.images.standard_resolution.url" width="100%" class="display-block" alt="">
-          <div class="margin-top-2-1">
-            <p>{{ this.instagramImage.caption.text }}</p>
+        <div v-if="instagramImage && instagramImage.images && instagramImage.images.standard_resolution" class="instagram margin-top-4-1">
+          <img :src="instagramImage.images.standard_resolution.url" width="100%" class="display-block" alt="">
+          <div class="margin-top-4-1">
+            <p v-if="instagramImage.caption">{{ instagramImage.caption.text }}</p>
             <a href="https://www.instagram.com/folkeklubben/" target="_blank" class="display-block margin-top-2-1 textAlign-center width-full">Følg os på Instagram</a>
           </div>
         </div>
