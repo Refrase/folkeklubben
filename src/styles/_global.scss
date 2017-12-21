@@ -82,6 +82,7 @@ button,
   white-space: nowrap;
   letter-spacing: 0.5px;
   border-radius: $borderRadius;
+  -webkit-appearance: none;
   @extend .transitionFadeOnHover;
 
   &:hover {
