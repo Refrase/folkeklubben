@@ -108,6 +108,7 @@
     width: 100%;
     left: 2px;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     @extend .fadeIn;
 
     height: calc( 100vh - #{$routePaddingTop} - 104px - 24px ); // 104 = tabsPanel height
