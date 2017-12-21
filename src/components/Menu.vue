@@ -111,12 +111,14 @@
   .slideToSide-enter-active { transition: all .6s ease-out; }
   .slideToSide-enter-to {
     transform: translate3d(0, 0, 0);
+    @include breakpoint( 'tablet' ) { transform: translate3d(-108px, 0, 0); }
     @include breakpoint( 'mobile' ) { transform: translate3d(-50%, 0, 0); }
     @include breakpoint( 'custom', '1400px', true ) { transform: translate3d(108px, 0, 0); }
   }
 
   .slideToCenter-enter {
     transform: translate3d(0, 0, 0);
+    @include breakpoint( 'tablet' ) { transform: translate3d(-216px, 0, 0); }
     @include breakpoint( 'mobile' ) { transform: translate3d(-50%, 0, 0); }
   }
   .slideToCenter-enter-active { transition: all .6s ease-out; }
@@ -217,12 +219,12 @@
       min-width: 64px;
       width: 30%;
       float: left;
-      font-size: $fontSize-xsmall;
+      font-size: 11px;
       background-color: $color-gold;
       color: $color-gold-darker-2;
       padding: $scale;
-      padding-top: $scale - 1px;
-      padding-bottom: $scale + 1px;
+      padding-top: $scale;
+      padding-bottom: $scale + 2px;
       border-bottom-right-radius: $borderRadius;
       &:hover { color: $color-gold-darker-4; }
     }

@@ -147,7 +147,11 @@
 
       &-frontPage {
         color: white;
-        @include breakpoint( 'mobile' ) { color: $color-gold-darker-2; }
+        &:hover { color: white !important; }
+        @include breakpoint( 'mobile' ) {
+          color: $color-gold-darker-2;
+          &:hover { color: $color-gold-darker-4 !important; }
+        }
       }
 
       &:hover { color: $color-gold-darker-4; }
