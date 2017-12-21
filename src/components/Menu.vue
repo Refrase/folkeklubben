@@ -6,7 +6,8 @@
       :key="routeName">
       <div class="top" :class="{ 'top-frontpage': isVelkommen }">
         <router-link :to="{ name: 'velkommen' }" exact class="logo">Folkeklubben</router-link>
-        <appNav />
+        <icon-burger class="show-mobile" :active="showMobileNav" @click.native="showMobileNav = !showMobileNav" />
+        <app-nav :active="showMobileNav" v-on:closeMobileNav="showMobileNav = false" />
       </div>
       <div :class="{ 'newsletterWrap-frontpage': isVelkommen }" id="mc_embed_signup">
         <form class="newsletter validate"
@@ -33,17 +34,27 @@
 
 <script>
   import Nav from '@/components/Nav'
+  import IconBurger from '@/components/IconBurger'
   import { mailchimpValidate } from '@/utils/mailchimpValidate'
   import { mailchimpConfig } from '@/utils/mailchimpConfig'
   export default {
     name: 'Menu',
-    components: { appNav: Nav },
+    components: {
+      'app-nav': Nav,
+      'icon-burger': IconBurger
+    },
     props: { routeChange: Object },
     mixins: [mailchimpValidate, mailchimpConfig],
+    data() {
+      return {
+        showMobileNav: false
+      }
+    },
     computed: {
       routeName() { return this.$route.name },
       isVelkommen() { return this.$route.name == 'velkommen' },
       transitionName() {
+        this.showMobileNav = false
         if (this.routeChange.from || this.routeChange.to) {
           return this.routeChange.from.path === '/' ? 'slideToSide' : this.routeChange.to.path === '/' ? 'slideToCenter' : null
         }
@@ -71,14 +82,15 @@
     transform: translate3d(0,0,0);
 
     @include breakpoint( 'tablet' ) {
-      width: 275px;
+      width: 383px;
+      transform: translate3d(-108px, 0, 0);
       top: 0;
     }
 
     @include breakpoint( 'mobile' ) {
       left: 50%;
       transform: translate3d(-50%, 0, 0);
-      width: calc( 100% - 30px );
+      width: calc( 100% - 28px );
     }
 
     @include breakpoint( 'custom', '1400px', true ) { width: 397px; transform: translate3d(108px, 0, 0); }
@@ -131,6 +143,7 @@
         font-size: 55px !important;
         @include breakpoint( 'custom', '1400px' ) { font-size: 53px !important; }
         @include breakpoint( 'tablet' ) { font-size: 42px !important; }
+        @include breakpoint( 'custom', '360px' ) { font-size: 32px !important; }
         &:hover { color: white; }
       }
     }
@@ -150,7 +163,13 @@
     letter-spacing: 0;
     transition: color .2s ease-out;
 
-    @include breakpoint( 'tablet' ) { font-size: 39px !important; }
+    @include breakpoint( 'mobile' ) {
+      font-size: 39px !important;
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    @include breakpoint( 'custom', '360px' ) { font-size: 32px !important; }
 
     &:hover { color: $color-darkblue; }
   }
@@ -162,7 +181,8 @@
   }
 
   .newsletter {
-    margin-top: 1px;
+
+    @include breakpoint( 'tablet' ) { margin-top: 0px; }
 
     label {
       display: block;

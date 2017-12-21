@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="right">
-      <a v-if="concert.facebook_event_link" :href="concert.facebook_event_link" class="facebookEvent button">Facebook event</a>
+      <a v-if="concert.facebook_event_link" :href="concert.facebook_event_link" target="_blank" class="facebookEvent button">Facebook event</a>
       <a :href="concert.ticket_link && !concert.cancelled ? concert.ticket_link : '#'"
         target="_blank"
         class="buy button"

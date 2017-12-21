@@ -134,7 +134,10 @@ $positions: '-top' '-right' '-bottom' '-left' ''; // One left blank for the clea
 .hide { display: none !important;
 	&-mobile { @include breakpoint( 'mobile' ) { display: none !important; }}
 	&-tablet { @include breakpoint( 'tablet' ) { display: none !important; }}}
-.show { display: block !important; }
+.show { display: block !important;
+	&-mobile {
+		display: none;
+		@include breakpoint( 'mobile' ) { display: block !important; }}}
 
 .float {
 	&-right { float: right; }
