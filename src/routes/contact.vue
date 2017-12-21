@@ -6,7 +6,7 @@
       <div class="span-12 margin-bottom-4-1">
         <div class="subheader" v-html="page.content.rendered" />
       </div>
-      <div class="span-6" v-if="contacts" v-for="(contact, index) in contacts">
+      <div class="span-4" v-if="contacts" v-for="(contact, index) in contacts">
         <contact :contact="contact" class="margin-bottom-4-1" />
       </div>
     </grid-block>
