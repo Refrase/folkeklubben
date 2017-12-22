@@ -24,6 +24,7 @@
       color: #b54248;
     }
   </style>
+  <title>Folkeklubben</title>
   <?php wp_head(); ?>
 </head>
 <body>
