@@ -12,23 +12,20 @@
 
 <script>
   import Concert from '@/components/Concert'
+  import { today8Digits } from '@/utils/today'
   export default {
     name: 'Concerts',
     components: { concert: Concert },
+    mixins: [today8Digits],
     props: {
       tour: Object,
       concerts: Array
     },
     computed: {
-      today() {
-        const today = new Date()
-        const todayFull = today.getFullYear() + '' + ( today.getMonth() + 1 ) + '' + today.getDate()
-        return parseInt(todayFull)
-      },
       upcomingConcerts() {
         let upcomingConcerts = []
         for ( let concert of this.concerts ) {
-          if ( concert.date >= this.today ) upcomingConcerts.push(concert)
+          if ( concert.date >= this.today8Digits() ) upcomingConcerts.push(concert)
         }
         return upcomingConcerts
       }

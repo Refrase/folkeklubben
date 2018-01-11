@@ -4,18 +4,18 @@
 
     <background video pause :page="page ? page[0] : null" :color="videoOverlayColor" />
 
-    <grid-block noPadding v-if="tours && !toursNotDone.length">
+    <grid-block noPadding v-if="tours && !toursNotDoneByStartdate.length">
       <div class="span-12 margin-top-2-1 textAlign-center">
         <p :style="{ fontSize: '20px' }">Der er desværre ingen koncerter i kalenderen...</p>
       </div>
     </grid-block>
 
-    <grid-block noPadding v-if="tours && toursNotDone.length > 1">
+    <grid-block noPadding v-if="tours && toursNotDoneByStartdate.length > 1">
       <div class="span-12">
         <tabs-panel
           title="Vælg turné"
           :domRefs="this.$refs"
-          :tabs="toursNotDone" />
+          :tabs="toursNotDoneByStartdate" />
       </div>
     </grid-block>
 
@@ -24,9 +24,9 @@
         <spinner />
       </div>
       <div class="span-12 position-relative" v-else>
-        <div class="tours" :class="{ 'tours-noTabs': toursNotDone.length < 2 }">
+        <div class="tours" :class="{ 'tours-noTabs': toursNotDoneByStartdate.length < 2 }">
           <tour
-            v-for="(tour, index) in toursNotDone"
+            v-for="(tour, index) in toursNotDoneByStartdate"
             :key="index"
             v-bind:ref="tour.title.rendered"
             :tour="tour"
@@ -47,6 +47,7 @@
   import Spinner from '@/components/Spinner'
   import { fetchData } from '@/utils/fetchData'
   import { decideRouteBackgroundColor } from '@/utils/decideRouteBackgroundColor'
+  import { today8Digits } from '@/utils/today'
   export default {
     name: 'ConcertsRoute',
     components: {
@@ -56,7 +57,7 @@
       'tour': Tour,
       'spinner': Spinner
     },
-    mixins: [fetchData, decideRouteBackgroundColor],
+    mixins: [fetchData, decideRouteBackgroundColor, today8Digits],
     data() {
       return {
         page: [],
@@ -66,18 +67,14 @@
     },
     computed: {
       videoOverlayColor() { return this.decideRouteBackgroundColor( 'Concerts page', 'koncerter' ) },
-      today() {
-        const today = new Date()
-        const todayFull = today.getFullYear() + '' + ( today.getMonth() + 1 ) + '' + today.getDate()
-        return parseInt(todayFull)
-      },
-      toursNotDone() {
+      toursNotDoneByStartdate() {
         let toursNotDone = []
         for ( let tour of this.tours ) {
-          if ( tour.acf.done ) continue
+          if ( tour.acf.done ) continue // To check if it is marked as done on wp-admin
           if ( this.tourHasUpcomingConcerts(tour.acf.concerts) ) toursNotDone.push(tour)
         }
-        return toursNotDone
+        const toursNotDoneByStartdate = toursNotDone.sort( (a, b) => { return parseInt(a.acf.start_date, 10) - parseInt(b.acf.start_date, 10) })
+        return toursNotDoneByStartdate
       }
     },
     created() {
@@ -89,7 +86,7 @@
     },
     methods: {
       tourHasUpcomingConcerts(concerts) {
-        for ( let concert of concerts ) if ( concert.date >= this.today ) return true
+        for ( let concert of concerts ) if ( concert.date >= this.today8Digits() ) return true
         return false
       }
     }
