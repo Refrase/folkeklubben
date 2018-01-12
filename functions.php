@@ -276,8 +276,19 @@
     }
   }
 
+  // Sorting videos by release date as default
+  function video_release_date_default_order( $query ) {
+      if( $query->get( 'post_type' ) == 'video' ){
+          if( $query->get( 'orderby' ) == '' )
+              $query->set( 'orderby', 'video_release_date' );
+          if( $query->get( 'order' ) == '' )
+              $query->set( 'order', 'desc' );
+      }
+  }
+
   add_filter( 'manage_edit-video_sortable_columns', 'columns_sortable_videos' );
   add_action( 'pre_get_posts', 'order_by_video_release_date_column' );
+  add_action( 'pre_get_posts', 'video_release_date_default_order', 9 );
 
   // ##### Enabling custom field sortable column for a custom post type #####
   // In this case the 'Track' post type gets a 'Release' column that the tracks can be sorted by (only on admin side though!)
