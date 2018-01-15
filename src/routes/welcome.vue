@@ -1,7 +1,6 @@
 <template>
   <div class="welcomeRoute">
     <background :page="page ? page[0] : null" :color="backgroundColor" />
-    <h1 v-if="1 === 2" class="welcome">Velkommen i <span>Folkeklubben</span></h1>
     <spinner v-if="loadingPage" v-bind:style="{ bottom: 'calc( 100vh - ' + (backgroundImageHeight - 7) + 'px )' }" />
     <ul class="links" v-bind:style="{ height: 'calc( 100vh - ' + backgroundImageHeight + 'px )' }">
       <li><router-link :to="{ name: 'nyheder' }" :style="{ backgroundColor: getPageColor( 'News page', 'nyheder' ) }"><span>Nyheder</span></router-link></li>
