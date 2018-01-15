@@ -10,7 +10,7 @@
     <li v-if="!isWelcomeRoute"><router-link :to="{ name: 'musik' }" class="navItem navItem-musik"
       :exact-active-class="routeName == 'musik' ? `active-${routeName}` : null">Musik</router-link></li>
 
-    <li v-if="!isWelcomeRoute"><a :href="merchLink ? merchLink : '#'" target="_blank" class="navItem navItem-merch">Merch</a></li>
+    <li><a :href="merchLink ? merchLink : '#'" target="_blank" :class="{ 'navItem-frontPage': isWelcomeRoute }" class="navItem navItem-merch">Merch</a></li>
 
     <li :class="{ 'navItemWrap-frontpage': isWelcomeRoute }">
       <router-link :to="{ name: 'presse' }" :class="{ 'navItem-frontPage': isWelcomeRoute }" class="navItem navItem-presse"
@@ -151,6 +151,10 @@
         @include breakpoint( 'mobile' ) {
           color: $color-gold-darker-2;
           &:hover { color: $color-gold-darker-4 !important; }
+        }
+        &.navItem-merch {
+          display: none;
+          @include breakpoint( 'mobile' ) { display: block; }
         }
       }
 
