@@ -10,16 +10,16 @@
       </grid-block>
       <grid-block>
         <h1 class="span-12 margin-bottom-4-1">Musikvideoer</h1>
-        <div v-for="(video, index) in videosByReleasedateReversed" class="span-4 margin-bottom-4-1">
+        <div v-for="(video, index) in videos" class="span-4 margin-bottom-4-1">
           <div class="videoWrap">
             <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
           </div>
           <release-date v-if="video.acf.video_release_date" :date="video.acf.video_release_date" />
         </div>
-        <!-- <div class="span-12">
+        <div class="span-12">
           <p v-if="noMoreVideos" :style="{ textAlign: 'center', marginBottom: '32px', fontWeight: 'bold' }">Det var det :)</p>
           <button @click.prevent="loadMoreVideos" :style="{ display: 'block', margin: '0 auto 32px' }">Vis flere videoer</button>
-        </div> -->
+        </div>
       </grid-block>
     </div>
   </div>
@@ -49,7 +49,7 @@
         releases: null,
         videos: [],
         loadingMoreVideos: false,
-        videosPerPage: 100,
+        videosPerPage: 6,
         videosCollectionNumber: 1,
         noMoreVideos: null,
       }
@@ -67,14 +67,14 @@
       this.fetchData( 'pages?slug=musik' ).then( res => this.page = res )
       this.fetchData( 'releases?_embed' ).then( (res) => {
         this.releases = res
-        this.fetchData( 'videos?per_page=' + this.videosPerPage + '&page=1' ).then( res => this.videos = res )
+        this.fetchData( 'videos?per_page=' + this.videosPerPage + '&page=1&filter[orderby]=meta_value_num&filter[meta_key]=video_release_date&order=desc' ).then( res => this.videos = res )
       })
     },
     methods: {
-      loadMoreVideos() { // Legacy (for now at least...)
+      loadMoreVideos() {
         this.loadingMoreVideos = true
         this.videosCollectionNumber = this.videosCollectionNumber + 1
-        this.fetchData( 'videos?per_page=' + this.videosPerPage + '&page=' + this.videosCollectionNumber ).then( res => {
+        this.fetchData( 'videos?per_page=' + this.videosPerPage + '&page=' + this.videosCollectionNumber + '&filter[orderby]=meta_value_num&filter[meta_key]=video_release_date&order=desc' ).then( res => {
           this.loadingMoreVideos = false
           this.videos = this.videos.concat(res)
         }).catch( () => {

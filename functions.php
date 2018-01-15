@@ -373,4 +373,16 @@
   }
   add_filter('acf/load_value/name=tracks', 'tracks_acf_load_value', 10, 3);
 
+  // ----- When requesting the custom post type 'Video' (therefore the filter rest_VIDEO_query) then take the query/request-params 'filter[meta_key]' and 'filter[orderby]'
+  // and use them in the query to order by the advanced custom field specified under filter[meta_key] in the query-url (here 'video_release_date')
+  // Example url used on the frontend to query: wp-json/wp/v2/videos?per_page=' + this.videosPerPage + '&page=1&filter[orderby]=meta_value_num&filter[meta_key]=video_release_date&order=desc
+  function rest_video_sort_query( $args, $request ) {
+    if( isset($request['filter']['meta_key']) ) {
+    	$args['meta_key'] = $request['filter']['meta_key'];
+      $args['orderby'] = $request['filter']['orderby'];
+    }
+    return $args;
+  }
+  add_filter( 'rest_video_query', 'rest_video_sort_query', 10, 2 );
+
 ?>
