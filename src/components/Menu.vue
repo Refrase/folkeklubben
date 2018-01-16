@@ -18,7 +18,7 @@
           target="_blank"
           novalidate
           autocomplete="off">
-          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Få vores nyhedsbrev..." />
+          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Skriv din mail og få vores nyhedsbrev..." />
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
           <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f8cc3389c3d2cb830f3cd936d_86364cbe93" tabindex="-1" value=""></div>
           <!-- end bot signup wall -->
@@ -179,10 +179,17 @@
   .newsletterWrap-frontpage {
     opacity: 0;
     animation: fadeIn .3s 3s ease-out forwards;
-    @include breakpoint( 'tablet' ) { display: none; }
+    @include breakpoint( 'tablet' ) {
+      width: calc(100% - 60px); // App borders
+      margin-top: $scale-4-1;
+      margin-left: 30px;
+      display: block;
+    }
+    @include breakpoint( 'mobile' ) { margin-top: 0; }
   }
 
   .newsletter {
+    display: flex;
 
     @include breakpoint( 'tablet' ) { margin-top: 0px; }
 
@@ -202,11 +209,12 @@
 
     input[type="email"] {
       display: block;
-      width: 70%;
+      flex-basis: 100%;
+      flex-grow: 1;
       font-size: $fontSize-small;
       font-weight: bold;
       line-height: 1.3;
-      padding: $scale $scale-4-1;
+      padding: $scale $scale-2-1;
       padding-right: $scale-1-2;
       display: inline-block;
       float: left;
@@ -216,13 +224,12 @@
 
     input[type="submit"] {
       display: inline-block;
-      min-width: 64px;
-      width: 30%;
+      min-width: 80px;
       float: left;
       font-size: 11px;
       background-color: $color-gold;
       color: $color-gold-darker-2;
-      padding: $scale;
+      padding: $scale $scale-1-2;
       padding-top: $scale;
       padding-bottom: $scale + 2px;
       border-bottom-right-radius: $borderRadius;
