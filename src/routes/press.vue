@@ -4,8 +4,8 @@
     <spinner v-if="!page || !page.acf.press_image_01" />
     <grid-block v-else class="grid-upper fadeIn">
       <div class="span-7 margin-bottom-4-1">
-        <img width="100%" :src="page.acf.press_image_01">
-        <div class="captionBlock">
+        <img v-if="page.acf.press_image_01" width="100%" :src="page.acf.press_image_01">
+        <div class="captionBlock" v-if="page.acf.press_image_01">
           <p class="caption">{{ page.acf.press_image_01_caption }}</p>
           <a :href="page.acf.press_image_01" :download="'Folkeklubben - ' + page.acf.press_image_01_caption">Hent hi-res</a>
         </div>
@@ -14,13 +14,13 @@
       <div class="span-5 margin-bottom-4-1">
         <social-links class="margin-bottom-4-1" :style="{ backgroundColor: 'transparent' }" />
         <a class="button margin-bottom-4-1 display-block center" :href="page.acf.press_material_package">Hent pressemateriale</a>
-        <img width="100%" :src="page.acf.press_image_02">
-        <div class="captionBlock">
+        <img v-if="page.acf.press_image_02" width="100%" :src="page.acf.press_image_02">
+        <div class="captionBlock" v-if="page.acf.press_image_02">
           <p class="caption">{{ page.acf.press_image_02_caption }}</p>
           <a :href="page.acf.press_image_02" :download="'Folkeklubben - ' + page.acf.press_image_02_caption">Hent hi-res</a>
         </div>
-        <img width="100%" :src="page.acf.press_image_03">
-        <div class="captionBlock">
+        <img v-if="page.acf.press_image_03" width="100%" :src="page.acf.press_image_03">
+        <div class="captionBlock" v-if="page.acf.press_image_03">
           <p class="caption">{{ page.acf.press_image_03_caption }}</p>
           <a :href="page.acf.press_image_03" :download="'Folkeklubben - ' + page.acf.press_image_03_caption">Hent hi-res</a>
         </div>
