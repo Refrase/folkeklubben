@@ -18,7 +18,7 @@
           target="_blank"
           novalidate
           autocomplete="off">
-          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Skriv din mail og få vores nyhedsbrev..." />
+          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Få nyhedsbrevet (indtast mail)" />
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
           <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f8cc3389c3d2cb830f3cd936d_86364cbe93" tabindex="-1" value=""></div>
           <!-- end bot signup wall -->
