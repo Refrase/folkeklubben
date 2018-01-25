@@ -10,6 +10,6 @@ Running development environment:
 - configure Apache (through MAMP) to use port 3000 and visit localhost:3000 (which is the port webpack-dev-server is set to proxy to)
 
 Preparing for production:
+- change __webpack_public_path__ in webpack.config.js to the right live url
 - npm run build
 - uncomment code under '// PROD' and comment out code under '// DEV' in functions.php
-- change __webpack_public_path__ in webpack.config.js to the right live url
