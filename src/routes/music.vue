@@ -4,7 +4,7 @@
     <spinner v-if="!releases" />
     <div v-if="releases" class="fadeIn">
       <grid-block>
-        <div v-for="(release, index) in releasesReversed" class="span-4">
+        <div v-for="(release, index) in releasesByReleasedateReversed" class="span-4">
           <release :release="release" :key="index" />
         </div>
       </grid-block>
@@ -12,7 +12,7 @@
         <h1 class="span-12 margin-bottom-4-1">Musikvideoer</h1>
         <div v-for="(video, index) in videos" class="span-4 margin-bottom-4-1">
           <div class="videoWrap">
-            <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" gesture="media" allowfullscreen></iframe>
+            <iframe class="video" :src="video.acf.video_embed_url_youtube" frameborder="0" allow="autoplay" allowfullscreen></iframe>
           </div>
           <release-date v-if="video.acf.video_release_date" :date="video.acf.video_release_date" />
         </div>
@@ -46,7 +46,7 @@
     data() {
       return {
         page: [],
-        releases: null,
+        releases: [],
         videos: [],
         loadingMoreVideos: false,
         videosPerPage: 6,
@@ -57,6 +57,11 @@
     computed: {
       backgroundColor() { return this.decideRouteBackgroundColor( 'Music page', 'musik' ) },
       releasesReversed() { if (this.releases) return this.releases.reverse() },
+      releasesByReleasedateReversed() {
+        let releases = this.releases
+        releases.sort( (a, b) => { return parseInt(a.acf.release_date, 10) - parseInt(b.acf.release_date, 10) })
+        return releases.reverse()
+      },
       videosByReleasedateReversed() {
         let videos = this.videos
         videos.sort( (a, b) => { return parseInt(a.acf.video_release_date, 10) - parseInt(b.acf.video_release_date, 10) })
