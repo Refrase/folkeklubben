@@ -8,6 +8,7 @@
       ref="releasecover"
       data-tilt
       data-tilt-max="15"
+      data-tilt-scale="1.03"
       data-tilt-speed="1000">
     <img v-else src="../assets/images/album-placeholder.png" :alt="release.title.rendered" width="100%">
     <release-date :date="release.acf.release_date" />
@@ -52,6 +53,7 @@
   .release {
     margin-bottom: $scale-4-1;
     @extend .fadeInSequence;
+    transform: translateZ(0px); // Making the tilt effect work on Safari
   }
 
   img { display: block; }
